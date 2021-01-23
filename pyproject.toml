@@ -1,8 +1,8 @@
 [tool.poetry]
 name = "fate-wielding-bot"
 version = "0.1.0"
-description = ""
-authors = ["Your Name <you@example.com>"]
+description = "A discord bot, more to come"
+authors = ["sdrrv"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
