@@ -26,12 +26,16 @@ async def on_message(message):
             await message.channel.send(cont.choose(command[1:]))
         
         elif(command[0]=="help"):
-            await message.channel.send(cont.help())
+            await message.channel.send(cont.help()) 
+        
+        elif(command[0]=="enter"):
+            channel= message.author.voice.channel
+            await channel.connect()
 
 
 
 
 
 
-keep_alive()
-client.run(os.getenv("TOKEN"))  #Secret Stuff
+#keep_alive()
+client.run("ODAxNTgwNTg5OTAzOTA0Nzk5.YAiwGQ.B4VyOfA-amZ6MLSL5LGTRM-4bKQ")  #Secret Stuff
