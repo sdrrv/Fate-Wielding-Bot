@@ -26,7 +26,7 @@ async def on_message(message):
             await message.channel.send(cont.choose(command[1:]))
         
         elif(command[0]=="help"):
-            await message.channel.send(controller.help())
+            await message.channel.send(cont.help())
 
 
 
