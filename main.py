@@ -22,13 +22,9 @@ async def on_message(message):
         print(message.author)
         print(message.content)
         print("#-" * 30)
+    if message.content.startswith("!fate"):
+        message.channel.send("Something will be added where soon ;)")
 
-@client.event
-async def on_message(message):
-    if message.author == client.user:
-        return 0
-    if message.content.startswith("!Fate"):
-        await message.channel.send("Something will be added where soon ;)")
 
 
 keep_alive()
