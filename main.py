@@ -23,7 +23,7 @@ async def on_message(message):
         print(message.content)
         print("#-" * 30)
     if message.content.startswith("!fate"):
-        message.channel.send("Something will be added where soon ;)")
+        await message.channel.send("Something will be added where soon ;)")
 
 
 
