@@ -2,6 +2,7 @@ import discord
 import os
 from controllers.controller import controller
 from keep_alive import keep_alive
+import time
 
 cont = controller()
 client = discord.Client()
@@ -30,7 +31,9 @@ async def on_message(message):
         
         elif(command[0]=="enter"):
             channel= message.author.voice.channel
-            await channel.connect()
+            tmp= await channel.connect()
+            time.sleep(2)
+            await tmp.disconnect()
 
 
 
