@@ -16,14 +16,17 @@ async def on_ready():
 async def on_message(message):
     if message.author == client.user:
         return 0
-    if message.content.startswith("!choose"):
-        print("#-" * 30)
+    elif message.content.startswith("!choose"):
         await message.channel.send(cont.choose(message.content.split(" ")[1:]))
         print(message.author)
-        print(message.content)
-        print("#-" * 30)
     elif message.content.startswith("!fate"):
-        await message.channel.send("Something will be added where soon ;)")
+        command = message.content.split(" ")[1:]
+
+        if (command[0]=="choose"):
+            await message.channel.send(cont.choose(command[1:]))
+
+
+
 
 
 
