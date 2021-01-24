@@ -23,6 +23,13 @@ async def on_message(message):
         print(message.content)
         print("#-" * 30)
 
+@client.event
+async def on_message(message):
+    if message.author == client.user:
+        return 0
+    if message.content.startswith("!Fate"):
+        await message.channel.send("Something will be added where soon ;)")
+
 
 keep_alive()
 client.run(os.getenv("TOKEN"))  #Secret Stuff
