@@ -30,4 +30,4 @@ class controller:
       return guild.get_member(id)
   
   def disconnect_member(self,member):
-    member.move_to(None)
+    return member.move_to(None)
