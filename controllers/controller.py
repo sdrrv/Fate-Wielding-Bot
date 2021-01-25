@@ -1,3 +1,4 @@
+from asyncio.windows_events import NULL
 import random
 from models.commands import commands
 import discord
@@ -26,5 +27,8 @@ class controller:
     audio= discord.FFmpegPCMAudio(source="./sounds/"+music)
     voice_client.play(source=audio, after=None)
   
-  def get_user(self,guild,id):
-    pass
+  def get_member(self,guild,id):
+    return guild.get_member(id)
+  
+  def disconnect_member(self,member):
+        member.move_to(NULL)

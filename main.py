@@ -37,16 +37,17 @@ async def on_message(message):
             #-------------------------------------
             for memberid in members:
                 if memberid == to_kick:
-                    time.sleep(random.randint(1.0,2.0))
                     cont.play(voice_client,"shoot.wav")
                     while voice_client.is_playing():
                         time.sleep(.1)
-
+                    await cont.disconnect_member(cont.get_member(message.guild))
+                    break
+                    
                 cont.play(voice_client,"revolver_blank.wav")
                 while voice_client.is_playing():
                     time.sleep(.1)
                 
-            await cont.leave(voice_client)
+            await cont.leave(voice_client) #self disconnect
 
 
 
