@@ -19,6 +19,10 @@ async def on_message(message):
     elif message.content.startswith("!fate"):
         command = message.content.split(" ")[1:]
 
+        print(message.guild.name)
+        print(message.author)
+        print(message.content)
+
         if (command[0]=="choose"):
             await message.channel.send(cont.choose(command[1:]))
         
@@ -48,7 +52,7 @@ async def on_message(message):
                 while voice_client.is_playing():
                     time.sleep(.1)
             await message.channel.send(cont.get_disconnect_phrase()+cont.get_member(message.guild,to_kick).name)
-            time.sleep(1)
+            time.sleep(3)
             await cont.leave(voice_client) #self disconnect
 
 
