@@ -16,9 +16,6 @@ async def on_ready():
 async def on_message(message):
     if message.author == client.user:
         return 0
-    elif message.content.startswith("!choose"):
-        await message.channel.send(cont.choose(message.content.split(" ")[1:]))
-        print(message.author)
     elif message.content.startswith("!fate"):
         command = message.content.split(" ")[1:]
 
@@ -31,7 +28,7 @@ async def on_message(message):
         elif(command[0]=="debug"): #for debugging stuff
             pass
 
-        elif(command[0]=="enter" or command[0]=="roulette"):
+        elif(command[0]=="roulette"):
             channel= message.author.voice.channel
             #-------------------------------------
             members= [i for i in channel.voice_states.keys()]
