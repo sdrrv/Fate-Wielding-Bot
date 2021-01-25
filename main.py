@@ -7,11 +7,9 @@ import time
 cont = controller()
 client = discord.Client()
 
-
 @client.event
 async def on_ready():
     print(client.user)
-
 
 @client.event
 async def on_message(message):
@@ -41,4 +39,4 @@ async def on_message(message):
 
 
 #keep_alive()
-client.run("ODAxNTgwNTg5OTAzOTA0Nzk5.YAiwGQ.B4VyOfA-amZ6MLSL5LGTRM-4bKQ")  #Secret Stuff
+client.run(os.getenv("TOKEN"))  #Secret Stuff
