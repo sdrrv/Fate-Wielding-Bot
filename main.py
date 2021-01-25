@@ -28,6 +28,9 @@ async def on_message(message):
         elif(command[0]=="help"):
             await message.channel.send(cont.help()) 
         
+        elif(command[0]=="debug"):
+            print(cont.get_member(message.guild,message.author.id)) 
+
         elif(command[0]=="enter"):
             channel= message.author.voice.channel
             #-------------------------------------
