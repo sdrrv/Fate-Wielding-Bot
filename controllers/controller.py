@@ -1,5 +1,6 @@
 import random
 from models.commands import commands
+import discord
 
 class controller:
   def __init__(self):
@@ -14,3 +15,13 @@ class controller:
     for command in commands.keys():
       result+= "\n "+command+":::"+commands[command]
     return result
+  
+  def join(self,channel):
+    return channel.connect()
+
+  def leave(self,voice_client):
+    voice_client.disconnect()
+
+  def play(self,voice_client,music):
+    audio= discord.FFmpegPCMAudio(source="./sounds/"+music)
+    voice_client.play(source=audio, after=None)
