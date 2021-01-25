@@ -30,17 +30,19 @@ async def on_message(message):
         
         elif(command[0]=="enter"):
             channel= message.author.voice.channel
-            voice_client= await cont.join(channel)
             #-------------------------------------
             members= [i for i in channel.voice_states.keys()]
+            print(members)
             to_kick= cont.choose(members)
             #-------------------------------------
+            voice_client= await cont.join(channel)
+
             for memberid in members:
                 if memberid == to_kick:
                     cont.play(voice_client,"shoot.wav")
                     while voice_client.is_playing():
                         time.sleep(.1)
-                    await cont.disconnect_member(cont.get_member(message.guild))
+                    await cont.disconnect_member(cont.get_member(message.guild,memberid))
                     break
                     
                 cont.play(voice_client,"revolver_blank.wav")
