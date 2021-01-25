@@ -31,12 +31,14 @@ async def on_message(message):
         elif(command[0]=="enter"):
             channel= message.author.voice.channel
             voice_client= await cont.join(channel)
-            music=cont.play(voice_client,"revolver_beep.wav")
-            while music.is_playing():
+            cont.play(voice_client,"revolver_beep.wav")
+            while voice_client.is_playing():
                 time.sleep(.1)
+
             time.sleep(random.randint(1,3))
-            music= cont.play(voice_client,"shoot.wav")
-            while music.is_playing():
+            cont.play(voice_client,"shoot.wav")
+
+            while voice_client.is_playing():
                 time.sleep(.1)
             await cont.leave(voice_client)
 
