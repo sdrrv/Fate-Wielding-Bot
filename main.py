@@ -47,7 +47,7 @@ async def on_message(message):
                 cont.play(voice_client,"revolver_blank.wav")
                 while voice_client.is_playing():
                     time.sleep(.1)
-            message.channel.send(cont.get_disconnect_phrase()+cont.get_member(message.guild,to_kick).name)
+            await message.channel.send(cont.get_disconnect_phrase()+cont.get_member(message.guild,to_kick).name)
             time.sleep(1)
             await cont.leave(voice_client) #self disconnect
 
