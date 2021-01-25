@@ -20,7 +20,7 @@ class controller:
     return channel.connect()
 
   def leave(self,voice_client):
-    voice_client.disconnect()
+    return voice_client.disconnect()
 
   def play(self,voice_client,music):
     audio= discord.FFmpegPCMAudio(source="./sounds/"+music)
