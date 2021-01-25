@@ -1,4 +1,3 @@
-from asyncio.windows_events import NULL
 import random
 from models.commands import commands
 import discord
@@ -31,4 +30,4 @@ class controller:
     return guild.get_member(id)
   
   def disconnect_member(self,member):
-        member.move_to(NULL)
+        member.move_to(None)
