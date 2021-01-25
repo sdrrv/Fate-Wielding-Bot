@@ -32,7 +32,7 @@ async def on_message(message):
             channel= message.author.voice.channel
             voice_client= await cont.join(channel)
             #-------------------------------------
-            members= channel.voice_states.keys()
+            members= [i for i in channel.voice_states.keys()]
             to_kick= cont.choose(members)
             #-------------------------------------
             for memberid in members:
@@ -40,8 +40,8 @@ async def on_message(message):
                     time.sleep(random.randint(1.0,2.0))
                     cont.play(voice_client,"shoot.wav")
                     while voice_client.is_playing():
-                    time.sleep(.1)
-                    
+                        time.sleep(.1)
+
                 cont.play(voice_client,"revolver_blank.wav")
                 while voice_client.is_playing():
                     time.sleep(.1)
