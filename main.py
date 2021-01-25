@@ -8,7 +8,7 @@ import time
 intents = discord.Intents.all()
 cont = controller()
 client = discord.Client(intents = intents)
-bot = commands.bot(command_prefix='?fate')
+bot = commands.Bot(command_prefix="?")
 
 
 @bot.command()
@@ -64,8 +64,6 @@ async def on_message(message):
             await cont.leave(voice_client) #self disconnect
 
 
-
-@client.
 
 
 keep_alive()
