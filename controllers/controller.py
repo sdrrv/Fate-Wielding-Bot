@@ -24,4 +24,4 @@ class controller:
 
   def play(self,voice_client,music):
     audio= discord.FFmpegPCMAudio(source="./sounds/"+music)
-    return voice_client.play(source=audio, after=None)
+    voice_client.play(source=audio, after=None)

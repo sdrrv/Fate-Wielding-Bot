@@ -1,4 +1,4 @@
-from random import random
+import random
 import discord
 import os
 from controllers.controller import controller
@@ -31,6 +31,9 @@ async def on_message(message):
         elif(command[0]=="enter"):
             channel= message.author.voice.channel
             voice_client= await cont.join(channel)
+            for i in voice_client.channel.members:
+                print(i)
+
             cont.play(voice_client,"revolver_beep.wav")
             while voice_client.is_playing():
                 time.sleep(.1)
