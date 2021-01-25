@@ -1,4 +1,3 @@
-import random
 import discord
 import os
 from controllers.controller import controller
@@ -29,15 +28,13 @@ async def on_message(message):
         elif(command[0]=="help"):
             await message.channel.send(cont.help()) 
         
-        elif(command[0]=="debug"):
-            #print(cont.get_member(message.guild,message.author.id).name)
-            print(cont.get_member(message.guild,201335861755772928))
+        elif(command[0]=="debug"): #for debugging stuff
+            pass
 
-        elif(command[0]=="enter"):
+        elif(command[0]=="enter" or command[0]=="roulette"):
             channel= message.author.voice.channel
             #-------------------------------------
             members= [i for i in channel.voice_states.keys()]
-            print(members)
             to_kick= cont.choose(members)
             #-------------------------------------
             voice_client= await cont.join(channel)
@@ -53,7 +50,8 @@ async def on_message(message):
                 cont.play(voice_client,"revolver_blank.wav")
                 while voice_client.is_playing():
                     time.sleep(.1)
-                
+            message.channel.send(cont.get_disconnect_phrase()+cont.get_member(message.guild,to_kick).name)
+            time.sleep(1)
             await cont.leave(voice_client) #self disconnect
 
 

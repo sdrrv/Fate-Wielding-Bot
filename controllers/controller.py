@@ -31,3 +31,6 @@ class controller:
   
   def disconnect_member(self,member):
     return member.move_to(None)
+
+  def get_disconnect_phrase(self):
+      return random.choice(self.commands_dic.get_disconnect_phrases())
