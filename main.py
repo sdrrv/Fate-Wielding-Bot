@@ -1,4 +1,4 @@
-from random import random
+import random
 import discord
 import os
 from controllers.controller import controller
@@ -35,7 +35,7 @@ async def on_message(message):
             while voice_client.is_playing():
                 time.sleep(.1)
 
-            time.sleep(random.randint(1,3))
+            time.sleep(random.randint(1.0,2.0))
             cont.play(voice_client,"shoot.wav")
 
             while voice_client.is_playing():
