@@ -30,7 +30,7 @@ async def on_message(message):
         elif(command[0]=="enter"):
             channel= message.author.voice.channel
             tmp= await channel.connect()
-            audio= discord.FFmpegPCMAudio(executable=r".\ffmpeg\bin\ffmpeg.exe",source="oi.wav")
+            audio= discord.FFmpegPCMAudio(source="oi.wav")
             tmp.play(source=audio,after=None)
             time.sleep(2)
             await tmp.disconnect()
