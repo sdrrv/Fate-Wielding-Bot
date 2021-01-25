@@ -29,10 +29,10 @@ async def on_message(message):
         
         elif(command[0]=="enter"):
             channel= message.author.voice.channel
-            voice_client= cont.join(channel)
+            voice_client= await cont.join(channel)
             cont.play(voice_client,"oi.wav")
             time.sleep(2)
-            cont.leave(voice_client)
+            await cont.leave(voice_client)
 
 
 
