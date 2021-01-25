@@ -25,3 +25,6 @@ class controller:
   def play(self,voice_client,music):
     audio= discord.FFmpegPCMAudio(source="./sounds/"+music)
     voice_client.play(source=audio, after=None)
+  
+  def get_user(self,guild,id):
+    pass
