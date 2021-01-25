@@ -27,12 +27,7 @@ class controller:
     voice_client.play(source=audio, after=None)
   
   def get_member(self,guild,id):
-    guilder= guild.members
-    for member in guilder:
-        print(member)
-        if member.id == id:
-            return member 
+      return guild.get_member(id)
   
   def disconnect_member(self,member):
-      #member.move_to(None)
-      pass
+    member.move_to(None)

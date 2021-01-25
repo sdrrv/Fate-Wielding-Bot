@@ -5,8 +5,9 @@ from controllers.controller import controller
 from keep_alive import keep_alive
 import time
 
+intents = discord.Intents.all()
 cont = controller()
-client = discord.Client()
+client = discord.Client(intents = intents)
 
 @client.event
 async def on_ready():
