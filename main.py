@@ -8,17 +8,12 @@ import time
 intents = discord.Intents.all()
 cont = controller()
 client = discord.Client(intents = intents)
-bot = commands.bot(command_prefix='??')
+bot = commands.bot(command_prefix='?fate')
 
 
 @bot.command()
-async def roll(ctx, dice: str):
-    """Rolls a dice in NdN format."""
-    try:
-        rolls, limit = map(int, dice.split('d'))
-    except Exception:
-        await ctx.send('Format has to be in NdN!')
-        return
+async def nuke(ctx):
+    await ctx.channel.send("Nuke those Bitches")
 
 
 @client.event
