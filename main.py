@@ -35,7 +35,7 @@ async def on_message(message):
             while music.is_playing():
                 time.sleep(.1)
             time.sleep(random.randint(1,3))
-            music= cont.play(voice_client,"shoot")
+            music= cont.play(voice_client,"shoot.wav")
             while music.is_playing():
                 time.sleep(.1)
             await cont.leave(voice_client)
