@@ -1,4 +1,5 @@
 import discord
+from discord.ext import commands
 import os
 from controllers.controller import controller
 from keep_alive import keep_alive
@@ -7,6 +8,18 @@ import time
 intents = discord.Intents.all()
 cont = controller()
 client = discord.Client(intents = intents)
+bot = commands.bot(command_prefix='??')
+
+
+@bot.command()
+async def roll(ctx, dice: str):
+    """Rolls a dice in NdN format."""
+    try:
+        rolls, limit = map(int, dice.split('d'))
+    except Exception:
+        await ctx.send('Format has to be in NdN!')
+        return
+
 
 @client.event
 async def on_ready():
@@ -57,7 +70,7 @@ async def on_message(message):
 
 
 
-
+@client.
 
 
 keep_alive()
