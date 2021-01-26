@@ -67,7 +67,7 @@ async def nuke(ctx):
   not_to_kick= cont.choose(members)
   #-------------------------------------
   voice_client= await cont.join(channel)
-  cont.play(voice_client,"explosion.wav")
+  cont.play(voice_client,"felix.wav")
   time.sleep(1.5)
   for memberid in members:
         if not not_to_kick == memberid:
