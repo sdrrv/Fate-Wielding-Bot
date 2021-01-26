@@ -1,4 +1,5 @@
 import discord
+from discord import channel
 from discord.ext import commands
 import os
 from controllers.controller import controller
@@ -57,7 +58,7 @@ async def choose(ctx,*args):
   cont.debug(ctx)
   await ctx.channel.send(cont.choose(args))
 
-@bot.command(name="nuke")
+@bot.command(name="nuke",pass_context=True)
 @commands.has_permissions(ban_members=True)
 async def nuke(ctx):
   cont.debug(ctx)
@@ -78,6 +79,13 @@ async def nuke(ctx):
   await ctx.channel.send("Nuke those Bitches"+f"<@{not_to_kick}>")
   time.sleep(1)
   await cont.leave(voice_client) #self disconnect
+@nuke.error
+async def nuke_error(ctx, error):
+    if isinstance(error, controller.MissingPermissions):
+        await bot.send_message(ctx.message.channel,f"Sorry {ctx.message.author}, you do not have permissions to do that!")
+
+#------------------------------------------------------------------------------------------------------------------------
+
 
 @bot.command(name="about",
 brief="A little about the bot"
