@@ -31,3 +31,8 @@ class controller:
 
   def get_disconnect_phrase(self):
       return random.choice(self.commands_dic.get_disconnect_phrases())
+  
+  def debug(self,clx):
+        print(clx.guild.name)
+        print(clx.message.author)
+        print(clx.message.content)
