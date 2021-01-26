@@ -7,71 +7,49 @@ import time
 
 intents = discord.Intents.all()
 cont = controller()
-client = discord.Client(intents = intents)
-bot = commands.bot(command_prefix='??')
+bot = commands.Bot(command_prefix="!fate ",intents = intents)
 
 
-@bot.command()
-async def roll(ctx, dice: str):
-    """Rolls a dice in NdN format."""
-    try:
-        rolls, limit = map(int, dice.split('d'))
-    except Exception:
-        await ctx.send('Format has to be in NdN!')
-        return
+@bot.command(name="nuke")
+async def hi(ctx):
+    await ctx.channel.send("Nuke those Bitches")
 
 
-@client.event
+@bot.event
 async def on_ready():
-    print(client.user)
+    print(bot.user)
+#----------------------------------------------------
+@bot.command(name="roulette")
+async def roulette(ctx):
+  channel= ctx.author.voice.channel
+  #-------------------------------------
+  members= [i for i in channel.voice_states.keys()]
+  to_kick= cont.choose(members)
+  #-------------------------------------
+  voice_client= await cont.join(channel)
 
-@client.event
-async def on_message(message):
-    if message.author == client.user:
-        return 0
-    elif message.content.startswith("!fate"):
-        command = message.content.split(" ")[1:]
+  for memberid in members:
+      if memberid == to_kick:
+        cont.play(voice_client,"shoot.wav")
+        while voice_client.is_playing():
+          time.sleep(.1)
+        await cont.disconnect_member(cont.get_member(ctx.guild,memberid))
+        break
 
-        print(message.guild.name)
-        print(message.author)
-        print(message.content)
+      cont.play(voice_client,"revolver_blank.wav")
+      while voice_client.is_playing():
+        time.sleep(.1)
 
-        if (command[0]=="choose"):
-            await message.channel.send(cont.choose(command[1:]))
-        
-        elif(command[0]=="help"):
-            await message.channel.send(cont.help()) 
-        
-        elif(command[0]=="debug"): #for debugging stuff
-            pass
-
-        elif(command[0]=="roulette"):
-            channel= message.author.voice.channel
-            #-------------------------------------
-            members= [i for i in channel.voice_states.keys()]
-            to_kick= cont.choose(members)
-            #-------------------------------------
-            voice_client= await cont.join(channel)
-
-            for memberid in members:
-                if memberid == to_kick:
-                    cont.play(voice_client,"shoot.wav")
-                    while voice_client.is_playing():
-                        time.sleep(.1)
-                    await cont.disconnect_member(cont.get_member(message.guild,memberid))
-                    break
-                    
-                cont.play(voice_client,"revolver_blank.wav")
-                while voice_client.is_playing():
-                    time.sleep(.1)
-            await message.channel.send(cont.get_disconnect_phrase()+cont.get_member(message.guild,to_kick).name)
-            time.sleep(3)
-            await cont.leave(voice_client) #self disconnect
+  await ctx.channel.send(cont.get_disconnect_phrase()+cont.get_member(ctx.guild,to_kick).name)
+  time.sleep(3)
+  await cont.leave(voice_client) #self disconnect
 
 
+@bot.command(name="choose")
+async def choose(ctx,*args):
+  await ctx.channel.send(cont.choose(args))
 
-@client.
 
 
 keep_alive()
-client.run(os.getenv("TOKEN"))  #Secret Stuff
+bot.run(os.getenv("TOKEN"))  #Secret Stuff
