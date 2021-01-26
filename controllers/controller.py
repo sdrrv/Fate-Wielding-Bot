@@ -11,9 +11,6 @@ class controller:
 
   def help(self):
     result="This is just an alpha bot, stil in development.\nCreated by: Sdrrv, Galbatorix, Doginainar, TheLittleDwarf, Fl4shKiller, Bkn, Gonxalor,ChiP.\nIST\n"+("-"*80)
-    commands=self.commands_dic.get_commands()
-    for command in commands.keys():
-      result+= "\n "+command+":::"+commands[command]
     return result
   
   def join(self,channel):

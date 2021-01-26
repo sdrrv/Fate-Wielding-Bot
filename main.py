@@ -9,17 +9,14 @@ intents = discord.Intents.all()
 cont = controller()
 bot = commands.Bot(command_prefix="!fate ",intents = intents)
 
-
-@bot.command(name="nuke")
-async def hi(ctx):
-    await ctx.channel.send("Nuke those Bitches")
-
-
 @bot.event
 async def on_ready():
     print(bot.user)
 #----------------------------------------------------
-@bot.command(name="roulette")
+@bot.command(name="roulette",
+help="!fate roulette - it will enter the voice channel of the user and kick one person Russian Roulette style\nYou must be in a voice channel to use.",
+brief="will kick one user inside your voice channel, Roussian Roulette style"
+)
 async def roulette(ctx):
   channel= ctx.author.voice.channel
   #-------------------------------------
@@ -45,10 +42,22 @@ async def roulette(ctx):
   await cont.leave(voice_client) #self disconnect
 
 
-@bot.command(name="choose")
+@bot.command(name="choose",
+help="!fate choose S S1 S2 ... Sn, it will choose between all the Ss given",
+brief="Will chooose one between all arguments given"
+)
 async def choose(ctx,*args):
   await ctx.channel.send(cont.choose(args))
 
+@bot.command(name="nuke")
+async def nuke(ctx):
+    await ctx.channel.send("Nuke those Bitches")
+
+@bot.command(name="about",
+brief="A little about the bot"
+)
+async def about(ctx):
+    await ctx.channel.send(cont.help)
 
 
 keep_alive()
