@@ -1,5 +1,4 @@
 import discord
-from discord import channel
 from discord.ext import commands
 import os
 from controllers.controller import controller
@@ -58,7 +57,7 @@ async def choose(ctx,*args):
   cont.debug(ctx)
   await ctx.channel.send(cont.choose(args))
 
-@bot.command(name="nuke",pass_context=True)
+@bot.command(name="nuke")
 @commands.has_permissions(ban_members=True)
 async def nuke(ctx):
   cont.debug(ctx)
@@ -69,20 +68,21 @@ async def nuke(ctx):
   #-------------------------------------
   voice_client= await cont.join(channel)
   cont.play(voice_client,"explosion.wav")
-  time.sleep(0.5)
+  time.sleep(1.5)
   for memberid in members:
         if not not_to_kick == memberid:
           await cont.disconnect_member(cont.get_member(ctx.guild,memberid))
-
+  await ctx.channel.send("Nuke those Bitches"+f"<@{not_to_kick}>")
   while voice_client.is_playing():
     time.sleep(.1)
-  await ctx.channel.send("Nuke those Bitches"+f"<@{not_to_kick}>")
   time.sleep(1)
   await cont.leave(voice_client) #self disconnect
 @nuke.error
 async def nuke_error(ctx, error):
-    if isinstance(error, controller.MissingPermissions):
-        await bot.send_message(ctx.message.channel,f"Sorry {ctx.message.author}, you do not have permissions to do that!")
+    print("ERROR")
+    cont.debug(ctx)
+    if isinstance(error, commands.MissingPermissions):
+        await ctx.channel.send(f"Sorry <@{ctx.message.author.id}>, you do not have permissions to do that!")
 
 #------------------------------------------------------------------------------------------------------------------------
 
