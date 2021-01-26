@@ -39,7 +39,7 @@ async def roulette(ctx):
       while voice_client.is_playing():
         time.sleep(.1)
 
-  await ctx.channel.send(cont.get_disconnect_phrase()+cont.get_member(ctx.guild,to_kick).name)
+  await ctx.channel.send(cont.get_disconnect_phrase()+f"@{to_kick}")
   time.sleep(3)
   await cont.leave(voice_client) #self disconnect
 
@@ -54,7 +54,6 @@ async def choose(ctx,*args):
 
 @bot.command(name="nuke")
 async def nuke(ctx):
-    cont.debug(ctx)
     await ctx.channel.send("Nuke those Bitches")
 
 @bot.command(name="about",
