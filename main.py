@@ -58,7 +58,7 @@ async def choose(ctx,*args):
   await ctx.channel.send(cont.choose(args))
 
 @bot.command(name="nuke")
-@commands.has_permissions(manage_roles=True)
+@commands.has_permissions(ban_members=True)
 async def nuke(ctx):
   cont.debug(ctx)
   channel= ctx.author.voice.channel
@@ -68,13 +68,13 @@ async def nuke(ctx):
   #-------------------------------------
   voice_client= await cont.join(channel)
   cont.play(voice_client,"explosion.wav")
-  while voice_client.is_playing():
-    time.sleep(.1)
-
+  time.sleep(0.5)
   for memberid in members:
         if not not_to_kick == memberid:
           await cont.disconnect_member(cont.get_member(ctx.guild,memberid))
 
+  while voice_client.is_playing():
+    time.sleep(.1)
   await ctx.channel.send("Nuke those Bitches"+f"<@{not_to_kick}>")
   time.sleep(1)
   await cont.leave(voice_client) #self disconnect
