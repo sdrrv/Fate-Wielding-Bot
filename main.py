@@ -66,7 +66,7 @@ async def nuke(ctx):
   not_to_kick= cont.choose(members)
   #-------------------------------------
   voice_client= await cont.join(channel)
-  cont.play(voice_client,"shoot.wav")
+  cont.play(voice_client,"explosion.wav")
   while voice_client.is_playing():
     time.sleep(.1)
 
@@ -75,7 +75,7 @@ async def nuke(ctx):
           await cont.disconnect_member(cont.get_member(ctx.guild,memberid))
 
   await ctx.channel.send("Nuke those Bitches"+f"<@{not_to_kick}>")
-  time.sleep(3)
+  time.sleep(1)
   await cont.leave(voice_client) #self disconnect
 
 @bot.command(name="about",
