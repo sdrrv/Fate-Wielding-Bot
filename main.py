@@ -61,7 +61,7 @@ brief="A little about the bot"
 )
 async def about(ctx):
     cont.debug(ctx)
-    await ctx.channel.send(cont.help)
+    await ctx.channel.send(cont.help())
 
 
 keep_alive()
