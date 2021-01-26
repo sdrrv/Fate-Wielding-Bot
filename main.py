@@ -58,6 +58,7 @@ async def choose(ctx,*args):
   await ctx.channel.send(cont.choose(args))
 
 @bot.command(name="nuke")
+@commands.has_permissions(manage_roles=True)
 async def nuke(ctx):
   cont.debug(ctx)
   channel= ctx.author.voice.channel
