@@ -14,7 +14,12 @@ async def on_ready():
     print(bot.user)
     print([i.name for i in bot.guilds])
 #----------------------------------------------------
-@bot.command(name="roulette",
+
+@bot.command(name = "kamazaki")
+async def kamazaki(ctx):
+  await ctx.channel.send("ola parentes")
+
+@bot.command(name = "roulette",
 help="!fate roulette - it will enter the voice channel of the user and kick one person Russian Roulette style\nYou must be in a voice channel to use.",
 brief="will kick one user inside your voice channel, Roussian Roulette style"
 )
