@@ -39,7 +39,7 @@ async def roulette(ctx):
       while voice_client.is_playing():
         time.sleep(.1)
 
-  await ctx.channel.send(cont.get_disconnect_phrase()+f"@{to_kick}")
+  await ctx.channel.send(cont.get_disconnect_phrase()+f"<@{to_kick}>")
   time.sleep(3)
   await cont.leave(voice_client) #self disconnect
 
