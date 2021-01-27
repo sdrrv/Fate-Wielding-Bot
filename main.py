@@ -16,7 +16,7 @@ async def on_ready():
 @bot.event
 async def on_command_error(ctx, error):
     if isinstance(error, commands.CommandNotFound):
-        ctx.channel.send("Command not found.")
+        await ctx.channel.send("Command not found.")
 #--------------------------------------------------------------------------------------------------------------------------------------
 
 @bot.command(name = "kamazaki")
