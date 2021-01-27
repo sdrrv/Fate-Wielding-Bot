@@ -10,7 +10,7 @@ class controller:
       return random.choice(list)
 
   def help(self):
-    result = "This is just an alpha bot, stil in development.\nCreated by: Sdrrv, Galbatorix, Doginainar, TheLittleDwarf, Fl4shKiller, Bkn, Gonxalor,ChiP.\nIST\n"+("-"*80)
+    result = "This is just an alpha bot, stil in development.\nCreated by: Sdrrv, Galbatorix, Doginainar, TheLittleDwarf, Fl4shKiller, Bkn, Gonxalor,ChiP.\nIST\n"+("-"*110)
     return result
   
   def join(self, channel):
