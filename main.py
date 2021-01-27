@@ -72,7 +72,7 @@ async def nuke(ctx):
   for memberid in members:
         if not not_to_kick == memberid:
           await cont.disconnect_member(cont.get_member(ctx.guild,memberid))
-  await ctx.channel.send("Nuke those Bitches"+f"<@{not_to_kick}>")
+  await ctx.channel.send("Nuke those Bitches"+f" <@{not_to_kick}>")
   while voice_client.is_playing():
     time.sleep(.1)
   time.sleep(1)
