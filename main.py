@@ -18,13 +18,13 @@ async def on_ready():
 async def on_command_error(ctx, error):
     if isinstance(error, commands.CommandNotFound):
         await ctx.channel.send("Command not found.")
-        raise error
+    raise error
 @bot.event #On new Server Enter
 async def on_guild_join(guild):
-    print(f"{guild.name}, you have a new bot not")
+    print(f"{guild.name}, you have a new bot now")
     general = find(lambda x: x.name == 'general',  guild.text_channels)
     if general and general.permissions_for(guild.me).send_messages:
-        await general.send(f"Hello there, {guild.name}.\nThank you for adding our bot, we hope you have as mutch fun using it, as we did coding it.\n"\
+        await general.send(f"Hello there, {guild.name}!\nThank you for adding our bot, we hope you have as mutch fun using it, as we did coding it.\n"\
           + cont.help())
 
 #--------------------------------------------------------------------------------------------------------------------------------------
@@ -42,6 +42,9 @@ brief="will kick one user inside your voice channel, Roussian Roulette style"
 async def roulette(ctx):
   cont.debug(ctx)
   channel= ctx.author.voice.channel
+  if not channel:
+      ctx.channel.send("You must be in a voice channel to do that.")
+      return 1
   #-------------------------------------
   members= [i for i in channel.members]
   to_kick= cont.choose(members)
@@ -78,6 +81,9 @@ async def choose(ctx,*args):
 async def nuke(ctx):
   cont.debug(ctx)
   channel= ctx.author.voice.channel
+  if not channel:
+      ctx.channel.send("You must be in a voice channel to do that.")
+      return 1
   #-------------------------------------
   members= [i for i in channel.members]
   not_to_kick= cont.choose(members)
