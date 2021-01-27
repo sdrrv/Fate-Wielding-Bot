@@ -17,6 +17,7 @@ async def on_ready():
 async def on_command_error(ctx, error):
     if isinstance(error, commands.CommandNotFound):
         await ctx.channel.send("Command not found.")
+        raise error
 #--------------------------------------------------------------------------------------------------------------------------------------
 
 @bot.command(name = "kamazaki")
@@ -78,7 +79,7 @@ async def nuke(ctx):
   for member in members:
         if not not_to_kick == member:
           await cont.disconnect_member(member)
-  await ctx.channel.send("Nuke those Bitches"+f" <@{not_to_kick.id}>")
+  await ctx.channel.send("Nuke those Bitches "+f"<@{not_to_kick.id}>")
   while voice_client.is_playing():
     time.sleep(.1)
   time.sleep(1)
