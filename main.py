@@ -41,10 +41,10 @@ brief="will kick one user inside your voice channel, Roussian Roulette style"
 )
 async def roulette(ctx):
   cont.debug(ctx)
-  channel= ctx.author.voice.channel
-  if not channel:
+  if not ctx.author.voice:
       ctx.channel.send("You must be in a voice channel to do that.")
       return 1
+  channel= ctx.author.voice.channel
   #-------------------------------------
   members= [i for i in channel.members]
   to_kick= cont.choose(members)
@@ -80,10 +80,10 @@ async def choose(ctx,*args):
 @commands.has_permissions(ban_members=True)
 async def nuke(ctx):
   cont.debug(ctx)
-  channel= ctx.author.voice.channel
-  if not channel:
+  if not ctx.author.voice:
       ctx.channel.send("You must be in a voice channel to do that.")
       return 1
+  channel= ctx.author.voice.channel
   #-------------------------------------
   members= [i for i in channel.members]
   not_to_kick= cont.choose(members)
