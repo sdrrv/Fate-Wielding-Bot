@@ -42,7 +42,7 @@ brief="will kick one user inside your voice channel, Roussian Roulette style"
 async def roulette(ctx):
   cont.debug(ctx)
   if not ctx.author.voice:
-      ctx.channel.send("You must be in a voice channel to do that.")
+      await ctx.channel.send("You must be in a voice channel to do that.")
       return 1
   channel= ctx.author.voice.channel
   #-------------------------------------
@@ -81,7 +81,7 @@ async def choose(ctx,*args):
 async def nuke(ctx):
   cont.debug(ctx)
   if not ctx.author.voice:
-      ctx.channel.send("You must be in a voice channel to do that.")
+      await ctx.channel.send("You must be in a voice channel to do that.")
       return 1
   channel= ctx.author.voice.channel
   #-------------------------------------
@@ -105,6 +105,7 @@ async def nuke_error(ctx, error):
     cont.debug(ctx)
     if isinstance(error, commands.MissingPermissions):
         await ctx.channel.send(f"Sorry <@{ctx.message.author.id}>, you do not have permissions to do that!")
+    raise error
 
 #----------------------------------------------------------------------------------------------------------------------------------------
 
