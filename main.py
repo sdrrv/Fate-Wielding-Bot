@@ -13,6 +13,10 @@ bot = commands.Bot(command_prefix="!fate ",intents = intents)
 async def on_ready():
     print(bot.user)
     print([i.name for i in bot.guilds])
+@bot.event
+async def on_command_error(ctx, error):
+    if isinstance(error, commands.CommandNotFound):
+        ctx.channel.send("Command not found.")
 #--------------------------------------------------------------------------------------------------------------------------------------
 
 @bot.command(name = "kamazaki")
