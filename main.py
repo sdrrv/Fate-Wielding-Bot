@@ -86,15 +86,16 @@ async def nuke(ctx):
   channel= ctx.author.voice.channel
   #-------------------------------------
   members= [i for i in channel.members]
-  not_to_kick= cont.choose(members)
+  num_to_kick=cont.choose_num_between(0,len(members)-1)
   #-------------------------------------
   voice_client= await cont.join(channel)
   cont.play(voice_client,"felix.wav")
   time.sleep(1.5)
-  for member in members:
-        if not not_to_kick == member:
-          await cont.disconnect_member(member)
-  await ctx.channel.send("Nuke those Bitches "+f"<@{not_to_kick.id}>")
+
+  for _ in range(num_to_kick):
+        await cont.disconnect_member(members.pop(cont.choose_num_between(0,len(members))))
+  await ctx.channel.send("Nuke those Bitches "+(f"<@{member.id}>" for member in members))
+  
   while voice_client.is_playing():
     time.sleep(.1)
   time.sleep(1)

@@ -9,6 +9,9 @@ class controller:
   def choose(self, list):
       return random.choice(list)
 
+  def choose_num_between(self,int1,int2):
+      return random.randint(int1,int2)
+
   def help(self):
     result = "This is just an alpha bot, stil in development.\nCreated by: Sdrrv, Galbatorix, Doginainar, TheLittleDwarf, Fl4shKiller, Bkn, Gonxalor,ChiP.\nIST\n"+("-"*110)
     return result
