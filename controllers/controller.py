@@ -1,10 +1,10 @@
 import random
-from models.commands import commands
+from models.models import models
 import discord
 
 class controller:
   def __init__(self):
-        self.commands_dic = commands()
+        self.model = models()
 
   def choose(self, list):
       return random.choice(list)
@@ -33,8 +33,11 @@ class controller:
     return member.move_to(None)
 
   def get_disconnect_phrase(self):
-      return random.choice(self.commands_dic.get_disconnect_phrases())
+      return random.choice(self.model.get_disconnect_phrases())
   
+  def get_bombed_phrase(self):
+        return random.choice(self.model.get_bombed_phrases())
+
   def debug(self, clx):
         print(clx.guild.name)
         print(clx.message.author)

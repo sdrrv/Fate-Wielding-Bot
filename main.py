@@ -87,19 +87,26 @@ async def nuke(ctx):
   #-------------------------------------
   members= [i for i in channel.members]
   num_to_kick=cont.choose_num_between(0,len(members)-1)
+  print(num_to_kick)
   #-------------------------------------
   voice_client= await cont.join(channel)
   cont.play(voice_client,"felix.wav")
-  time.sleep(1.5)
+  time.sleep(2)
 
   for _ in range(num_to_kick):
+        print(members)
         await cont.disconnect_member(members.pop(cont.choose_num_between(0,len(members))))
-  await ctx.channel.send("Nuke those Bitches "+(f"<@{member.id}>" for member in members))
+  
+  result= cont.get_bombed_phrase()
+  for member in members:
+        result+= f"<@{member.id}>"
+  await ctx.channel.send(result)
   
   while voice_client.is_playing():
     time.sleep(.1)
   time.sleep(1)
   await cont.leave(voice_client) #self disconnect
+
 @nuke.error
 async def nuke_error(ctx, error):
     print("ERROR")
