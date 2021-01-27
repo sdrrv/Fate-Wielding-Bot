@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+from discord.utils import find
 import os
 from controllers.controller import controller
 from keep_alive import keep_alive
@@ -9,15 +10,22 @@ intents = discord.Intents.all()
 cont = controller()
 bot = commands.Bot(command_prefix="!fate ",intents = intents)
 
-@bot.event
+@bot.event #On Ready
 async def on_ready():
     print(bot.user)
     print([i.name for i in bot.guilds])
-@bot.event
+@bot.event #On Error
 async def on_command_error(ctx, error):
     if isinstance(error, commands.CommandNotFound):
         await ctx.channel.send("Command not found.")
         raise error
+@bot.event #On new Server Enter
+async def on_guild_join(guild):
+    general = find(lambda x: x.name == 'general',  guild.text_channels)
+    if general and general.permissions_for(guild.me).send_messages:
+        await general.send(f"Hello There {guild.Name}, thank you for adding our bot, we hope you have as utch fun using it as we did coding it.\n"\
+          + cont.help())
+
 #--------------------------------------------------------------------------------------------------------------------------------------
 
 @bot.command(name = "kamazaki")
