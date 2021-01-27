@@ -13,12 +13,12 @@ bot = commands.Bot(command_prefix="!fate ",intents = intents)
 async def on_ready():
     print(bot.user)
     print([i.name for i in bot.guilds])
-#----------------------------------------------------
+#--------------------------------------------------------------------------------------------------------------------------------------
 
 @bot.command(name = "kamazaki")
 async def kamazaki(ctx):
   await ctx.channel.send("ola parentes")
-
+#--------------------------------------------------------------------------------------------------------------------------------------
 @bot.command(name = "roulette",
 help="!fate roulette - it will enter the voice channel of the user and kick one person Russian Roulette style\nYou must be in a voice channel to use.",
 brief="will kick one user inside your voice channel, Roussian Roulette style"
@@ -48,7 +48,7 @@ async def roulette(ctx):
   time.sleep(3)
   await cont.leave(voice_client) #self disconnect
 
-
+#--------------------------------------------------------------------------------------------------------------------------------------
 @bot.command(name="choose",
 help="!fate choose S S1 S2 ... Sn, it will choose between all the Ss given",
 brief="Will chooose one between all arguments given"
@@ -56,7 +56,7 @@ brief="Will chooose one between all arguments given"
 async def choose(ctx,*args):
   cont.debug(ctx)
   await ctx.channel.send(cont.choose(args))
-
+#--------------------------------------------------------------------------------------------------------------------------------------
 @bot.command(name="nuke")
 @commands.has_permissions(ban_members=True)
 async def nuke(ctx):
@@ -84,8 +84,7 @@ async def nuke_error(ctx, error):
     if isinstance(error, commands.MissingPermissions):
         await ctx.channel.send(f"Sorry <@{ctx.message.author.id}>, you do not have permissions to do that!")
 
-#------------------------------------------------------------------------------------------------------------------------
-
+#----------------------------------------------------------------------------------------------------------------------------------------
 
 @bot.command(name="about",
 brief="A little about the bot"
@@ -93,7 +92,7 @@ brief="A little about the bot"
 async def about(ctx):
     cont.debug(ctx)
     await ctx.channel.send(cont.help())
-
+#-----------------------------------------------------------------------------------------------------------------------------------------
 
 keep_alive()
 bot.run(os.getenv("TOKEN"))  #Secret Stuff
