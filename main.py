@@ -22,6 +22,8 @@ async def on_command_error(ctx, error):
 @bot.command(name = "kamazaki")
 async def kamazaki(ctx):
   await ctx.channel.send("ola parentes")
+
+
 #--------------------------------------------------------------------------------------------------------------------------------------
 @bot.command(name = "roulette",
 help="!fate roulette - it will enter the voice channel of the user and kick one person Russian Roulette style\nYou must be in a voice channel to use.",
@@ -31,24 +33,24 @@ async def roulette(ctx):
   cont.debug(ctx)
   channel= ctx.author.voice.channel
   #-------------------------------------
-  members= [i for i in channel.voice_states.keys()]
+  members= [i for i in channel.members]
   to_kick= cont.choose(members)
   #-------------------------------------
   voice_client= await cont.join(channel)
 
-  for memberid in members:
-      if memberid == to_kick:
+  for member in members:
+      if member == to_kick:
         cont.play(voice_client,"shoot.wav")
         while voice_client.is_playing():
           time.sleep(.1)
-        await cont.disconnect_member(cont.get_member(ctx.guild,memberid))
+        await cont.disconnect_member(member)
         break
 
       cont.play(voice_client,"revolver_blank.wav")
       while voice_client.is_playing():
         time.sleep(.1)
 
-  await ctx.channel.send(cont.get_disconnect_phrase()+f"<@{to_kick}>")
+  await ctx.channel.send(cont.get_disconnect_phrase()+f"<@{to_kick.id}>")
   time.sleep(3)
   await cont.leave(voice_client) #self disconnect
 
@@ -67,16 +69,16 @@ async def nuke(ctx):
   cont.debug(ctx)
   channel= ctx.author.voice.channel
   #-------------------------------------
-  members= [i for i in channel.voice_states.keys()]
+  members= [i for i in channel.members]
   not_to_kick= cont.choose(members)
   #-------------------------------------
   voice_client= await cont.join(channel)
   cont.play(voice_client,"felix.wav")
   time.sleep(1.5)
-  for memberid in members:
-        if not not_to_kick == memberid:
-          await cont.disconnect_member(cont.get_member(ctx.guild,memberid))
-  await ctx.channel.send("Nuke those Bitches"+f" <@{not_to_kick}>")
+  for member in members:
+        if not not_to_kick == member:
+          await cont.disconnect_member(member)
+  await ctx.channel.send("Nuke those Bitches"+f" <@{not_to_kick.id}>")
   while voice_client.is_playing():
     time.sleep(.1)
   time.sleep(1)
