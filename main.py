@@ -99,13 +99,9 @@ async def nuke(ctx):
   result= cont.get_bombed_phrase()
 
   for member in to_kick:
-<<<<<<< HEAD
         await cont.disconnect_member(member)
         result+= f"<@{member.id}>"
   
-=======
-        result+= f", <@{member.id}>"
->>>>>>> 4df374ac5c00fe7cf6fcd51d764be97ba644bd01
   await ctx.channel.send(result)
   
   while voice_client.is_playing():
