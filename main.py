@@ -92,14 +92,14 @@ async def nuke(ctx):
   if len(members)<=1:
       await ctx.channel.send(f"You seem to be alone <@{ctx.author.id}>... no one to nuke")
       return 1
-  num_to_kick=cont.choose_num_between(1,len(members)-1)
+  num_to_kick=cont.choose_num_between(1,len(members))
   to_kick=cont.choose_v2(members,num_to_kick)
   #-------------------------------------
   voice_client= await cont.join(channel)
   cont.play(voice_client,"felix.wav")
   time.sleep(2)
 
-  result=f"```{num_to_kick}```- "+ cont.get_bombed_phrase()
+  result= cont.get_bombed_phrase()
 
   for member in to_kick:
         await cont.disconnect_member(member)
