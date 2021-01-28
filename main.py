@@ -86,7 +86,7 @@ async def nuke(ctx):
   channel= ctx.author.voice.channel
   #-------------------------------------
   members= [i for i in channel.members]
-  if members.length<=1:
+  if len(members)<=1:
       await ctx.channel.send(f"You seem to be alone <@{ctx.author.id}>... no one to nuke")
       return 1
   num_to_kick=cont.choose_num_between(1,len(members)-1)
