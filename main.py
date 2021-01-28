@@ -32,7 +32,7 @@ async def on_guild_join(guild):
 @bot.command(name = "deus")
 async def kamazaki(ctx):
   print(ctx.author.id)
-  await ctx.channel.send(f"Deus é <@{184715371377328128}>")
+  await ctx.channel.send(f"Louvem o nosso deus <@{184715371377328128}>")
 
 @bot.command(name = "cry")
 async def cry(ctx):
@@ -43,7 +43,9 @@ async def cry(ctx):
   channel= ctx.author.voice.channel
   voice_client= await cont.join(channel)
   await ctx.channel.send("You made me cry :(")
-  cont.play(voice_client,"cry.wav")
+  x = "crys/"+cont.choose(os.listdir("./sounds/crys"))
+  print(x)
+  cont.play(voice_client,x)
   while voice_client.is_playing():
      time.sleep(.1)
   await cont.leave(voice_client) #self disconnect
