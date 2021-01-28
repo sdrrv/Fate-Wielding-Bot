@@ -22,7 +22,7 @@ async def on_command_error(ctx, error):
 @bot.event #On new Server Enter
 async def on_guild_join(guild):
     print(f"{guild.name}, you have a new bot now")
-    general = find(lambda x: x.name == 'general',  guild.text_channels)
+    general = find(lambda x: (x.name == 'general' or x.name =="geral"),  guild.text_channels)
     if general and general.permissions_for(guild.me).send_messages:
         await general.send(f"Hello there, {guild.name}!\nThank you for adding our bot, we hope you have as mutch fun using it, as we did coding it.\n"\
           + cont.help())
@@ -96,12 +96,12 @@ async def nuke(ctx):
   cont.play(voice_client,"felix.wav")
   time.sleep(2)
 
+  result= cont.get_bombed_phrase()
+
   for member in to_kick:
         await cont.disconnect_member(member)
-  
-  result= cont.get_bombed_phrase()
-  for member in to_kick:
         result+= f"<@{member.id}>"
+  
   await ctx.channel.send(result)
   
   while voice_client.is_playing():
