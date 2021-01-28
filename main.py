@@ -37,7 +37,7 @@ async def kamazaki(ctx):
 #--------------------------------------------------------------------------------------------------------------------------------------
 @bot.command(name = "roulette",
 help="!fate roulette - it will enter the voice channel of the user and kick one person Russian Roulette style\nYou must be in a voice channel to use.",
-brief="will kick one user inside your voice channel, Roussian Roulette style"
+brief="will kick one user inside your voice channel, Russian Roulette style"
 )
 async def roulette(ctx):
   cont.debug(ctx)
@@ -86,19 +86,21 @@ async def nuke(ctx):
   channel= ctx.author.voice.channel
   #-------------------------------------
   members= [i for i in channel.members]
-  num_to_kick=cont.choose_num_between(0,len(members)-1)
-  print(num_to_kick)
+  if members.length<=1:
+      await ctx.channel.send(f"You seem to be alone <@{ctx.author.id}>... no one to nuke")
+      return 1
+  num_to_kick=cont.choose_num_between(1,len(members)-1)
+  to_kick=cont.choose_v2(members,num_to_kick)
   #-------------------------------------
   voice_client= await cont.join(channel)
   cont.play(voice_client,"felix.wav")
   time.sleep(2)
 
-  for _ in range(num_to_kick):
-        print(members)
-        await cont.disconnect_member(members.pop(cont.choose_num_between(0,len(members))))
+  for member in to_kick:
+        await cont.disconnect_member(member)
   
   result= cont.get_bombed_phrase()
-  for member in members:
+  for member in to_kick:
         result+= f"<@{member.id}>"
   await ctx.channel.send(result)
   
@@ -113,7 +115,6 @@ async def nuke_error(ctx, error):
     cont.debug(ctx)
     if isinstance(error, commands.MissingPermissions):
         await ctx.channel.send(f"Sorry <@{ctx.message.author.id}>, you do not have permissions to do that!")
-    raise error
 
 #----------------------------------------------------------------------------------------------------------------------------------------
 

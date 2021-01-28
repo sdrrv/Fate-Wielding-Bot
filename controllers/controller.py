@@ -9,6 +9,9 @@ class controller:
   def choose(self, list):
       return random.choice(list)
 
+  def choose_v2(self,list,amount):
+        return random.sample(list,amount)
+
   def choose_num_between(self,int1,int2):
       return random.randint(int1,int2)
 
