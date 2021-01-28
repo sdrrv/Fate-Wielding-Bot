@@ -76,7 +76,10 @@ async def choose(ctx,*args):
   cont.debug(ctx)
   await ctx.channel.send(cont.choose(args))
 #--------------------------------------------------------------------------------------------------------------------------------------
-@bot.command(name="nuke")
+@bot.command(name="nuke", 
+help="",
+brief=""
+)
 @commands.has_permissions(ban_members=True)
 async def nuke(ctx):
   cont.debug(ctx)
@@ -96,11 +99,11 @@ async def nuke(ctx):
   cont.play(voice_client,"felix.wav")
   time.sleep(2)
 
-  result= cont.get_bombed_phrase()
+  result=f"```{num_to_kick}```- "+ cont.get_bombed_phrase()
 
   for member in to_kick:
         await cont.disconnect_member(member)
-        result+= f"<@{member.id}>"
+        result+= f", <@{member.id}>"
   
   await ctx.channel.send(result)
   

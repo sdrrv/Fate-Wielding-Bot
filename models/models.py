@@ -3,7 +3,7 @@ class models:
 
         self.disconnect_phrases=["See ya later ","Smell ya later ","And don´t come back you filthy pig ","You are better dead ","Right up your ass "]
 
-        self.bombed_phrases=["You just got bombed"]
+        self.bombed_phrases=["You just got bombed","That's too bad","Your parents never told you not to play with bombs?"]
     
     def get_commands(self):
         return self.Dg
