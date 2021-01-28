@@ -101,7 +101,7 @@ async def nuke(ctx):
   
   result= cont.get_bombed_phrase()
   for member in to_kick:
-        result+= f"<@{member.id}>"
+        result+= f", <@{member.id}>"
   await ctx.channel.send(result)
   
   while voice_client.is_playing():
