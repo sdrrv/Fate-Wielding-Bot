@@ -1,6 +1,8 @@
 import random
 from models.models import models
 import discord
+import json
+import requests
 
 class controller:
   def __init__(self):
@@ -41,6 +43,11 @@ class controller:
   def get_bombed_phrase(self):
         return random.choice(self.model.get_bombed_phrases())
 
+  def get_cat_photo(self):
+        request = requests.get("https://api.thecatapi.com/v1/images/search")
+        data = json.loads(request.text)
+        return data[0]["url"]
+        
   def debug(self, clx):
         print(clx.guild.name)
         print(clx.message.author)
