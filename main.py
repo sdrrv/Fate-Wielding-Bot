@@ -48,6 +48,7 @@ async def cry(ctx):
   cont.play(voice_client,x)
   while voice_client.is_playing():
      time.sleep(.1)
+  time.sleep(1)
   await cont.leave(voice_client) #self disconnect
 
 
