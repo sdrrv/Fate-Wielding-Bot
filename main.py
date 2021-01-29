@@ -87,8 +87,8 @@ async def roulette(ctx):
 #--------------------------------------------------------------------------------------------------------------------------------------
 @bot .command(name="pussy")
 async def cat(ctx):
+  await ctx.channel.send(cont.get_cat_photo())
   await ctx.channel.send("Here ya perv have a pussy")
-  await ctx.channel.send(file=discord.File(cont.get_cat_photo))
 #--------------------------------------------------------------------------------------------------------------------------------------
 @bot.command(name="choose",
 help="!fate choose S S1 S2 ... Sn, it will choose between all the Ss given",
