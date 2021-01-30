@@ -85,7 +85,10 @@ async def roulette(ctx):
   time.sleep(3)
   await cont.leave(voice_client) #self disconnect
 #--------------------------------------------------------------------------------------------------------------------------------------
-@bot .command(name="pussy")
+@bot .command(name="pussy",
+help="Just do !fate pussy and find out",
+brief="Wanna see some pussys?"
+)
 async def cat(ctx):
   await ctx.channel.send(cont.get_cat_photo())
   await ctx.channel.send("Here ya perv have a pussy")
@@ -99,8 +102,8 @@ async def choose(ctx,*args):
   await ctx.channel.send(cont.choose(args))
 #--------------------------------------------------------------------------------------------------------------------------------------
 @bot.command(name="nuke", 
-help="",
-brief=""
+help="This will kick a random number os members in a voice chat.\nYou must be in a voice chat to use.",
+brief="Will nuke some of the members in a voice chat."
 )
 @commands.has_permissions(ban_members=True)
 async def nuke(ctx):
