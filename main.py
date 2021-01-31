@@ -31,12 +31,12 @@ async def on_guild_join(guild):
 
 #--------------------------------------------------------------------------------------------------------------------------------------
 
-@bot.command(name = "deus")
+@bot.command(name = "deus", hidden=True)
 async def kamazaki(ctx):
   print(ctx.author.id)
   await ctx.channel.send(f"Louvem o nosso deus <@{184715371377328128}>")
 
-@bot.command(name = "cry")
+@bot.command(name = "cry", hidden=True)
 async def cry(ctx):
   cont.debug(ctx)
   if not ctx.author.voice:
