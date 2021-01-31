@@ -1,2 +1,28 @@
 # Fate-Wielding-Bot
-Add it to your channel [here](https://discord.com/api/oauth2/authorize?client_id=801580589903904799&permissions=8&scope=bot).
+
+<p> So long story short: We are a group of friends studying Software Engineering and we decided to do something during the lock down... </p>
+<p> So we created this bot, to <strong>troll</strong>  each other.</p>
+
+We are still woking in the bot, so it might have some **bugs**, we apologize for that...
+If you have any ideia on how to improve the bot, or any command you'd like to see added, just send us a message :) .
+
+---
+
+## Commands
+<p> For now we only have a hand full of working commands:</p>
+
+- `!fate about` this command is pretty self-explanatory.
+- `!fate choose` this Will chooose one between all arguments given.
+- `!fate nuke` this is a fun one, so basically the bot will enter the voice channel you are in and disconnect a random number of users.
+- `!fate pussy` just try it out ;). 
+- `!fate roulette` our favorite, and the first command we added. This command will kick a random user from your voice channel Russian Rollete style.
+
+---
+## To Finish
+> This is still an alpha version
+
+>It might have some bugs
+
+> If you have any suggestion please send it over :)
+
+Add it to your **Discord Server** [here](https://discord.com/api/oauth2/authorize?client_id=801580589903904799&permissions=8&scope=bot).
