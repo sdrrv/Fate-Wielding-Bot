@@ -12,7 +12,7 @@ bot = commands.Bot(command_prefix="!fate ",intents = intents)
 
 @bot.event #On Ready
 async def on_ready():
-    await bot.change_presence(activity=discord.Game("!fate"))
+    await bot.change_presence(activity=discord.Game("!fate help"))
     print(bot.user)
     print([i.name for i in bot.guilds])
 
