@@ -28,7 +28,7 @@ class Games(commands.Cog):
         if(response.content == "!no"):
             await ctx.channel.send("pussy")
             return
-        embed = discord.Embed(title="READ RULES", description="How to play:\nIn `10` seconds the bot will start to play an old west music.\nIn a `random` amount of seconds **a bell will ring**.\nWhen you ear the **bell** type in the chat `!bang`\n **The Fist to type wins**",
+        embed = discord.Embed(title="READ RULES", description="How to play:\nIn `10` seconds the bot will start to play an old west music.\nIn a `random` amount of seconds **the music will stop**.\nWhen the music **stops** type in the chat `!bang`\n **The Fist to type wins**",
         colour = discord.Colour.blue()
         )
         embed.set_footer(text="**May the best gun slinger win**")
@@ -37,9 +37,7 @@ class Games(commands.Cog):
         time.sleep(8)
         self.cont.play(voice_client,"duelMusic.wav")
         time.sleep(self.cont.choose_num_between(2,30))
-        #await self.cont.stop(voice_client)
-        print("BELL")
-        self.cont.play(voice_client,"duelBel.wav")
+        self.cont.stop(voice_client)
 
 def setup(bot):
     bot.add_cog(Games(bot))
