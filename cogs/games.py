@@ -9,7 +9,7 @@ class Games(commands.Cog):
         self.bot = bot
         self.cont= controller()
 
-    @commands.command(name = "duel")
+    @commands.command(name = "duel",brief="Duel, old west style",help="With this command you will be able to duel with one of your friends.\n Just type: (!fate duel @user)\nWhere the @user is the tag\n still in beta ;)")
     async def duel(self,ctx,user : discord.Member):
         self.cont.debug(ctx)
         if not ctx.author.voice:
