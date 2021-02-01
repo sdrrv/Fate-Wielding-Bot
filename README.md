@@ -11,11 +11,11 @@ If you have any ideia on how to improve the bot, or any command you'd like to se
 ## Commands
 <p> For now we only have a hand full of working commands:</p>
 
-- `!fate about` this command is pretty self-explanatory.
-- `!fate choose` this Will chooose one between all arguments given.
-- `!fate nuke` this is a fun one, so basically the bot will enter the voice channel you are in and disconnect a random number of users.
-- `!fate pussy` just try it out ;). 
-- `!fate roulette` our favorite, and the first command we added. This command will kick a random user from your voice channel Russian Rollete style.
+- `!fate about` This command is pretty self-explanatory.
+- `!fate choose` This Will chooose one between all arguments given.
+- `!fate nuke` This is a fun one, so basically the bot will enter the voice channel you are in and disconnect a random number of users.
+- `!fate pussy` Just try it out ;). 
+- `!fate roulette` Our favorite, and the first command we added. This command will kick a random user from your voice channel Russian Rollete style.
 
 ---
 ## To Finish
