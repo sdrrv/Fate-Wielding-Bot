@@ -38,8 +38,9 @@ class Games(commands.Cog):
         self.cont.play(voice_client,"duelMusic.wav")
         time.sleep(self.cont.choose_num_between(2,30))
         self.cont.stop(voice_client)
+        await ctx.channel.send("**BANG!**")
         print("BANG!")
-        bang = await self.bot.wait_for("message",timeout=30,check=lambda message: ( (message.author == ctx.author or message.author == user ) and (message.content=="!bang")) )
+        bang = await self.bot.wait_for("message",timeout=30,check=lambda i: ( (i.author == ctx.author or i.author == user ) and (i.content=="!bang")) )
         self.cont.play(voice_client,"shoot.wav")
         if(bang.author == ctx.author):
             print("Author Wins.")
