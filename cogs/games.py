@@ -45,5 +45,6 @@ class Games(commands.Cog):
         else:
             await self.cont.disconnect_member(ctx.author)
         await ctx.channel.send(f"Nice Shoot <@{bang.author.id}>")
+        await self.cont.leave(voice_client) #self disconnect
 def setup(bot):
     bot.add_cog(Games(bot))
