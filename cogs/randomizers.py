@@ -48,7 +48,7 @@ class Randomizers(commands.Cog):
         time.sleep(1)
         await self.cont.leave(voice_client) #self disconnect
     #!----------------------------------------------------------------------------------------------------------------------------
-    @commands.command(name = "roulette", help="!fate roulette - it will enter the voice channel of the user and kick one person Russian Roulette style\nYou must be in a voice channel to use.", brief="will kick one user inside your voice channel, Russian Roulette style")
+    @commands.command(name = "roulette", help="!fate roulette - it will enter the voice channel of the user and kick one person Russian Roulette style\nYou must be in a voice channel to use.", brief="Will kick one user inside your voice channel, Russian Roulette style")
     async def roulette(self,ctx):
         self.cont.debug(ctx)
         if not ctx.author.voice:
