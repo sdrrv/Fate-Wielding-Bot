@@ -1,11 +1,9 @@
 import discord
-from discord import client
 from discord.ext import commands
 from discord.utils import find
 import os
 from controllers.controller import controller
 from keep_alive import keep_alive
-import time
 
 intents = discord.Intents.all()
 cont = controller()
@@ -34,10 +32,7 @@ async def on_guild_join(guild):
     if general and general.permissions_for(guild.me).send_messages:
         await general.send(f"Hello there, {guild.name}!\nThank you for adding our bot, we hope you have as mutch fun using it, as we did coding it.\n"\
           + cont.help())
-
-#--------------------------------------------------------------------------------------------------------------------------------------
-
-#--------------------------------------------------------------------------------------------------------------------------------------
+#!--------------------------------------------------------------------------------------------------------------------------------------
 
 @bot.command(name="about",
 brief="A little about the bot"
@@ -45,21 +40,27 @@ brief="A little about the bot"
 async def about(ctx):
     cont.debug(ctx)
     await ctx.channel.send(cont.help())
-#-----------------------------------------------------------------------------------------------------------------------------------------
 
+#!-----------------------------------------------------------------------------------------------------------------------------------------
 
 @bot.command(hidden=True)
 async def load(ctx, name):
+  if(ctx.author.id!=201335861755772928):
+        return
   bot.load_extension(f"cogs.{name}")
   print(f"{name} Loaded!")
 
 @bot.command(hidden=True)
 async def unload(ctx, name):
+  if(ctx.author.id!=201335861755772928):
+        return
   bot.unload_extension(f"cogs.{name}")
   print(f"{name} UnLoaded!")
 
 @bot.command(hidden=True)
 async def reload(ctx,name):
+  if(ctx.author.id!=201335861755772928):
+        return 
   bot.unload_extension(f"cogs.{name}")
   bot.load_extension(f"cogs.{name}")
   print(f"{name} ReLoaded!")
@@ -70,6 +71,6 @@ for file in os.listdir("./cogs"): #Will load all COGs
             print("Load "+file)
             bot.load_extension(f"cogs.{ file[:-3] }")
 
-
-#keep_alive()
+#!-----------------------------------------------------------------------------------------------------------------------------------------
+keep_alive()
 bot.run(os.getenv("TOKEN"))  #Secret Stuff
