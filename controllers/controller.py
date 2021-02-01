@@ -47,7 +47,11 @@ class controller:
         request = requests.get("https://api.thecatapi.com/v1/images/search")
         data = json.loads(request.text)
         return data[0]["url"]
+  
+  def is_in_voice_channel(self,voice_channel,user):
+        return user in voice_channel.members
         
+
   def debug(self, clx):
         print(clx.guild.name)
         print(clx.message.author)
