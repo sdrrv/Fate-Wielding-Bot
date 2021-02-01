@@ -10,6 +10,50 @@ class Randomizers(commands.Cog):
         self.bot = bot
         self.cont= controller()
 
+    @commands.command(name="choose", help="!fate choose S S1 S2 ... Sn, it will choose between all the Ss given", brief="Will chooose one between all arguments given")
+    async def choose(self,ctx,*args):
+        self.cont.debug(ctx)
+        await ctx.channel.send(self.cont.choose(args))
+    
+    @commands.command(name="nuke", help="This will kick a random number os members in a voice chat.\nYou must be in a voice chat to use.",brief="Will nuke some of the members in a voice chat.")
+    @commands.has_permissions(ban_members=True)
+    async def nuke(self,ctx):
+        self.cont.debug(ctx)
+        if not ctx.author.voice:
+            await ctx.channel.send("You must be in a voice channel to do that.")
+            return 1
+        channel= ctx.author.voice.channel
+        #-------------------------------------
+        members= [i for i in channel.members]
+        if len(members)<=1:
+            await ctx.channel.send(f"You seem to be alone <@{ctx.author.id}>... no one to nuke")
+            return 1
+        num_to_kick=self.cont.choose_num_between(1,len(members))
+        to_kick=self.cont.choose_v2(members,num_to_kick)
+        #-------------------------------------
+        voice_client= await self.cont.join(channel)
+        self.cont.play(voice_client,"felix.wav")
+        time.sleep(2)
+
+        result= self.cont.get_bombed_phrase()
+
+        for member in to_kick:
+                await self.cont.disconnect_member(member)
+                result+= f", <@{member.id}>"
+        
+        await ctx.channel.send(result)
+        
+        while voice_client.is_playing():
+            time.sleep(.1)
+        time.sleep(1)
+        await self.cont.leave(voice_client) #self disconnect
+
+        @self.nuke.error
+        async def nuke_error(ctx, error):
+            print("ERROR")
+            self.cont.debug(ctx)
+            if isinstance(error, commands.MissingPermissions):
+                await ctx.channel.send(f"Sorry <@{ctx.message.author.id}>, you do not have permissions to do that!")
 
 
 def setup(bot):
