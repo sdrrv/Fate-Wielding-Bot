@@ -10,7 +10,7 @@ class Games(commands.Cog):
         self.cont= controller()
 
     @commands.command(name = "duel")
-    async def duel(self,ctx,user : discord.User):
+    async def duel(self,ctx,user : discord.Member):
         self.cont.debug(ctx)
         if not ctx.author.voice:
             await ctx.channel.send("You must be in a voice channel to do that.")
@@ -38,9 +38,11 @@ class Games(commands.Cog):
         self.cont.play(voice_client,"duelMusic.wav")
         time.sleep(self.cont.choose_num_between(2,30))
         self.cont.stop(voice_client)
+        print("BANG!")
         bang = await self.bot.wait_for("message",timeout=30,check=lambda message: ( (message.author == ctx.author or message.author == user ) and (message.content=="!bang")) )
         self.cont.play(voice_client,"shoot.wav")
         if(bang.author == ctx.author):
+            print("Author Wins.")
             await self.cont.disconnect_member(user)
         else:
             await self.cont.disconnect_member(ctx.author)
