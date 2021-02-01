@@ -21,7 +21,10 @@ async def on_ready():
 async def on_command_error(ctx, error):
     if isinstance(error, commands.CommandNotFound):
         await ctx.channel.send("Command not found.")
-        return 1
+        return
+    elif isinstance(error, commands.MissingPermissions):
+        await ctx.channel.send(f"Sorry <@{ctx.message.author.id}>, you do not have permissions to do that!")
+        return 
     raise error
 
 @bot.event #On new Server Enter
@@ -33,37 +36,7 @@ async def on_guild_join(guild):
           + cont.help())
 
 #--------------------------------------------------------------------------------------------------------------------------------------
-@bot.command(name = "roulette",
-help="!fate roulette - it will enter the voice channel of the user and kick one person Russian Roulette style\nYou must be in a voice channel to use.",
-brief="will kick one user inside your voice channel, Russian Roulette style"
-)
-async def roulette(ctx):
-  cont.debug(ctx)
-  if not ctx.author.voice:
-      await ctx.channel.send("You must be in a voice channel to do that.")
-      return 1
-  channel= ctx.author.voice.channel
-  #-------------------------------------
-  members= [i for i in channel.members]
-  to_kick= cont.choose(members)
-  #-------------------------------------
-  voice_client= await cont.join(channel)
 
-  for member in members:
-      if member == to_kick:
-        cont.play(voice_client,"shoot.wav")
-        while voice_client.is_playing():
-          time.sleep(.1)
-        await cont.disconnect_member(member)
-        break
-
-      cont.play(voice_client,"revolver_blank.wav")
-      while voice_client.is_playing():
-        time.sleep(.1)
-
-  await ctx.channel.send(cont.get_disconnect_phrase()+f"<@{to_kick.id}>")
-  time.sleep(3)
-  await cont.leave(voice_client) #self disconnect
 #--------------------------------------------------------------------------------------------------------------------------------------
 
 @bot.command(name="about",
@@ -98,5 +71,5 @@ for file in os.listdir("./cogs"): #Will load all COGs
             bot.load_extension(f"cogs.{ file[:-3] }")
 
 
-keep_alive()
+#keep_alive()
 bot.run(os.getenv("TOKEN"))  #Secret Stuff

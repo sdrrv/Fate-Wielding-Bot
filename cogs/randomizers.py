@@ -9,12 +9,12 @@ class Randomizers(commands.Cog):
     def __init__(self,bot):
         self.bot = bot
         self.cont= controller()
-
+    #!----------------------------------------------------------------------------------------------------------------------------
     @commands.command(name="choose", help="!fate choose S S1 S2 ... Sn, it will choose between all the Ss given", brief="Will chooose one between all arguments given")
     async def choose(self,ctx,*args):
         self.cont.debug(ctx)
         await ctx.channel.send(self.cont.choose(args))
-    
+    #!----------------------------------------------------------------------------------------------------------------------------
     @commands.command(name="nuke", help="This will kick a random number os members in a voice chat.\nYou must be in a voice chat to use.",brief="Will nuke some of the members in a voice chat.")
     @commands.has_permissions(ban_members=True)
     async def nuke(self,ctx):
@@ -47,13 +47,35 @@ class Randomizers(commands.Cog):
             time.sleep(.1)
         time.sleep(1)
         await self.cont.leave(voice_client) #self disconnect
+    #!----------------------------------------------------------------------------------------------------------------------------
+    @commands.command(name = "roulette", help="!fate roulette - it will enter the voice channel of the user and kick one person Russian Roulette style\nYou must be in a voice channel to use.", brief="will kick one user inside your voice channel, Russian Roulette style")
+    async def roulette(self,ctx):
+        self.cont.debug(ctx)
+        if not ctx.author.voice:
+            await ctx.channel.send("You must be in a voice channel to do that.")
+            return 1
+        channel= ctx.author.voice.channel
+        #-------------------------------------
+        members= [i for i in channel.members]
+        to_kick= self.cont.choose(members)
+        #-------------------------------------
+        voice_client= await self.cont.join(channel)
 
-        @self.nuke.error
-        async def nuke_error(ctx, error):
-            print("ERROR")
-            self.cont.debug(ctx)
-            if isinstance(error, commands.MissingPermissions):
-                await ctx.channel.send(f"Sorry <@{ctx.message.author.id}>, you do not have permissions to do that!")
+        for member in members:
+            if member == to_kick:
+                self.cont.play(voice_client,"shoot.wav")
+                while voice_client.is_playing():
+                    time.sleep(.1)
+                await self.cont.disconnect_member(member)
+                break
+
+            self.cont.play(voice_client,"revolver_blank.wav")
+            while voice_client.is_playing():
+                time.sleep(.1)
+
+        await ctx.channel.send(self.cont.get_disconnect_phrase()+f"<@{to_kick.id}>")
+        time.sleep(3)
+        await self.cont.leave(voice_client) #self disconnect
 
 
 def setup(bot):
