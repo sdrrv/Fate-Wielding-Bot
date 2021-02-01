@@ -88,14 +88,6 @@ async def roulette(ctx):
   time.sleep(3)
   await cont.leave(voice_client) #self disconnect
 #--------------------------------------------------------------------------------------------------------------------------------------
-@bot .command(name="pussy",
-help="Just do !fate pussy and find out",
-brief="Wanna see some pussys?"
-)
-async def cat(ctx):
-  await ctx.channel.send(cont.get_cat_photo())
-  await ctx.channel.send("Here ya perv have a pussy")
-#--------------------------------------------------------------------------------------------------------------------------------------
 @bot.command(name="choose",
 help="!fate choose S S1 S2 ... Sn, it will choose between all the Ss given",
 brief="Will chooose one between all arguments given"
