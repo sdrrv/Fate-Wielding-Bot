@@ -28,7 +28,7 @@ class Games(commands.Cog):
         if(response.content == "!no"):
             await ctx.channel.send("pussy")
             return
-        embed = discord.Embed(title="READ RULES", description="How to play:\nIn `10` seconds the bot will start to play an old west music.\nIn a `random` amount of seconds **the music will stop**.\nWhen the music **stops** type in the chat `!bang`\n **The Fist to type wins**",
+        embed = discord.Embed(title="READ RULES", description="How to play:\nIn `10` seconds the bot will start to play an old west music.\nIn a `random` amount of seconds **the music will stop**.\nWhen the music **stops** type in the chat `!bang`\n **The First to type wins**",
         colour = discord.Colour.blue()
         )
         embed.set_footer(text="**May the best gun slinger win**")
