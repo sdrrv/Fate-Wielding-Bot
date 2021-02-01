@@ -38,6 +38,12 @@ class Games(commands.Cog):
         self.cont.play(voice_client,"duelMusic.wav")
         time.sleep(self.cont.choose_num_between(2,30))
         self.cont.stop(voice_client)
-
+        bang = await self.bot.wait_for("message",timeout=30,check=lambda message: ( (message.author == ctx.author or message.author == user ) and (message.content=="!bang")) )
+        self.cont.play(voice_client,"shoot.wav")
+        if(bang.author == ctx.author):
+            self.cont.disconnect_member(user)
+        else:
+            self.cont.disconnect_member(ctx.author)
+        await ctx.channel.send(f"Nice Shoot <@{bang.author.id}>")
 def setup(bot):
     bot.add_cog(Games(bot))
