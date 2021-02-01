@@ -18,7 +18,7 @@ class controller:
       return random.randint(int1,int2)
 
   def help(self):
-    result = "This is just an alpha bot, stil in development.\nCreated by: Sdrrv, Galbatorix, Doginainar, TheLittleDwarf, Fl4shKiller, Bkn, Gonxalor,ChiP.\nIST\n"+("-"*110)
+    result = "This is just an alpha bot, still in development.\nCreated by: Sdrrv, Galbatorix, Doginainar, TheLittleDwarf, Fl4shKiller, Bkn, Gonxalor,ChiP.\nIST\n"+("-"*110)
     return result
   
   def join(self, channel):
