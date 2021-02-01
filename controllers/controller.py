@@ -31,6 +31,9 @@ class controller:
     audio = discord.FFmpegPCMAudio(source="./sounds/"+music)
     voice_client.play(source=audio, after=None)
   
+  def stop(self,voice_client):
+    voice_client.stop()
+
   def get_member(self, guild,id):
       return guild.get_member(id)
   
