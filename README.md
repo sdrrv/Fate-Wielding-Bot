@@ -16,7 +16,7 @@ If you have any ideia on how to improve the bot, or any command you'd like to se
 - `!fate nuke` This is a fun one, so basically the bot will enter the voice channel you are in and disconnect a random number of users.
 - `!fate pussy` Just try it out ;). 
 - `!fate roulette` Our favorite, and the first command we added. This command will kick a random user from your voice channel Russian Rollete style.
-
+- `!fate duel @user` You will duel with the user you identify. Old West Style. -Beta
 ---
 ## To Finish
 > This is still an alpha version
