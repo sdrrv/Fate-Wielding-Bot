@@ -1,4 +1,5 @@
 import discord
+from discord import client
 from discord.ext import commands
 from discord.utils import find
 import os
@@ -155,6 +156,27 @@ async def about(ctx):
     cont.debug(ctx)
     await ctx.channel.send(cont.help())
 #-----------------------------------------------------------------------------------------------------------------------------------------
+
+
+@bot.command(hidden=True)
+async def load(ctx, name):
+  bot.load_extension(f"cogs.{name}")
+
+@bot.command(hidden=True)
+async def unload(ctx, name):
+  bot.unload_extension(f"cogs.{name}")
+
+@bot.command(hidden=True)
+async def reload(ctx,name):
+  bot.unload_extension(f"cogs.{name}")
+  bot.load_extension(f"cogs.{name}")
+
+
+for file in os.listdir("./cogs"): #Will load all COGs
+      if file.endswith(".py"):
+            print("Load "+file)
+            bot.load_extension(f"cogs.{ file[:-3] }")
+
 
 keep_alive()
 bot.run(os.getenv("TOKEN"))  #Secret Stuff
