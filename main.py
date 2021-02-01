@@ -21,7 +21,9 @@ async def on_ready():
 async def on_command_error(ctx, error):
     if isinstance(error, commands.CommandNotFound):
         await ctx.channel.send("Command not found.")
+        return 1
     raise error
+
 @bot.event #On new Server Enter
 async def on_guild_join(guild):
     print(f"{guild.name}, you have a new bot now")
@@ -29,31 +31,6 @@ async def on_guild_join(guild):
     if general and general.permissions_for(guild.me).send_messages:
         await general.send(f"Hello there, {guild.name}!\nThank you for adding our bot, we hope you have as mutch fun using it, as we did coding it.\n"\
           + cont.help())
-
-#--------------------------------------------------------------------------------------------------------------------------------------
-
-@bot.command(name = "deus", hidden=True)
-async def kamazaki(ctx):
-  print(ctx.author.id)
-  await ctx.channel.send(f"Louvem o nosso deus <@{184715371377328128}>")
-
-@bot.command(name = "cry", hidden=True)
-async def cry(ctx):
-  cont.debug(ctx)
-  if not ctx.author.voice:
-      await ctx.channel.send("You must be in a voice channel to do that.")
-      return 1
-  channel= ctx.author.voice.channel
-  voice_client= await cont.join(channel)
-  await ctx.channel.send("You made me cry :(")
-  x = "crys/"+cont.choose(os.listdir("./sounds/crys"))
-  print(x)
-  cont.play(voice_client,x)
-  while voice_client.is_playing():
-     time.sleep(.1)
-  time.sleep(1)
-  await cont.leave(voice_client) #self disconnect
-
 
 #--------------------------------------------------------------------------------------------------------------------------------------
 @bot.command(name = "roulette",
@@ -153,15 +130,18 @@ async def about(ctx):
 @bot.command(hidden=True)
 async def load(ctx, name):
   bot.load_extension(f"cogs.{name}")
+  print(f"{name} Loaded!")
 
 @bot.command(hidden=True)
 async def unload(ctx, name):
   bot.unload_extension(f"cogs.{name}")
+  print(f"{name} UnLoaded!")
 
 @bot.command(hidden=True)
 async def reload(ctx,name):
   bot.unload_extension(f"cogs.{name}")
   bot.load_extension(f"cogs.{name}")
+  print(f"{name} ReLoaded!")
 
 
 for file in os.listdir("./cogs"): #Will load all COGs
