@@ -1,7 +1,6 @@
 import discord
 from discord.ext import commands
-from controllers import controller
-
+from controllers.controller import controller
 
 class Troll(commands.Cog):
     def __init__(self,bot):
