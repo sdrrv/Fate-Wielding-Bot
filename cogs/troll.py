@@ -15,7 +15,7 @@ class Troll(commands.Cog):
         await ctx.channel.send(self.cont.get_cat_photo())
         await ctx.channel.send("Here ya perv have a pussy")
     
-    @command.command(name = "deus", hidden=True)
+    @commands.command(name = "deus", hidden=True)
     async def kamazaki(self,ctx):
         print(ctx.author.id)
         await ctx.channel.send(f"Louvem o nosso deus <@{184715371377328128}>")
