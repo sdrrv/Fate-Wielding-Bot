@@ -42,6 +42,7 @@ class Games(commands.Cog):
         print("BANG!")
         bang = await self.bot.wait_for("message",timeout=30,check=lambda i: ( (i.author == ctx.author or i.author == user ) and (i.content=="!bang")) )
         self.cont.play(voice_client,"shoot.wav")
+        time.sleep(1)
         if(bang.author == ctx.author):
             print("Author Wins.")
             await self.cont.disconnect_member(user)
