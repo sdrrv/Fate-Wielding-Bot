@@ -13,7 +13,7 @@ class Troll(commands.Cog):
     @commands.command(name="pussy", help="Just do !fate pussy and find out", brief="Wanna see some pussys?")
     async def cat(self,ctx):
         await ctx.channel.send(self.cont.get_cat_photo())
-        await ctx.channel.send("Here ya perv have a pussy")
+        await ctx.channel.send("Here ya go ya perv have a pussy")
     
     @commands.command(name = "deus", hidden=True)
     async def kamazaki(self,ctx):
