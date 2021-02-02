@@ -15,6 +15,15 @@ class Randomizers(commands.Cog):
         self.cont.debug(ctx)
         await ctx.channel.send(self.cont.choose(args))
     #!----------------------------------------------------------------------------------------------------------------------------
+    @commands.command(name="chooseMultiple")
+    async def chooseV2(self,ctx,amountToChoose,*args):
+        if (amountToChoose>len(args)):
+            ctx.channel.send("You can't choose more than the arguments given.")
+        elif(amountToChoose<=0):
+            ctx.channel.send("The number must be positive.")
+        ctx.channel.send(self.cont.choose_v2(args,amountToChoose))
+
+     #!----------------------------------------------------------------------------------------------------------------------------
     @commands.command(name="nuke", help="This will kick a random number os members in a voice chat.\nYou must be in a voice chat to use.",brief="Will nuke some of the members in a voice chat.")
     @commands.has_permissions(ban_members=True)
     async def nuke(self,ctx):

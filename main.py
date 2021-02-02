@@ -18,11 +18,15 @@ async def on_ready():
 @bot.event #On Error
 async def on_command_error(ctx, error):
     if isinstance(error, commands.CommandNotFound):
-        await ctx.channel.send("Command not found.")
+        await ctx.channel.send("Command not found.Try `!fate help`")
         return
     elif isinstance(error, commands.MissingPermissions):
         await ctx.channel.send(f"Sorry <@{ctx.message.author.id}>, you do not have permissions to do that!")
-        return 
+        return
+    elif isinstance(error, commands.TimeoutError):
+        await ctx.channel.send("You took to long to respond.** Time Out **")
+        return
+
     raise error
 
 @bot.event #On new Server Enter
