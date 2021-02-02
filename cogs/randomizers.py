@@ -19,8 +19,10 @@ class Randomizers(commands.Cog):
     async def chooseV2(self,ctx,amountToChoose: int,*args):
         if (amountToChoose>len(args)):
             await ctx.channel.send("You can't choose more than the arguments given.")
+            return
         elif(amountToChoose<=0):
             await ctx.channel.send("The number must be positive.")
+            return
         await ctx.channel.send(self.cont.choose_v2(args,amountToChoose))
 
      #!----------------------------------------------------------------------------------------------------------------------------
