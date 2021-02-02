@@ -15,13 +15,13 @@ class Randomizers(commands.Cog):
         self.cont.debug(ctx)
         await ctx.channel.send(self.cont.choose(args))
     #!----------------------------------------------------------------------------------------------------------------------------
-    @commands.command(name="chooseMultiple")
-    async def chooseV2(self,ctx,amountToChoose,*args):
+    @commands.command(name="choose+", brief="Similar to the choose command, but will choose more than one arg",help="Chooses multiple arguments.\nThe number of arguments choosen is given by the '<amountToChoose>', witch is the first argument\nEx:\nInput: !fate choose+ 2 Peter David Adam\nOutput: ['Adam','Peter']")
+    async def chooseV2(self,ctx,amountToChoose: int,*args):
         if (amountToChoose>len(args)):
-            ctx.channel.send("You can't choose more than the arguments given.")
+            await ctx.channel.send("You can't choose more than the arguments given.")
         elif(amountToChoose<=0):
-            ctx.channel.send("The number must be positive.")
-        ctx.channel.send(self.cont.choose_v2(args,amountToChoose))
+            await ctx.channel.send("The number must be positive.")
+        await ctx.channel.send(self.cont.choose_v2(args,amountToChoose))
 
      #!----------------------------------------------------------------------------------------------------------------------------
     @commands.command(name="nuke", help="This will kick a random number os members in a voice chat.\nYou must be in a voice chat to use.",brief="Will nuke some of the members in a voice chat.")

@@ -23,9 +23,9 @@ async def on_command_error(ctx, error):
     elif isinstance(error, commands.MissingPermissions):
         await ctx.channel.send(f"Sorry <@{ctx.message.author.id}>, you do not have permissions to do that!")
         return
-    elif isinstance(error, commands.TimeoutError):
-        await ctx.channel.send("You took to long to respond.** Time Out **")
-        return
+    #elif isinstance(error, commands.TimeoutError):
+      #  await ctx.channel.send("You took to long to respond.** Time Out **")
+      #  return
 
     raise error
 
