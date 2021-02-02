@@ -17,6 +17,7 @@ class Randomizers(commands.Cog):
     #!----------------------------------------------------------------------------------------------------------------------------
     @commands.command(name="choose+", brief="Similar to the choose command, but will choose more than one arg",help="Chooses multiple arguments.\nThe number of arguments choosen is given by the '<amountToChoose>', witch is the first argument\nEx:\nInput: !fate choose+ 2 Peter David Adam\nOutput: ['Adam','Peter']")
     async def chooseV2(self,ctx,amountToChoose: int,*args):
+        self.cont.debug(ctx)
         if (amountToChoose>len(args)):
             await ctx.channel.send("You can't choose more than the arguments given.")
             return
