@@ -4,7 +4,7 @@ from discord.utils import find
 import os
 from controllers.controller import controller
 from keep_alive import keep_alive
-import asyncio
+import json
 
 intents = discord.Intents.all()
 cont = controller()
@@ -24,15 +24,19 @@ async def on_command_error(ctx, error):
     elif isinstance(error, commands.MissingPermissions):
         await ctx.channel.send(f"Sorry <@{ctx.message.author.id}>, you do not have permissions to do that!")
         return
-    elif isinstance(error, asyncio.TimeoutError):
-        await ctx.channel.send("You took to long to respond.** Time Out **")
-        return
-
     raise error
 
 @bot.event #On new Server Enter
 async def on_guild_join(guild):
     print(f"{guild.name}, you have a new bot now")
+    with open("./models/leaderBoard.json","r") as f:
+      leaderBoard = json.load(f)
+
+    leaderBoard[guild.id]= {}
+
+    with open("./models/leaderBoard.json","w") as f:
+      json.dump(leaderBoard, f, indent=4)
+
     general = find(lambda x: (x.name == 'general' or x.name =="geral"),  guild.text_channels)
     if general and general.permissions_for(guild.me).send_messages:
         await general.send(f"Hello there, {guild.name}!\nThank you for adding our bot, we hope you have as mutch fun using it, as we did coding it.\n"\
