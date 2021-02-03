@@ -24,6 +24,8 @@ class Games(commands.Cog):
             return
         await ctx.channel.send(f"<@{user.id}> you have been challanged for a duel! Do you accept?\nWrite `!yes` or `!no`, you have `50`sec")
         response = await self.bot.wait_for("message",timeout=50.0 ,check=lambda message: (message.author == user) and ((message.content=="!yes")or(message.content=="!no")))
+        if not response:
+            await ctx.channel.send(f"<@{user.id}> pussy.")
         print(response.content)
         if(response.content == "!no"):
             await ctx.channel.send("pussy")
