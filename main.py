@@ -48,7 +48,7 @@ async def on_guild_join(guild):
 async def on_guild_remove(guild):
   with open("./models/leaderBoard.json","r") as f:
       leaderBoard = json.load(f)
-      
+
   leaderBoard.pop(guild.id)
 
   with open("./models/leaderBoard.json","w") as f:
@@ -62,6 +62,11 @@ brief="A little about the bot"
 async def about(ctx):
     cont.debug(ctx)
     await ctx.channel.send(cont.help())
+
+#!-----------------------------------------------------------------------------------------------------------------------------------------
+@bot.command(name="pull" , hidden=True)
+async def pull(ctx):
+  os.system('cmd /c "git pull"')
 
 #!-----------------------------------------------------------------------------------------------------------------------------------------
 
