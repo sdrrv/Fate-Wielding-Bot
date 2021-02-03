@@ -10,6 +10,8 @@ intents = discord.Intents.all()
 cont = controller()
 bot = commands.Bot(command_prefix="!fate ",intents = intents)
 
+admins = [201335861755772928]
+
 @bot.event #On Ready
 async def on_ready():
     await bot.change_presence(activity=discord.Game("!fate help"))
@@ -66,27 +68,29 @@ async def about(ctx):
 #!-----------------------------------------------------------------------------------------------------------------------------------------
 @bot.command(name="pull" , hidden=True)
 async def pull(ctx):
+  if(ctx.author.id not in admins):
+        return
   os.system("git pull https://github.com/sdrrv/Fate-Wielding-Bot.git")
 
 #!-----------------------------------------------------------------------------------------------------------------------------------------
 
 @bot.command(hidden=True)
 async def load(ctx, name):
-  if(ctx.author.id!=201335861755772928):
+  if(ctx.author.id not in admins):
         return
   bot.load_extension(f"cogs.{name}")
   print(f"{name} Loaded!")
 
 @bot.command(hidden=True)
 async def unload(ctx, name):
-  if(ctx.author.id!=201335861755772928):
+  if(ctx.author.id not in admins):
         return
   bot.unload_extension(f"cogs.{name}")
   print(f"{name} UnLoaded!")
 
 @bot.command(hidden=True)
 async def reload(ctx,name):
-  if(ctx.author.id!=201335861755772928):
+  if(ctx.author.id not in admins):
         return 
   bot.unload_extension(f"cogs.{name}")
   bot.load_extension(f"cogs.{name}")
