@@ -24,11 +24,9 @@ class Games(commands.Cog):
             return
         await ctx.channel.send(f"<@{user.id}> you have been challanged for a duel! Do you accept?\nWrite `!yes` or `!no`, you have `50`sec")
         response = await self.bot.wait_for("message",timeout=50.0 ,check=lambda message: (message.author == user) and ((message.content=="!yes")or(message.content=="!no")))
-        if not response:
-            await ctx.channel.send(f"<@{user.id}> pussy.")
         print(response.content)
         if(response.content == "!no"):
-            await ctx.channel.send("pussy")
+            await ctx.channel.send("<@{user.id}> pussy.")
             return
         embed = discord.Embed(title="READ RULES", description="How to play:\nIn `10` seconds the bot will start to play an old west music.\nIn a `random` amount of seconds **the music will stop**.\nWhen the music **stops** type in the chat `!bang`\n **The First to type wins**",
         colour = discord.Colour.blue()
