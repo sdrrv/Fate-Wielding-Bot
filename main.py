@@ -32,7 +32,9 @@ async def on_guild_join(guild):
     with open("./models/leaderBoard.json","r") as f:
       leaderBoard = json.load(f)
 
-    leaderBoard[guild.id]= {}
+    leaderBoard[guild.id]= {
+      "duel":{}
+    }
 
     with open("./models/leaderBoard.json","w") as f:
       json.dump(leaderBoard, f, indent=4)
@@ -41,6 +43,17 @@ async def on_guild_join(guild):
     if general and general.permissions_for(guild.me).send_messages:
         await general.send(f"Hello there, {guild.name}!\nThank you for adding our bot, we hope you have as mutch fun using it, as we did coding it.\n"\
           + cont.help())
+
+@bot.event
+async def on_guild_remove(guild):
+  with open("./models/leaderBoard.json","r") as f:
+      leaderBoard = json.load(f)
+      
+  leaderBoard.pop(guild.id)
+
+  with open("./models/leaderBoard.json","w") as f:
+      json.dump(leaderBoard, f, indent=4)
+  
 #!--------------------------------------------------------------------------------------------------------------------------------------
 
 @bot.command(name="about",
