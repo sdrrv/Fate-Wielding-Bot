@@ -37,7 +37,7 @@ class Randomizers(commands.Cog):
         channel= ctx.author.voice.channel
         #-------------------------------------
         members= [i for i in channel.members]
-        if len(members)<=0:
+        if len(members)<=1:
             await ctx.channel.send(f"You seem to be alone <@{ctx.author.id}>... no one to nuke")
             return 1
         num_to_kick=self.cont.choose_num_between(1,len(members))
