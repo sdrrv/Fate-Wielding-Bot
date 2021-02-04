@@ -53,7 +53,7 @@ class Games(commands.Cog):
     #!----------------------------------------------------------------------------------------------------------------------------
 
     @commands.command(name = "leaderboard")
-    async def leaderboard(ctx):
+    async def leaderboard(self,ctx):
         embed = discord.Embed()
         await ctx.channel.send(embed=embed)
 
