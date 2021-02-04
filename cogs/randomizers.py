@@ -44,7 +44,7 @@ class Randomizers(commands.Cog):
         to_kick=self.cont.choose_v2(members,num_to_kick)
         #-------------------------------------
         voice_client= await self.cont.join(channel)
-        self.cont.play(voice_client,"WTF BOOM Sound Byte.mp3")
+        self.cont.play(voice_client,"WTF BOOM Sound Byte.wav")
         time.sleep(2.8)
 
         result= self.cont.get_bombed_phrase()
