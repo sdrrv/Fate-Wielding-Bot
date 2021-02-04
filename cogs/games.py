@@ -50,5 +50,13 @@ class Games(commands.Cog):
             await self.cont.disconnect_member(ctx.author)
         await ctx.channel.send(f"Nice Shoot <@{bang.author.id}>")
         await self.cont.leave(voice_client) #self disconnect
+    #!----------------------------------------------------------------------------------------------------------------------------
+
+    @commands.command(name = "leaderboard")
+    async def leaderboard(ctx):
+        embed = discord.Embed()
+        await ctx.channel.send(embed=embed)
+
+    #!----------------------------------------------------------------------------------------------------------------------------
 def setup(bot):
     bot.add_cog(Games(bot))
