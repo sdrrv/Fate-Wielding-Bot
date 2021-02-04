@@ -52,7 +52,7 @@ class Games(commands.Cog):
         await self.cont.leave(voice_client) #self disconnect
     #!----------------------------------------------------------------------------------------------------------------------------
 
-    @commands.command(name = "leaderboard", aliases ="lb",brief="***OnTheWorks***")
+    @commands.command(name = "leaderboard",brief="***OnTheWorks***")
     async def leaderboard(self,ctx):
         embed = discord.Embed(colour=discord.Colour.red() ,title="LEADERBOARD")
         await ctx.channel.send(embed=embed)
