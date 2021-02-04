@@ -45,7 +45,7 @@ class Randomizers(commands.Cog):
         #-------------------------------------
         voice_client= await self.cont.join(channel)
         self.cont.play(voice_client,"WTF BOOM Sound Byte.mp3")
-        time.sleep(3.5)
+        time.sleep(3)
 
         result= self.cont.get_bombed_phrase()
 
