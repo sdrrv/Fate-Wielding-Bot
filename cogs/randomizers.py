@@ -28,7 +28,7 @@ class Randomizers(commands.Cog):
 
      #!----------------------------------------------------------------------------------------------------------------------------
     @commands.command(name="nuke", help="This will kick a random number os members in a voice chat.\nYou must be in a voice chat to use.",brief="Will nuke some of the members in a voice chat.")
-    @commands.has_permissions(ban_members=True)
+    @commands.has_permissions(move_members=True)
     async def nuke(self,ctx):
         self.cont.debug(ctx)
         if not ctx.author.voice:
@@ -61,6 +61,7 @@ class Randomizers(commands.Cog):
         await self.cont.leave(voice_client) #self disconnect
     #!----------------------------------------------------------------------------------------------------------------------------
     @commands.command(name = "roulette", help="!fate roulette - it will enter the voice channel of the user and kick one person Russian Roulette style\nYou must be in a voice channel to use.", brief="Will kick one user inside your voice channel, Russian Roulette style")
+    #@commands.has_permissions(move_members=True) for debug still
     async def roulette(self,ctx):
         self.cont.debug(ctx)
         if not ctx.author.voice:
