@@ -27,8 +27,8 @@ class Randomizers(commands.Cog):
         await ctx.channel.send(self.cont.choose_v2(args,amountToChoose))
 
      #!----------------------------------------------------------------------------------------------------------------------------
-    @commands.command(name="nuke", help="This will kick a random number os members in a voice chat.\nYou must be in a voice chat to use.",brief="Will nuke some of the members in a voice chat.")
-    @commands.has_permissions(move_members=True)
+    @commands.command(name="nuke", help="This will kick a random number os members in a voice chat.\nYou must be in a voice chat to use.\nIn compliance with the rules, this command is an admin only command. ",brief="Will nuke some of the members in a voice chat. (Admin command)")
+    @commands.has_permissions(administrator=True)
     async def nuke(self,ctx):
         self.cont.debug(ctx)
         if not ctx.author.voice:
