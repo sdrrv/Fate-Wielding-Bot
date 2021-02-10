@@ -28,7 +28,7 @@ async def on_command_error(ctx, error):
         await ctx.channel.send(f"Sorry <@{ctx.message.author.id}>, you do not have permissions to do that!")
         return
     elif isinstance(error, commands.MemberNotFound):
-        await ctx.channel.send("Member not found")
+        await ctx.channel.send(f"Member '`{error.argument}`' not found")
         return
 
     raise error
