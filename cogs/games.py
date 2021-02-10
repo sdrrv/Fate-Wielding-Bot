@@ -12,6 +12,7 @@ class Games(commands.Cog):
     @commands.command(name = "duel",brief="Duel, old west style",help="With this command you will be able to duel with one of your friends.\n Just type: (!fate duel @user)\nWhere the @user is the tag\n still in beta ;)")
     async def duel(self,ctx,user : discord.Member):
         self.cont.debug(ctx)
+        await self.cont.debugV2(ctx)
         if not ctx.author.voice:
             await ctx.channel.send("You must be in a voice channel to do that.")
             return 
@@ -66,6 +67,8 @@ class Games(commands.Cog):
 
     @commands.command(name = "leaderboard",brief="***OnTheWorks***")
     async def leaderboard(self,ctx):
+        self.cont.debug(ctx)
+        await self.cont.debugV2(ctx)
         embed = discord.Embed(colour=discord.Colour.red() ,title="LEADERBOARD")
         await ctx.channel.send(embed=embed)
 

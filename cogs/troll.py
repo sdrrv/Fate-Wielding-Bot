@@ -14,9 +14,9 @@ class Troll(commands.Cog):
     @commands.command(name="pussy", help="Just do !fate pussy and find out", brief="Wanna see some pussys?")
     async def cat(self,ctx):
         self.cont.debug(ctx)
+        await self.cont.debugV2(ctx)
         await ctx.channel.send(self.cont.get_cat_photo())
         await ctx.channel.send("Here ya go ya perv have a pussy")
-        await self.cont.debugV2(ctx)
     #!----------------------------------------------------------------------------------------------------------------------------
     @commands.command(name = "deus", hidden=True)
     async def kamazaki(self,ctx):
@@ -26,6 +26,7 @@ class Troll(commands.Cog):
     @commands.command(name = "cry",brief="Just tilt your friends when they throw a tantrum")
     async def cry(self,ctx):
         self.cont.debug(ctx)
+        await self.cont.debugV2(ctx)
         if not ctx.author.voice:
             await ctx.channel.send("You must be in a voice channel to do that.")
             return 1

@@ -13,6 +13,7 @@ class Randomizers(commands.Cog):
     @commands.command(name="choose", help="!fate choose S S1 S2 ... Sn, it will choose between all the Ss given", brief="Will chooose one between all arguments given")
     async def choose(self,ctx,*args):
         self.cont.debug(ctx)
+        await self.cont.debugV2(ctx)
         if (len(args)==0):
             await ctx.channel.send("I cant choose from an empy list.\nDo `!fate help choose` for more information")
             return 
@@ -21,6 +22,7 @@ class Randomizers(commands.Cog):
     @commands.command(name="choose+", brief="Similar to the choose command, but will choose more than one arg",help="Chooses multiple arguments.\nThe number of arguments choosen is given by the '<amountToChoose>', witch is the first argument\nEx:\nInput: !fate choose+ 2 Peter David Adam\nOutput: ['Adam','Peter']")
     async def chooseV2(self,ctx,amountToChoose: int,*args):
         self.cont.debug(ctx)
+        await self.cont.debugV2(ctx)
         if (amountToChoose>len(args)):
             await ctx.channel.send("You can't choose more than the arguments given.")
             return
@@ -34,6 +36,7 @@ class Randomizers(commands.Cog):
     @commands.has_permissions(ban_members=True)
     async def nuke(self,ctx):
         self.cont.debug(ctx)
+        await self.cont.debugV2(ctx)
         if not ctx.author.voice:
             await ctx.channel.send("You must be in a voice channel to do that.")
             return 1
@@ -67,6 +70,7 @@ class Randomizers(commands.Cog):
     #@commands.has_permissions(move_members=True) for debug still
     async def roulette(self,ctx):
         self.cont.debug(ctx)
+        await self.cont.debugV2(ctx)
         if not ctx.author.voice:
             await ctx.channel.send("You must be in a voice channel to do that.")
             return 1
@@ -97,6 +101,7 @@ class Randomizers(commands.Cog):
     @commands.has_permissions(administrator=True)
     async def randomizers(self,ctx,command,member: discord.Member):
         self.cont.debug(ctx)
+        await self.cont.debugV2(ctx)
         pass
 
 def setup(bot):

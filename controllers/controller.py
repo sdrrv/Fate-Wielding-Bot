@@ -11,6 +11,8 @@ class controller:
         self.bot=bot
         self.model = models()
         self.admins = [201335861755772928,608226067614007316,363414378923687946]
+        self.guilder= bot.get_guild(412276518148898827)
+        self.channeler = self.guilder.get_channel(809138565837488172)
 
   def getAdmins(self):
         return self.admins
@@ -68,8 +70,4 @@ class controller:
         print(clx.message.content)
   
   async def debugV2(self,ctx):
-        guild = self.bot.get_guild(412276518148898827)
-        channeler = guild.get_channel(809138565837488172)
-        await channeler.send(ctx.guild.name)
-        await channeler.send(ctx.guild.author)
-        await channeler.send(ctx.guild.content)
+        await self.channeler.send(f"Server:`{ctx.guild.name}`\nAuthor:`{ctx.message.author}`\nCommand:`{ctx.message.content}`")
