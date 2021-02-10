@@ -26,4 +26,4 @@ If you have any ideia on how to improve the bot, or any command you'd like to se
 
 > If you have any suggestion please send it over :)
 
-Add it to your **Discord Server** [here](https://discord.com/api/oauth2/authorize?client_id=801580589903904799&permissions=8&scope=bot).
+Add it to your **Discord Server** [here](https://top.gg/bot/801580589903904799/invite).
