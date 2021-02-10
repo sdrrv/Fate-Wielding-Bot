@@ -11,8 +11,7 @@ class controller:
         self.bot=bot
         self.model = models()
         self.admins = [201335861755772928,608226067614007316,363414378923687946]
-        self.guilder= bot.get_guild(412276518148898827)
-        self.channeler = self.guilder.get_channel(809138565837488172)
+        self.channeler = bot.get_guild(412276518148898827).get_channel(809138565837488172)
 
   def getAdmins(self):
         return self.admins
