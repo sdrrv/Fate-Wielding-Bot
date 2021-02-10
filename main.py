@@ -32,6 +32,9 @@ async def on_command_error(ctx, error):
     elif isinstance(error, commands.MemberNotFound):
         await ctx.channel.send(f"Member '`{error.argument}`' not found")
         return
+    elif isinstance(error, commands.ClientException):
+          print("Hello")
+          pass
 
     raise error
 

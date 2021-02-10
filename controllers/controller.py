@@ -22,7 +22,11 @@ class controller:
     return result
   
   def join(self, channel):
-    return channel.connect()
+    try:
+      return channel.connect()
+    except Exception as e:
+      print("Bot Already Connected.")
+      #raise e
 
   def leave(self, voice_client):
     return voice_client.disconnect()
