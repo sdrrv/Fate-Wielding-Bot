@@ -129,4 +129,4 @@ dmypy.json
 .pyre/
 
 # Jsons
-.models/leaderBoard.json
+./models/leaderBoard.json
