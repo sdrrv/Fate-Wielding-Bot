@@ -23,7 +23,13 @@ class Games(commands.Cog):
             await ctx.channel.send("You both must be in the same voice channel... It's almost **High noon**")
             return
         await ctx.channel.send(f"<@{user.id}> you have been challanged for a duel! Do you accept?\nWrite `!yes` or `!no`, you have `50`sec")
-        response = await self.bot.wait_for("message",timeout=50.0 ,check=lambda message: (message.author == user) and ((message.content=="!yes")or(message.content=="!no")))
+
+        try:
+            response = await self.bot.wait_for("message",timeout=50.0 ,check=lambda message: (message.author == user) and ((message.content=="!yes")or(message.content=="!no")))
+        except Exception:
+            await ctx.channel.send(f"Opps... You dind't respond in time <@{user.id}>")
+            return
+
         print(response.content)
         if(response.content == "!no"):
             await ctx.channel.send(f"<@{user.id}> pussy.")
