@@ -11,7 +11,7 @@ intents = discord.Intents.all()
 cont = controller()
 bot = commands.Bot(command_prefix="!fate ",intents = intents)
 
-admins = [201335861755772928,608226067614007316,363414378923687946]
+admins = cont.getAdmins()
 
 @bot.event #On Ready
 async def on_ready():

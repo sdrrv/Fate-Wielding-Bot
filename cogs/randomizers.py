@@ -30,7 +30,7 @@ class Randomizers(commands.Cog):
         await ctx.channel.send(self.cont.choose_v2(args,amountToChoose))
 
      #!----------------------------------------------------------------------------------------------------------------------------
-    @commands.command(name="nuke", help="This will kick a random number os members in a voice chat.\nYou must be in a voice chat to use.\nIn compliance with the rules, this command is an admin only command. ",brief="Will nuke some of the members in a voice chat. (Admin command)")
+    @commands.command(name="nuke", help="This will kick a random number os members in a voice chat.\nYou must be in a voice chat to use.\nIn compliance with the rules, this command is an admin only command. ",brief="Will nuke some of the members in a voice chat. (Ban Perm Needed)")
     @commands.has_permissions(ban_members=True)
     async def nuke(self,ctx):
         self.cont.debug(ctx)
@@ -93,7 +93,7 @@ class Randomizers(commands.Cog):
         time.sleep(3)
         await self.cont.leave(voice_client) #self disconnect
     #!----------------------------------------------------------------------------------------------------------------------------
-    @commands.command(name="randomizers",brief="Admin tool to manage the randomizers commands.")
+    @commands.command(name="randomizers",brief="Admin tool to manage the randomizers commands. (Admin Command)")
     @commands.has_permissions(administrator=True)
     async def randomizers(self,ctx,command,member: discord.Member):
         self.cont.debug(ctx)

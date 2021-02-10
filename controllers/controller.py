@@ -7,6 +7,10 @@ import requests
 class controller:
   def __init__(self):
         self.model = models()
+        self.admins = [201335861755772928,608226067614007316,363414378923687946]
+
+  def getAdmins(self):
+        return self.admins
 
   def choose(self, list):
       return random.choice(list)
@@ -22,11 +26,7 @@ class controller:
     return result
   
   def join(self, channel):
-    try:
-      return channel.connect()
-    except Exception as e:
-      print("Bot Already Connected.")
-      #raise e
+    return channel.connect()
 
   def leave(self, voice_client):
     return voice_client.disconnect()
