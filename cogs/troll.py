@@ -9,13 +9,14 @@ import json
 class Troll(commands.Cog):
     def __init__(self,bot):
         self.bot = bot
-        self.cont= controller()
+        self.cont= controller(bot)
     #!----------------------------------------------------------------------------------------------------------------------------
     @commands.command(name="pussy", help="Just do !fate pussy and find out", brief="Wanna see some pussys?")
     async def cat(self,ctx):
         self.cont.debug(ctx)
         await ctx.channel.send(self.cont.get_cat_photo())
         await ctx.channel.send("Here ya go ya perv have a pussy")
+        await self.cont.debugV2(ctx)
     #!----------------------------------------------------------------------------------------------------------------------------
     @commands.command(name = "deus", hidden=True)
     async def kamazaki(self,ctx):

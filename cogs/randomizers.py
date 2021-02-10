@@ -8,7 +8,7 @@ import time
 class Randomizers(commands.Cog):
     def __init__(self,bot):
         self.bot = bot
-        self.cont= controller()
+        self.cont= controller(bot)
     #!----------------------------------------------------------------------------------------------------------------------------
     @commands.command(name="choose", help="!fate choose S S1 S2 ... Sn, it will choose between all the Ss given", brief="Will chooose one between all arguments given")
     async def choose(self,ctx,*args):

@@ -7,7 +7,7 @@ import time
 class Games(commands.Cog):
     def __init__(self,bot):
         self.bot = bot
-        self.cont= controller()
+        self.cont= controller(bot)
 
     @commands.command(name = "duel",brief="Duel, old west style",help="With this command you will be able to duel with one of your friends.\n Just type: (!fate duel @user)\nWhere the @user is the tag\n still in beta ;)")
     async def duel(self,ctx,user : discord.Member):
