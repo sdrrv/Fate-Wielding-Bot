@@ -53,7 +53,7 @@ async def on_guild_join(guild):
 
     general = find(lambda x: (x.name == 'general' or x.name =="geral"),  guild.text_channels)
     if general and general.permissions_for(guild.me).send_messages:
-        await general.send(f"Hello there, {guild.name}!\nThank you for adding our bot, we hope you have as mutch fun using it, as we did coding it.\n"\
+        await general.send(f"Hello there, `{guild.name}`!\nThank you for adding our bot, we hope you have as mutch fun using it, as we did coding it.\n"\
           + cont.help())
 
 @bot.event
