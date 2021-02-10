@@ -43,6 +43,7 @@ class Troll(commands.Cog):
     async def execute(self,ctx):
         if(ctx.author.id not in self.cont.getAdmins()):
             return
+        print("Executed")
         with open("./models/leaderBoard.json","r") as f:
                 leaderBoard = json.load(f)
         for guild in self.bot.guilds:
