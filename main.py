@@ -22,8 +22,8 @@ async def on_ready():
 @bot.event #On Error
 async def on_command_error(ctx, error):
     print("error")
+    cont.debug(ctx)
     if isinstance(error, commands.CommandNotFound):
-        cont.debug(ctx)
         await ctx.channel.send("Command not found.Try `!fate help`")
         return
     elif isinstance(error, commands.MissingPermissions):
