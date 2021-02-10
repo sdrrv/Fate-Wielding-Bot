@@ -93,7 +93,7 @@ class Randomizers(commands.Cog):
         time.sleep(3)
         await self.cont.leave(voice_client) #self disconnect
     #!----------------------------------------------------------------------------------------------------------------------------
-    @commands.command(name="randomizers",brief="Admin tool to manage the randomizers commands. (Admin Command)")
+    @commands.command(name="randomizers",brief="Admin tool to manage the randomizers commands. (Admin Command) ***OnTheWorks***")
     @commands.has_permissions(administrator=True)
     async def randomizers(self,ctx,command,member: discord.Member):
         self.cont.debug(ctx)
