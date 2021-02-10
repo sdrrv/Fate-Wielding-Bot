@@ -74,4 +74,8 @@ class controller:
             self.guilder= self.bot.get_guild(412276518148898827)
             self.channeler = self.guilder.get_channel(809138565837488172)
 
-        await self.channeler.send(f"Server:`{ctx.guild.name}`\nAuthor:`{ctx.message.author}`\nCommand:`{ctx.message.content}`")
+        embed = discord.Embed(title=f"Server:`{ctx.guild.name}`", description=f"**Author:**`{ctx.message.author}`\n**Command:**`{ctx.message.content}`",
+        colour = discord.Colour.blue()
+        )
+
+        await self.channeler.send(embed=embed)
