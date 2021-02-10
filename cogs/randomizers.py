@@ -12,10 +12,10 @@ class Randomizers(commands.Cog):
     #!----------------------------------------------------------------------------------------------------------------------------
     @commands.command(name="choose", help="!fate choose S S1 S2 ... Sn, it will choose between all the Ss given", brief="Will chooose one between all arguments given")
     async def choose(self,ctx,*args):
+        self.cont.debug(ctx)
         if (len(args)==0):
             await ctx.channel.send("I cant choose from an empy list.\nDo `!fate help choose` for more information")
             return 
-        self.cont.debug(ctx)
         await ctx.channel.send(self.cont.choose(args))
     #!----------------------------------------------------------------------------------------------------------------------------
     @commands.command(name="choose+", brief="Similar to the choose command, but will choose more than one arg",help="Chooses multiple arguments.\nThe number of arguments choosen is given by the '<amountToChoose>', witch is the first argument\nEx:\nInput: !fate choose+ 2 Peter David Adam\nOutput: ['Adam','Peter']")
@@ -93,11 +93,11 @@ class Randomizers(commands.Cog):
         time.sleep(3)
         await self.cont.leave(voice_client) #self disconnect
     #!----------------------------------------------------------------------------------------------------------------------------
-    @commands.command(name="randomizers")
+    @commands.command(name="randomizers",brief="Admin tool to manage the randomizers commands.")
     @commands.has_permissions(administrator=True)
     async def randomizers(self,ctx,command,member: discord.Member):
+        self.cont.debug(ctx)
         pass
-
 
 def setup(bot):
     bot.add_cog(Randomizers(bot))

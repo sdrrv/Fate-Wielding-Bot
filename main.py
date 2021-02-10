@@ -35,11 +35,11 @@ async def on_command_error(ctx, error):
 
 @bot.event #On new Server Enter
 async def on_guild_join(guild):
-    print(f"{guild.name}, you have a new bot now")
+    print(f"{guild.name}, Online")
     with open("./models/leaderBoard.json","r") as f:
       leaderBoard = json.load(f)
 
-    leaderBoard[guild.id]= {
+    leaderBoard[str(guild.id)]= {
       "games":{},
       "randomizers":{
         "ban":[]
@@ -56,10 +56,11 @@ async def on_guild_join(guild):
 
 @bot.event
 async def on_guild_remove(guild):
+  print(f"{guild.name}, Offline")
   with open("./models/leaderBoard.json","r") as f:
       leaderBoard = json.load(f)
 
-  leaderBoard.pop(guild.id)
+  leaderBoard.pop(str(guild.id))
 
   with open("./models/leaderBoard.json","w") as f:
       json.dump(leaderBoard, f, indent=4)
