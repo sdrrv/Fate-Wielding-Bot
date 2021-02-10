@@ -27,10 +27,10 @@ async def on_command_error(ctx, error):
     elif isinstance(error, commands.MissingPermissions):
         await ctx.channel.send(f"Sorry <@{ctx.message.author.id}>, you do not have permissions to do that!")
         return
-    elif isinstance(error, asyncio.TimeoutError):
-          await ctx.channel.send("Timed out")
-          return
-          
+    elif isinstance(error, commands.MemberNotFound):
+        await ctx.channel.send("Member not found")
+        return
+
     raise error
 
 @bot.event #On new Server Enter
