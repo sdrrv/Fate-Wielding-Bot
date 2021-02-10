@@ -21,7 +21,7 @@ class Troll(commands.Cog):
         print(ctx.author.id)
         await ctx.channel.send(f"Louvem o nosso deus <@{184715371377328128}>")
     
-    @commands.command(name = "cry", hidden=True)
+    @commands.command(name = "cry", hidden=False,brief="Just tilt your friends when they throw a tantrum")
     async def cry(self,ctx):
         self.cont.debug(ctx)
         if not ctx.author.voice:

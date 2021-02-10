@@ -12,6 +12,9 @@ class Randomizers(commands.Cog):
     #!----------------------------------------------------------------------------------------------------------------------------
     @commands.command(name="choose", help="!fate choose S S1 S2 ... Sn, it will choose between all the Ss given", brief="Will chooose one between all arguments given")
     async def choose(self,ctx,*args):
+        if (len(args)==0):
+            await ctx.choose.send("I cant choose from an empy list.\nDo `!fate help choose` for more information")
+            return 
         self.cont.debug(ctx)
         await ctx.channel.send(self.cont.choose(args))
     #!----------------------------------------------------------------------------------------------------------------------------
@@ -28,7 +31,7 @@ class Randomizers(commands.Cog):
 
      #!----------------------------------------------------------------------------------------------------------------------------
     @commands.command(name="nuke", help="This will kick a random number os members in a voice chat.\nYou must be in a voice chat to use.\nIn compliance with the rules, this command is an admin only command. ",brief="Will nuke some of the members in a voice chat. (Admin command)")
-    @commands.has_permissions(administrator=True)
+    @commands.has_permissions(ban_members=True)
     async def nuke(self,ctx):
         self.cont.debug(ctx)
         if not ctx.author.voice:
