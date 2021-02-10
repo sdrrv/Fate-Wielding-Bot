@@ -1,3 +1,4 @@
+import asyncio
 import discord
 from discord.ext import commands
 from discord.utils import find
@@ -26,6 +27,10 @@ async def on_command_error(ctx, error):
     elif isinstance(error, commands.MissingPermissions):
         await ctx.channel.send(f"Sorry <@{ctx.message.author.id}>, you do not have permissions to do that!")
         return
+    elif isinstance(error, asyncio.TimeoutError):
+          await ctx.channel.send("Timed out")
+          return
+          
     raise error
 
 @bot.event #On new Server Enter
@@ -35,7 +40,10 @@ async def on_guild_join(guild):
       leaderBoard = json.load(f)
 
     leaderBoard[guild.id]= {
-      "duel":{}
+      "games":{},
+      "randomizers":{
+        "ban":[]
+      }
     }
 
     with open("./models/leaderBoard.json","w") as f:

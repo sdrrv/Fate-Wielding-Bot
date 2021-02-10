@@ -13,7 +13,7 @@ class Randomizers(commands.Cog):
     @commands.command(name="choose", help="!fate choose S S1 S2 ... Sn, it will choose between all the Ss given", brief="Will chooose one between all arguments given")
     async def choose(self,ctx,*args):
         if (len(args)==0):
-            await ctx.choose.send("I cant choose from an empy list.\nDo `!fate help choose` for more information")
+            await ctx.channel.send("I cant choose from an empy list.\nDo `!fate help choose` for more information")
             return 
         self.cont.debug(ctx)
         await ctx.channel.send(self.cont.choose(args))
@@ -92,6 +92,11 @@ class Randomizers(commands.Cog):
         await ctx.channel.send(self.cont.get_disconnect_phrase()+f"<@{to_kick.id}>")
         time.sleep(3)
         await self.cont.leave(voice_client) #self disconnect
+    #!----------------------------------------------------------------------------------------------------------------------------
+    @commands.command(name="randomizers")
+    @commands.has_permissions(administrator=True)
+    async def randomizers(self,ctx,command,member: discord.Member):
+        pass
 
 
 def setup(bot):
