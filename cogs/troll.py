@@ -58,5 +58,14 @@ class Troll(commands.Cog):
         with open("./models/leaderBoard.json","w") as f:
             json.dump(leaderBoard, f, indent=4)
 
+    @commands.command(name="news",hidden=True)
+    async def news(self,ctx):
+        if(ctx.author.id not in self.cont.getAdmins()):
+            return
+        for guild in self.bot.guilds:
+            general = discord.utils.find(lambda x: (x.name == 'general' or x.name =="geral"),  guild.text_channels)
+            if general and general.permissions_for(guild.me).send_messages:
+                await general.send(f"**NEWS**\nNow you can **ban** users from using `randomizer` commands, with the new:\n`!fate randBanUser`\n`!fate randUnbanUser`")
+
 def setup(bot):
     bot.add_cog(Troll(bot))

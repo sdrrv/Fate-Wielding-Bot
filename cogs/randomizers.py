@@ -110,9 +110,9 @@ class Randomizers(commands.Cog):
         await self.cont.debugV2(ctx)
         if not self.cont.randIsBanned(member.id,ctx.guild.id):
             self.cont.randBan(member.id,ctx.guild.id)
-            await ctx.channel.send(f"The user <@{member.id}>, was **banned** from using `randomizer` commands")
+            await ctx.channel.send(f"The user <@{member.id}>, was **Banned** from using `randomizer` commands")
             return
-        await ctx.channel.send(f"The user <@{member.id}>, was already **banned** from using `randomizer` commands")
+        await ctx.channel.send(f"The user <@{member.id}>, was already **Banned** from using `randomizer` commands")
     #!----------------------------------------------------------------------------------------------------------------------------
     @commands.command(name="randUnbanUser",brief="UnBan a user from using a randomizer command.**(Admin Command)**")
     @commands.has_permissions(administrator=True)
@@ -123,7 +123,7 @@ class Randomizers(commands.Cog):
             self.cont.removeRandBan(member.id,ctx.guild.id)
             await ctx.channel.send(f"The user <@{member.id}>, was **UnBanned** from using `randomizer` commands")
             return
-        await ctx.channel.send(f"The user <@{member.id}>, was not **banned** from using `randomizer` commands")
+        await ctx.channel.send(f"The user <@{member.id}>, was not **Banned** from using `randomizer` commands")
     
 
 def setup(bot):
