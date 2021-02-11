@@ -49,9 +49,9 @@ class Games(commands.Cog):
         print("BANG!")
 
         try:
-            bang = await self.bot.wait_for("message",timeout=30,check=lambda i: ( (i.author == ctx.author or i.author == user ) and (i.content=="!bang")) )       
+            bang = await self.bot.wait_for("message",timeout=10,check=lambda i: ( (i.author == ctx.author or i.author == user ) and (i.content=="!bang")) )       
         except Exception:
-            await ctx.channel.send(f"No Shoots... {user.id},{ctx.author.id} you peace loving freaks.")
+            await ctx.channel.send(f"No Shoots... <@{user.id}>,<@{ctx.author.id}> you peace loving freaks.")
             await self.cont.leave(voice_client) #self disconnect
             return
 
