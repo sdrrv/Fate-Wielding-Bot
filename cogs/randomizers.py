@@ -37,7 +37,9 @@ class Randomizers(commands.Cog):
     async def nuke(self,ctx):
         self.cont.debug(ctx)
         await self.cont.debugV2(ctx)
-        if not ctx.author.voice:
+        if self.cont.randIsBanned(ctx.author.id,ctx.guild.id):
+            await ctx.channel.send("You were banned from using this command.\nOnly an admin can unBan you using the `!fate randUnbanUser` command")
+        elif not ctx.author.voice:
             await ctx.channel.send("You must be in a voice channel to do that.")
             return 1
         channel= ctx.author.voice.channel
@@ -71,7 +73,9 @@ class Randomizers(commands.Cog):
     async def roulette(self,ctx):
         self.cont.debug(ctx)
         await self.cont.debugV2(ctx)
-        if not ctx.author.voice:
+        if self.cont.randIsBanned(ctx.author.id,ctx.guild.id):
+            await ctx.channel.send("You were banned from using this command.\nOnly an admin can unBan you using the `!fate randUnbanUser` command")
+        elif not ctx.author.voice:
             await ctx.channel.send("You must be in a voice channel to do that.")
             return 1
         channel= ctx.author.voice.channel
@@ -97,16 +101,28 @@ class Randomizers(commands.Cog):
         time.sleep(3)
         await self.cont.leave(voice_client) #self disconnect
     #!----------------------------------------------------------------------------------------------------------------------------
-    @commands.command(name="randBanUser",brief="Ban a user from using a randomizer command.(Admin Command)",hidden=True)
+    @commands.command(name="randBanUser",brief="Ban a user from using a randomizer command.(Admin Command)")
     @commands.has_permissions(administrator=True)
-    async def randomizers(self,ctx,member: discord.Member):
+    async def randBanUser(self,ctx,member: discord.Member):
         self.cont.debug(ctx)
         await self.cont.debugV2(ctx)
         if not self.cont.randIsBanned(member.id,ctx.guild.id):
             self.cont.randBan(member.id,ctx.guild.id)
-            ctx.channel.send(f"The user <@{member.id}>, was **banned** from using `randomizer` commands")
+            await ctx.channel.send(f"The user <@{member.id}>, was **banned** from using `randomizer` commands")
             return
-        ctx.channel.send(f"The user <@{member.id}>, was already **banned** from using `randomizer` commands")
+        await ctx.channel.send(f"The user <@{member.id}>, was already **banned** from using `randomizer` commands")
+    #!----------------------------------------------------------------------------------------------------------------------------
+    @commands.command(name="randUnbanUser",brief="UnBan a user from using a randomizer command.(Admin Command)")
+    @commands.has_permissions(administrator=True)
+    async def randUnbanUser(self,ctx,member: discord.Member):
+        self.cont.debug(ctx)
+        await self.cont.debugV2(ctx)
+        if self.cont.randIsBanned(member.id,ctx.guild.id):
+            self.cont.removeRandBan(member.id,ctx.guild.id)
+            await ctx.channel.send(f"The user <@{member.id}>, was **UnBanned** from using `randomizer` commands")
+            return
+        await ctx.channel.send(f"The user <@{member.id}>, was not **banned** from using `randomizer` commands")
+    
 
 def setup(bot):
     bot.add_cog(Randomizers(bot))
