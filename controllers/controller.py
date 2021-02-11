@@ -100,6 +100,6 @@ class controller:
       def removeRandBan(self,member_id,guild_id):
             with open("./models/leaderBoard.json","r") as f:
                   leaderBoard = json.load(f)
-            leaderBoard[str(guild_id)]["randomizers"]["ban"].pop(member_id)
+            leaderBoard[str(guild_id)]["randomizers"]["ban"].remove(member_id)
             with open("./models/leaderBoard.json","w") as f:
                   json.dump(leaderBoard, f, indent=4)
