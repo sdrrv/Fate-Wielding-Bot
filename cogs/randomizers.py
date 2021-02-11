@@ -97,12 +97,16 @@ class Randomizers(commands.Cog):
         time.sleep(3)
         await self.cont.leave(voice_client) #self disconnect
     #!----------------------------------------------------------------------------------------------------------------------------
-    @commands.command(name="randomizers",brief="Admin tool to manage the randomizers commands. (Admin Command)",hidden=True)
+    @commands.command(name="randBanUser",brief="Ban a user from using a randomizer command.(Admin Command)",hidden=True)
     @commands.has_permissions(administrator=True)
-    async def randomizers(self,ctx,command,member: discord.Member):
+    async def randomizers(self,ctx,member: discord.Member):
         self.cont.debug(ctx)
         await self.cont.debugV2(ctx)
-        pass
+        if not self.cont.randIsBanned(member.id,ctx.guild.id):
+            self.cont.randBan(member.id,ctx.guild.id)
+            ctx.channel.send(f"The user <@{member.id}>, was **banned** from using `randomizer` commands")
+            return
+        ctx.channel.send(f"The user <@{member.id}>, was already **banned** from using `randomizer` commands")
 
 def setup(bot):
     bot.add_cog(Randomizers(bot))
