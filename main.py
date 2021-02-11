@@ -32,6 +32,8 @@ async def on_command_error(ctx, error):
     elif isinstance(error, commands.MemberNotFound):
         await ctx.channel.send(f"Member '`{error.argument}`' not found")
         return
+    elif isinstance(error, commands.MissingRequiredArgument):
+          await ctx.channel.send(f"You're missing an arguent there bud...\nTry `!fate help {error.args[1]}`")
     
     raise error
 
