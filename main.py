@@ -35,7 +35,6 @@ async def on_command_error(ctx, error):
     elif isinstance(error, commands.MissingRequiredArgument):
           await ctx.channel.send("You're missing an arguent there bud...\nTry `!fate help <command>`")
           return
-    
     raise error
 
 @bot.event #On new Server Enter

@@ -38,7 +38,7 @@ class Randomizers(commands.Cog):
         self.cont.debug(ctx)
         await self.cont.debugV2(ctx)
         if self.cont.randIsBanned(ctx.author.id,ctx.guild.id):
-            await ctx.channel.send("You were banned from using this command.\nOnly an admin can unBan you using the `!fate randUnbanUser` command")
+            await ctx.channel.send("You were **banned** from using this command.\nOnly an admin can unBan you using the `!fate randUnbanUser` command")
             return
         elif not ctx.author.voice:
             await ctx.channel.send("You must be in a voice channel to do that.")
@@ -75,7 +75,7 @@ class Randomizers(commands.Cog):
         self.cont.debug(ctx)
         await self.cont.debugV2(ctx)
         if self.cont.randIsBanned(ctx.author.id,ctx.guild.id):
-            await ctx.channel.send("You were banned from using this command.\nOnly an admin can unBan you using the `!fate randUnbanUser` command")
+            await ctx.channel.send("You were **banned** from using this command.\nOnly an admin can unBan you using the `!fate randUnbanUser` command")
             return
         elif not ctx.author.voice:
             await ctx.channel.send("You must be in a voice channel to do that.")
