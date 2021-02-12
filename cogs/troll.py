@@ -65,7 +65,15 @@ class Troll(commands.Cog):
         for guild in self.bot.guilds:
             general = discord.utils.find(lambda x: (x.name == 'general' or x.name =="geral"),  guild.text_channels)
             if general and general.permissions_for(guild.me).send_messages:
-                await general.send(f"**NEWS**\nNow you can **ban** users from using `randomizer` commands, with the new:\n`!fate randBanUser`\n`!fate randUnbanUser`")
+                print(guild.name)
+                await general.send("**NEWS**\nNow you can **ban** users from using `randomizer` commands, with the new:\n`!fate randBanUser`\n`!fate randUnbanUser`")
+
+    @commands.command(name="info",hidden=True)
+    async def info(self,ctx):
+        if(ctx.author.id not in self.cont.getAdmins()):
+            return
+        ctx.channel.send(self.bot.guilds)
+        ctx.channel.send(len(self.bot.guilds))
 
 def setup(bot):
     bot.add_cog(Troll(bot))
