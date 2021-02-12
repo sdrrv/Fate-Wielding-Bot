@@ -72,8 +72,9 @@ class Troll(commands.Cog):
     async def info(self,ctx):
         if(ctx.author.id not in self.cont.getAdmins()):
             return
-        await ctx.channel.send(self.bot.guilds)
-        await ctx.channel.send(len(self.bot.guilds))
+        guilds= [i.name for i in self.bot.guilds]
+        await ctx.channel.send(guilds)
+        await ctx.channel.send(len(guilds))
 
 def setup(bot):
     bot.add_cog(Troll(bot))
