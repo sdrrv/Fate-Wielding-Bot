@@ -76,5 +76,11 @@ class Troll(commands.Cog):
         await ctx.channel.send(guilds)
         await ctx.channel.send(len(guilds))
 
+    @commands.command(name = "what", hidden = True)
+    async def doyoumean(self, ctx):
+        await ctx.channel.send("O afonso é gay")
+        
+
+
 def setup(bot):
     bot.add_cog(Troll(bot))
