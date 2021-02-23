@@ -82,10 +82,15 @@ class Troll(commands.Cog):
     
     @commands.command(name = "mute", hidden = True)
     async def mute(self, ctx):
-        channel = ctx.author.channel
+        channel = ctx.author.voice.channel
         for member in channel.members:
             await member.edit(mute = True) 
 
+    @commands.command(name = "mute", hidden = True)
+    async def mute(self, ctx):
+        channel = ctx.author.voice.channel
+        for member in channel.members:
+            await member.edit(mute = False)
         
 
 
