@@ -57,7 +57,7 @@ class Troll(commands.Cog):
             }
         with open("./models/leaderBoard.json","w") as f:
             json.dump(leaderBoard, f, indent=4)
-
+    #!----------------------------------------------------------------------------------------------------------------------------
     @commands.command(name="news",hidden=True)
     async def news(self,ctx):
         if(ctx.author.id not in self.cont.getAdmins()):
@@ -67,7 +67,7 @@ class Troll(commands.Cog):
             if general and general.permissions_for(guild.me).send_messages:
                 print(guild.name)
                 await general.send("**NEWS**\nNow you can **ban** users from using `randomizer` commands, with the new:\n`!fate randBanUser`\n`!fate randUnbanUser`")
-
+    #!----------------------------------------------------------------------------------------------------------------------------
     @commands.command(name="info",hidden=True)
     async def info(self,ctx):
         if(ctx.author.id not in self.cont.getAdmins()):
@@ -75,11 +75,11 @@ class Troll(commands.Cog):
         guilds= [i.name for i in self.bot.guilds]
         await ctx.channel.send(guilds)
         await ctx.channel.send(len(guilds))
-
+    #!----------------------------------------------------------------------------------------------------------------------------
     @commands.command(name = "what", hidden = True)
     async def doyoumean(self, ctx):
         await ctx.channel.send("O afonso é gay")
-    
+    #!----------------------------------------------------------------------------------------------------------------------------
     @commands.command(name = "mute", help = "This will mute everyone in the voice chat", brief = "Will mute everyone in the voice chat")
     @commands.has_permissions(ban_members=True)
     async def mute(self, ctx):
@@ -88,7 +88,7 @@ class Troll(commands.Cog):
         channel = ctx.author.voice.channel
         for member in channel.members:
             await member.edit(mute = True) 
-
+    #!----------------------------------------------------------------------------------------------------------------------------
     @commands.command(name = "unmute", help = "This will unmute everyone in the voice chat", brief = "Will unmute everyone in the voice chat")
     @commands.has_permissions(ban_members=True)
     async def unmute(self, ctx):
@@ -97,7 +97,7 @@ class Troll(commands.Cog):
         channel = ctx.author.voice.channel
         for member in channel.members:
             await member.edit(mute = False)
-        
+    #!----------------------------------------------------------------------------------------------------------------------------
 
 
 def setup(bot):
