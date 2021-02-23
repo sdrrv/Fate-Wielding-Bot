@@ -80,14 +80,14 @@ class Troll(commands.Cog):
     async def doyoumean(self, ctx):
         await ctx.channel.send("O afonso é gay")
     
-    @commands.command(name = "mute", hidden = True)
+    @commands.command(name = "mute", help = "This will mute everyone in the voice chat", brief = "Will mute everyone in the voice chat")
     @commands.has_permissions(ban_members=True)
     async def mute(self, ctx):
         channel = ctx.author.voice.channel
         for member in channel.members:
             await member.edit(mute = True) 
 
-    @commands.command(name = "unmute", hidden = True)
+    @commands.command(name = "unmute", help = "This will unmute everyone in the voice chat", brief = "Will unmute everyone in the voice chat")
     @commands.has_permissions(ban_members=True)
     async def unmute(self, ctx):
         channel = ctx.author.voice.channel
