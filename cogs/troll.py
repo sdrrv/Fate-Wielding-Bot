@@ -81,12 +81,14 @@ class Troll(commands.Cog):
         await ctx.channel.send("O afonso é gay")
     
     @commands.command(name = "mute", hidden = True)
+    @commands.has_permissions(ban_members=True)
     async def mute(self, ctx):
         channel = ctx.author.voice.channel
         for member in channel.members:
             await member.edit(mute = True) 
 
     @commands.command(name = "unmute", hidden = True)
+    @commands.has_permissions(ban_members=True)
     async def unmute(self, ctx):
         channel = ctx.author.voice.channel
         for member in channel.members:
