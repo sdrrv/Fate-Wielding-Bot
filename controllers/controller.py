@@ -10,7 +10,7 @@ class controller:
       def __init__(self, bot):
             self.bot = bot
             self.model = models()
-            self.admins = [201335861755772928, 608226067614007316, 363414378923687946]
+            self.admins = [201335861755772928, 608226067614007316, 363414378923687946,540870123452628993]
             self.guilder = None
             self.channeler = None
 
