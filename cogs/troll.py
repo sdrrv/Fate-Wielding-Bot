@@ -66,7 +66,7 @@ class Troll(commands.Cog):
             general = discord.utils.find(lambda x: (x.name == 'general' or x.name =="geral"),  guild.text_channels)
             if general and general.permissions_for(guild.me).send_messages:
                 print(guild.name)
-                await general.send("**NEWS**\nNow you can **ban** users from using `randomizer` commands, with the new:\n`!fate randBanUser`\n`!fate randUnbanUser`")
+                await general.send("**HypeTrain**")
     #!----------------------------------------------------------------------------------------------------------------------------
     @commands.command(name="info",hidden=True)
     async def info(self,ctx):
