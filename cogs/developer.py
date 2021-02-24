@@ -49,9 +49,7 @@ class Developer(commands.Cog):
     #!----------------------------------------------------------------------------------------------------------------------------
     @commands.command(name= "ping", brief="Get the ping of the bot")
     async def ping(self,ctx):
-        self.cont.debug(ctx)
-        await self.cont.debugV2(ctx)
-        ctx.channel.send( round(self.bot.latency,1) )
+        await ctx.channel.send( f"**PONG!!** - `{round(self.bot.latency,2)}` " )
     #!----------------------------------------------------------------------------------------------------------------------------
 
 def setup(bot):
