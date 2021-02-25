@@ -44,8 +44,8 @@ class Games(commands.Cog):
         time.sleep(8)
         self.cont.play(voice_client,"duelMusic.wav")
         time.sleep(self.cont.choose_num_between(2,30))
-        await ctx.channel.send("**BANG!**")
         self.cont.stop(voice_client)
+        await ctx.channel.send("**BANG!**")
         print("BANG!")
 
         try:
