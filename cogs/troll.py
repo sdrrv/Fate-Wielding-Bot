@@ -82,6 +82,9 @@ class Troll(commands.Cog):
     
     @commands.command(name = "mute", help = "This will mute everyone in the voice chat", brief = "Will mute everyone in the voice chat")
     @commands.has_permissions(ban_members=True)
+    if not ctx.author.voice:
+            await ctx.channel.send("You must be in a voice channel to do that.")
+            return 1
     async def mute(self, ctx):
         channel = ctx.author.voice.channel
         for member in channel.members:
@@ -89,6 +92,9 @@ class Troll(commands.Cog):
 
     @commands.command(name = "unmute", help = "This will unmute everyone in the voice chat", brief = "Will unmute everyone in the voice chat")
     @commands.has_permissions(ban_members=True)
+    if not ctx.author.voice:
+            await ctx.channel.send("You must be in a voice channel to do that.")
+            return 1
     async def unmute(self, ctx):
         channel = ctx.author.voice.channel
         for member in channel.members:
