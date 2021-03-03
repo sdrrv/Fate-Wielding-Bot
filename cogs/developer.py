@@ -37,7 +37,7 @@ class Developer(commands.Cog):
             general = discord.utils.find(lambda x: (x.name == 'general' or x.name =="geral"),  guild.text_channels)
             if general and general.permissions_for(guild.me).send_messages:
                 print(guild.name)
-                await general.send("**HypeTrain**")
+                await general.send("**HypeTrain**\nWe have reatched the `50` server mark.\nIf you can go to [https://top.gg/bot/801580589903904799] vote and give suggestions!(new command ideas).")
     #!----------------------------------------------------------------------------------------------------------------------------
     @commands.command(name="info",hidden=True)
     async def info(self,ctx):
@@ -49,7 +49,7 @@ class Developer(commands.Cog):
     #!----------------------------------------------------------------------------------------------------------------------------
     @commands.command(name= "ping", brief="Get the ping of the bot")
     async def ping(self,ctx):
-        await ctx.channel.send( f"**PONG!!** - `{round(self.bot.latency,2)}` " )
+        await ctx.channel.send( f"**PONG!!** - `{round(self.bot.latency,2)}`ms " )
     #!----------------------------------------------------------------------------------------------------------------------------
 
 def setup(bot):
