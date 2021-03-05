@@ -79,6 +79,9 @@ class controller:
             )
 
             await self.channeler.send(embed=embed)
+            
+      async def debugerLog(self,text):
+           pass
 
       def randIsBanned(self,member_id,guild_id):
             with open("./models/leaderBoard.json","r") as f:
@@ -96,7 +99,7 @@ class controller:
             with open("./models/leaderBoard.json","r") as f:
                   leaderBoard = json.load(f)
             return leaderBoard[str(guild_id)]["randomizers"]["ban"]
-      
+
       def removeRandBan(self,member_id,guild_id):
             with open("./models/leaderBoard.json","r") as f:
                   leaderBoard = json.load(f)
