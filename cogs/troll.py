@@ -40,41 +40,39 @@ class Troll(commands.Cog):
             time.sleep(.1)
         time.sleep(1)
         await self.cont.leave(voice_client) #self disconnect
+  
     #!----------------------------------------------------------------------------------------------------------------------------
-    @commands.command(name = "execute", hidden=True)
-    async def execute(self,ctx):
-        if(ctx.author.id not in self.cont.getAdmins()):
-            return
-        print("Executed")
-        with open("./models/leaderBoard.json","r") as f:
-                leaderBoard = json.load(f)
-        for guild in self.bot.guilds:
-            leaderBoard[str(guild.id)]= {
-            "games":{},
-            "randomizers":{
-                "ban":[]
-                }
-            }
-        with open("./models/leaderBoard.json","w") as f:
-            json.dump(leaderBoard, f, indent=4)
+    @commands.command(name = "what", hidden = True)
+    async def doyoumean(self, ctx):
+        await ctx.channel.send("O afonso é gay")
+    #!----------------------------------------------------------------------------------------------------------------------------
+    @commands.command(name = "mute", help = "This will mute everyone in the voice chat", brief = "Will mute everyone in the voice chat")
+    @commands.has_permissions(ban_members=True)
+    
+    async def mute(self, ctx):
+        if not ctx.author.voice:
+            await ctx.channel.send("You must be in a voice channel to do that.")
+            return 1
+        self.cont.debug(ctx)
+        await self.cont.debugV2(ctx)
+        channel = ctx.author.voice.channel
+        for member in channel.members:
+            await member.edit(mute = True) 
+    #!----------------------------------------------------------------------------------------------------------------------------
+    @commands.command(name = "unmute", help = "This will unmute everyone in the voice chat", brief = "Will unmute everyone in the voice chat")
+    @commands.has_permissions(ban_members=True)
+    
+    async def unmute(self, ctx):
+        if not ctx.author.voice:
+            await ctx.channel.send("You must be in a voice channel to do that.")
+            return 1
+        self.cont.debug(ctx)
+        await self.cont.debugV2(ctx)
+        channel = ctx.author.voice.channel
+        for member in channel.members:
+            await member.edit(mute = False)
+    #!----------------------------------------------------------------------------------------------------------------------------
 
-    @commands.command(name="news",hidden=True)
-    async def news(self,ctx):
-        if(ctx.author.id not in self.cont.getAdmins()):
-            return
-        for guild in self.bot.guilds:
-            general = discord.utils.find(lambda x: (x.name == 'general' or x.name =="geral"),  guild.text_channels)
-            if general and general.permissions_for(guild.me).send_messages:
-                print(guild.name)
-                await general.send("**NEWS**\nNow you can **ban** users from using `randomizer` commands, with the new:\n`!fate randBanUser`\n`!fate randUnbanUser`")
-
-    @commands.command(name="info",hidden=True)
-    async def info(self,ctx):
-        if(ctx.author.id not in self.cont.getAdmins()):
-            return
-        guilds= [i.name for i in self.bot.guilds]
-        await ctx.channel.send(guilds)
-        await ctx.channel.send(len(guilds))
 
 def setup(bot):
     bot.add_cog(Troll(bot))

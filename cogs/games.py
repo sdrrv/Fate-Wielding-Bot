@@ -25,11 +25,11 @@ class Games(commands.Cog):
             return
         await ctx.channel.send(f"<@{user.id}> you have been challanged for a duel! Do you accept?\nWrite `!yes` or `!no`, you have `50`sec")
 
-        try:
-            response = await self.bot.wait_for("message",timeout=50.0 ,check=lambda message: (message.author == user) and ((message.content=="!yes")or(message.content=="!no")))
-        except Exception:
-            await ctx.channel.send(f"Opps... You dind't respond in time <@{user.id}>")
-            return
+        #try:
+        response = await self.bot.wait_for("message",timeout=50.0 ,check=lambda message: (message.author == user) and ((message.content=="!yes")or(message.content=="!no")))
+        #except Exception:
+            #await ctx.channel.send(f"Opps... You dind't respond in time <@{user.id}>")
+            #return
 
         print(response.content)
         if(response.content == "!no"):
@@ -44,8 +44,8 @@ class Games(commands.Cog):
         time.sleep(8)
         self.cont.play(voice_client,"duelMusic.wav")
         time.sleep(self.cont.choose_num_between(2,30))
-        await ctx.channel.send("**BANG!**")
         self.cont.stop(voice_client)
+        await ctx.channel.send("**BANG!**")
         print("BANG!")
 
         try:
