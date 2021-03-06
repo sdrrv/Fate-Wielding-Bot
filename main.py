@@ -67,7 +67,7 @@ async def on_guild_join(guild):
 @bot.event
 async def on_guild_remove(guild):
     print(f"{guild.name}, Offline")
-    await cont.debugerLogGreen(f"**{guild.name}**, Offline")
+    await cont.debugerLogRed(f"**{guild.name}**, Offline")
     with open("./models/leaderBoard.json", "r") as f:
         leaderBoard = json.load(f)
 
