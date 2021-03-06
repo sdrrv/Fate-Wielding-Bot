@@ -80,8 +80,13 @@ class controller:
 
             await self.channeler.send(embed=embed)
             
-      async def debugerLog(self,text):
-           pass
+      async def debugerLogGreen(self,text):
+            if not self.guilder:
+                  self.guilder= self.bot.get_guild(412276518148898827)
+                  self.channeler= self.guilder.get_channel(809138565837488172)
+
+            embed = discord.Embed(description=text,colour = discord.Colour.green() )
+            await self.channeler.send(embed=embed)
 
       def randIsBanned(self,member_id,guild_id):
             with open("./models/leaderBoard.json","r") as f:
