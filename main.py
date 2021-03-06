@@ -43,7 +43,7 @@ async def on_command_error(ctx, error):
 @bot.event  # On new Server Enter
 async def on_guild_join(guild):
     print(f"{guild.name}, Online")
-    await cont.debugerLogGreen(f"{guild.name}, Online")
+    await cont.debugerLogGreen(f"**{guild.name}**, Online")
     with open("./models/leaderBoard.json", "r") as f:
         leaderBoard = json.load(f)
 
@@ -67,6 +67,7 @@ async def on_guild_join(guild):
 @bot.event
 async def on_guild_remove(guild):
     print(f"{guild.name}, Offline")
+    await cont.debugerLogGreen(f"**{guild.name}**, Offline")
     with open("./models/leaderBoard.json", "r") as f:
         leaderBoard = json.load(f)
 
