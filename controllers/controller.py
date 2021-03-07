@@ -95,7 +95,7 @@ class controller:
             self.guilder = self.bot.get_guild(412276518148898827)
             self.channeler = self.guilder.get_channel(809138565837488172)
 
-        embed = discord.Embed(description=text, colour=discord.Colour.Red())
+        embed = discord.Embed(description=text, colour=discord.Colour.red())
         await self.channeler.send(embed=embed)
 
     def randIsBanned(self, member_id, guild_id):
