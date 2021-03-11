@@ -48,13 +48,13 @@ class Games(commands.Cog):
         self.cont.stop(voice_client)
         await ctx.channel.send("**BANG!**")
         print("BANG!")
-
-        # try:
-        bang = await self.bot.wait_for("message", timeout=10, check=lambda i: ((i.author == ctx.author or i.author == user) and (i.content == "!bang")))
-        # except Exception:
-        # await ctx.channel.send(f"No Shoots... <@{user.id}>, <@{ctx.author.id}> you peace loving freaks.")
-        # await self.cont.leave(voice_client) #self disconnect
-        # return
+        #! On the works... Causing Some Problems here.
+        try:
+            bang = await self.bot.wait_for("message", timeout=10, check=lambda i: ((i.author == ctx.author or i.author == user) and (i.content == "!bang")))
+        except Exception:
+            await ctx.channel.send(f"No Shoots... <@{user.id}>, <@{ctx.author.id}> you peace loving freaks.")
+            await self.cont.leave(voice_client)  # self disconnect
+            return
 
         self.cont.play(voice_client, "shoot.wav")
         time.sleep(1)
