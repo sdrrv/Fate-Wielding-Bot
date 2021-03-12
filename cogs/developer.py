@@ -58,6 +58,9 @@ class Developer(commands.Cog):
 
     @commands.command(name="disconnect", brief="Disconnects the Bot in case of bugs")
     async def bot_disconnect(self, ctx):
+        elif not ctx.author.voice:
+            await ctx.channel.send("You must be in a voice channel to do that.")
+            return 1
         channel = ctx.author.voice.channel
         for member in channel.members:
             if member.id == 801580589903904799:
