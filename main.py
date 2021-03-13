@@ -44,7 +44,7 @@ async def on_command_error(ctx, error):
 async def on_guild_join(guild):
     print(f"{guild.name}, Online")
     await cont.debugerLogGreen(f"**{guild.name}**, `Online`")
-    with open("./models/leaderBoard.json", "r") as f:
+    with open(cont.leaderboard_location, "r") as f:
         leaderBoard = json.load(f)
 
     leaderBoard[str(guild.id)] = {
@@ -54,7 +54,7 @@ async def on_guild_join(guild):
         }
     }
 
-    with open("./models/leaderBoard.json", "w") as f:
+    with open(cont.leaderboard_location, "w") as f:
         json.dump(leaderBoard, f, indent=4)
 
     general = find(lambda x: (x.name == 'general' or x.name ==
@@ -68,7 +68,7 @@ async def on_guild_join(guild):
 async def on_guild_remove(guild):
     print(f"{guild.name}, Offline")
     await cont.debugerLogRed(f"**{guild.name}**, `Offline`")
-    with open("./models/leaderBoard.json", "r") as f:
+    with open(cont.leaderboard_location, "r") as f:
         leaderBoard = json.load(f)
 
     leaderBoard.pop(str(guild.id))
