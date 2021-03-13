@@ -125,7 +125,7 @@ class controller:
         self.dump_leader_board(leaderBoard)
 
     def guild_in_lb(self,guild_id,leaderBoard):
-        return guild_id in leaderBoard.keys
+        return guild_id in leaderBoard.keys()
 
     def create_guild_in_lb(self,guild_id,leaderBoard):
 
