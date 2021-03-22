@@ -39,7 +39,7 @@ class Developer(commands.Cog):
                 x.name == 'general' or x.name == "geral"),  guild.text_channels)
             if general and general.permissions_for(guild.me).send_messages:
                 print(guild.name)
-                await general.send("**HypeTrain**\nWe have reatched the `50` server mark.\nIf you can go to [https://top.gg/bot/801580589903904799] vote and give suggestions!(new command ideas).")
+                await general.send("**HypeTrain**\nWe have reatched the `70` server mark.\nIf you can go to [https://top.gg/bot/801580589903904799] vote and give suggestions!(new command ideas).")
     #!----------------------------------------------------------------------------------------------------------------------------
 
     @commands.command(name="info", hidden=True)

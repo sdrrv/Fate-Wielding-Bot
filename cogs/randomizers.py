@@ -82,7 +82,7 @@ class Randomizers(commands.Cog):
             return 1
         channel= ctx.author.voice.channel
         #-------------------------------------
-        members= [i for i in channel.members]
+        members= channel.members
         to_kick= self.cont.choose(members)
         #-------------------------------------
         voice_client= await self.cont.join(channel)

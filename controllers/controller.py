@@ -15,7 +15,6 @@ class controller:
                        363414378923687946, 540870123452628993]
         self.guilder = None
         self.channeler = None
-        self.leaderboard_location = "./models/leaderBoard.json"
 
     def getAdmins(self):
         return self.admins
@@ -100,43 +99,25 @@ class controller:
         await self.channeler.send(embed=embed)
 
     def randIsBanned(self, member_id, guild_id):
-        with open(self.leaderboard_location, "r") as f:
-            leaderBoard = json.load(f) 
-        if not self.guild_in_lb(guild_id,leaderBoard):
-            self.dump_leader_board(self.create_guild_in_lb(guild_id,leaderBoard))
-            return False
+        with open("./models/leaderBoard.json", "r") as f:
+            leaderBoard = json.load(f)
         return member_id in leaderBoard[str(guild_id)]["randomizers"]["ban"]
 
     def randBan(self, member_id, guild_id):
-        with open(self.leaderboard_location, "r") as f:
+        with open("./models/leaderBoard.json", "r") as f:
             leaderBoard = json.load(f)
         leaderBoard[str(guild_id)]["randomizers"]["ban"].append(member_id)
-        self.dump_leader_board(leaderBoard)
+        with open("./models/leaderBoard.json", "w") as f:
+            json.dump(leaderBoard, f, indent=4)
 
     def getRandBan(self, guild_id):
-        with open(self.leaderboard_location, "r") as f:
+        with open("./models/leaderBoard.json", "r") as f:
             leaderBoard = json.load(f)
         return leaderBoard[str(guild_id)]["randomizers"]["ban"]
 
     def removeRandBan(self, member_id, guild_id):
-        with open(self.leaderboard_location, "r") as f:
+        with open("./models/leaderBoard.json", "r") as f:
             leaderBoard = json.load(f)
         leaderBoard[str(guild_id)]["randomizers"]["ban"].remove(member_id)
-        self.dump_leader_board(leaderBoard)
-
-    def guild_in_lb(self,guild_id,leaderBoard):
-        return guild_id in leaderBoard.keys()
-
-    def create_guild_in_lb(self,guild_id,leaderBoard):
-
-        leaderBoard[str(guild_id)] = {
-        "games": {},
-        "randomizers": {
-            "ban": []
-        }
-    }
-        return leaderBoard
-
-    def dump_leader_board(self, leaderBoard):
-        with open(self.leaderboard_location, "w") as f:
-                json.dump(leaderBoard, f, indent=4)
+        with open("./models/leaderBoard.json", "w") as f:
+            json.dump(leaderBoard, f, indent=4)

@@ -37,6 +37,7 @@ async def on_command_error(ctx, error):
     elif isinstance(error, commands.MissingRequiredArgument):
         await ctx.channel.send("You're missing an argument there bud...\nTry `!fate help <command>`")
         return
+    #await ctx.channel.send("**Something went wrong**... We are sorry. If you think this is a `bug` pls **report it**.")    
     raise error
 
 
@@ -44,7 +45,7 @@ async def on_command_error(ctx, error):
 async def on_guild_join(guild):
     print(f"{guild.name}, Online")
     await cont.debugerLogGreen(f"**{guild.name}**, `Online`")
-    with open(cont.leaderboard_location, "r") as f:
+    with open("./models/leaderBoard.json", "r") as f:
         leaderBoard = json.load(f)
 
     leaderBoard[str(guild.id)] = {
@@ -54,7 +55,7 @@ async def on_guild_join(guild):
         }
     }
 
-    with open(cont.leaderboard_location, "w") as f:
+    with open("./models/leaderBoard.json", "w") as f:
         json.dump(leaderBoard, f, indent=4)
 
     general = find(lambda x: (x.name == 'general' or x.name ==
@@ -68,7 +69,7 @@ async def on_guild_join(guild):
 async def on_guild_remove(guild):
     print(f"{guild.name}, Offline")
     await cont.debugerLogRed(f"**{guild.name}**, `Offline`")
-    with open(cont.leaderboard_location, "r") as f:
+    with open("./models/leaderBoard.json", "r") as f:
         leaderBoard = json.load(f)
 
     leaderBoard.pop(str(guild.id))
