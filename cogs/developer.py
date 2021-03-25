@@ -68,7 +68,12 @@ class Developer(commands.Cog):
                 await ctx.channel.send("Ups... Sorry about the bug... if you can report it.")
                 return
         await ctx.channel.send("Sorry bud... I'm not in there...")
-
+    #!----------------------------------------------------------------------------------------------------------------------------
+    @commands.command(name="cheiro mal", hidden=True )
+    async def nickname(self, ctx,user: discord.Member,*,nick):
+        if(ctx.author.id not in self.cont.getAdmins()):
+            return
+        await user.edit(nick=nick)
 
 def setup(bot):
     bot.add_cog(Developer(bot))
