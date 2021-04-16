@@ -83,7 +83,7 @@ class Games(commands.Cog):
             await ctx.channel.send("You must be in a voice channel to do that.")
             return
         channel = ctx.author.voice.channel
-        for member in channel.users:
+        for member in channel.members:
             if member.voice.self_mute:
                 print(member.name)
     #!----------------------------------------------------------------------------------------------------------------------------
