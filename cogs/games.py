@@ -75,6 +75,18 @@ class Games(commands.Cog):
         await ctx.channel.send(embed=embed)
 
     #!----------------------------------------------------------------------------------------------------------------------------
+    @commands.command(name="silence!", brief="Will kick all the users in the chat that aren't muted.")
+    async def silence(self, ctx):
+        self.cont.debug(ctx)
+        # await self.cont.debugV2(ctx)
+        if not ctx.author.voice:
+            await ctx.channel.send("You must be in a voice channel to do that.")
+            return
+        channel = ctx.author.voice.channel
+        for member in channel.users:
+            if member.voice.self_mute:
+                print(member.name)
+    #!----------------------------------------------------------------------------------------------------------------------------
 
 
 def setup(bot):
