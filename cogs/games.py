@@ -86,7 +86,7 @@ class Games(commands.Cog):
         await ctx.channel.send("I'm coming in...\n**SILENCE!!!**")
         for member in channel.members:
             if not member.voice.self_mute:
-                self.cont.disconnect_member(member)
+                await self.cont.disconnect_member(member)
     #!----------------------------------------------------------------------------------------------------------------------------
 
 
