@@ -97,7 +97,14 @@ class Games(commands.Cog):
         print(x)
         while voice_client.is_playing():
             time.sleep(.1)
-        for member in channel.members:
+        
+        try:
+            channeler = ctx.author.voice.channel
+        except Exception:
+            await self.cont.leave(voice_client) #self disconnect
+            return
+
+        for member in channeler.members:
             if not member.voice.self_mute:
                 await self.cont.disconnect_member(member)
 
