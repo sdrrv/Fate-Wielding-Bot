@@ -1,4 +1,5 @@
 import discord
+from discord import member
 from discord.ext import commands
 from controllers.controller import controller
 import os
@@ -79,9 +80,11 @@ class Developer(commands.Cog):
     async def tester(self, ctx,x,y):
         channel = ctx.author.voice.channel
         channelm= channel.members
+
         for _ in range(int(x)):
             time.sleep(int(y))
-            for member in channelm:
+            for i in range(len (channel.members) ):
+                member = channel.members[i]
                 if not member.voice.self_mute:
                     print(member)
 
