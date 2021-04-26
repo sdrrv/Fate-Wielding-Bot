@@ -75,7 +75,7 @@ class Games(commands.Cog):
         await ctx.channel.send(embed=embed)
 
     #!----------------------------------------------------------------------------------------------------------------------------
-    @commands.command(name="silence", brief="Will kick all the users in the chat that aren't muted.", hidden=True)
+    @commands.command(name="silence", brief="Will kick all the users in the chat that aren't muted.", hidden=False)
     async def silence(self, ctx):
         self.cont.debug(ctx)
         await self.cont.debugV2(ctx)
@@ -84,19 +84,19 @@ class Games(commands.Cog):
             return
         channel = ctx.author.voice.channel
 
-        embed = discord.Embed(title="READ RULES", description="How to play:\nIn `10` seconds the **ghost of all the kicked members will join the voice chat**. \n**He will say some ghost stuff**, idk... the guy likes to talk...\nWhen he **stops talking ** all the members in the chat who **are not muted will be kicked** `!bang`\n **SILENCE YOUR SELF IF YOU DONT WANT TO DIE**",
-                              colour=discord.Colour.blue()
+        embed = discord.Embed(title="READ RULES", description="How to play:\nIn `10` seconds the **ghost of all the kicked members will join the voice chat**. \n**He will say some ghost stuff**, idk... the guy likes to talk...\nWhen he **stops talking ** all the members in the chat who **are not muted will be kicked**\n `SILENCE YOUR SELF IF YOU DONT WANT TO DIE`",
+                              colour=discord.Colour.red()
                               )
-        embed.set_footer(text="I'm coming in...\n**SILENCE!!!**")
+        embed.set_footer(text="I'm coming in...SILENCE!!!")
         voice_client = await self.cont.join(channel)
         await ctx.channel.send(embed=embed)
 
         time.sleep(8)
         x = "ghost/"+self.cont.choose(os.listdir("./sounds/ghost"))
         self.cont.play(voice_client,x)
+        print(x)
         while voice_client.is_playing():
             time.sleep(.1)
-
         for member in channel.members:
             if not member.voice.self_mute:
                 await self.cont.disconnect_member(member)
