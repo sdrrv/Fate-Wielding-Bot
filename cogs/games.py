@@ -75,18 +75,34 @@ class Games(commands.Cog):
         await ctx.channel.send(embed=embed)
 
     #!----------------------------------------------------------------------------------------------------------------------------
-    @commands.command(name="silence!", brief="Will kick all the users in the chat that aren't muted.", hidden=True)
+    @commands.command(name="silence", brief="Will kick all the users in the chat that aren't muted.", hidden=True)
     async def silence(self, ctx):
         self.cont.debug(ctx)
-        # await self.cont.debugV2(ctx)
+        await self.cont.debugV2(ctx)
         if not ctx.author.voice:
             await ctx.channel.send("You must be in a voice channel to do that.")
             return
         channel = ctx.author.voice.channel
-        await ctx.channel.send("I'm coming in...\n**SILENCE!!!**")
+
+        embed = discord.Embed(title="READ RULES", description="How to play:\nIn `10` seconds the **ghost of all the kicked members will join the voice chat**. \n**He will say some ghost stuff**, idk... the guy likes to talk...\nWhen he **stops talking ** all the members in the chat who **are not muted will be kicked** `!bang`\n **SILENCE YOUR SELF IF YOU DONT WANT TO DIE**",
+                              colour=discord.Colour.blue()
+                              )
+        embed.set_footer(text="I'm coming in...\n**SILENCE!!!**")
+        voice_client = await self.cont.join(channel)
+        await ctx.channel.send(embed=embed)
+
+        time.sleep(8)
+        x = "crys/"+self.cont.choose(os.listdir("./sounds/ghost"))
+        self.cont.play(voice_client,x)
+        while voice_client.is_playing():
+            time.sleep(.1)
+
         for member in channel.members:
             if not member.voice.self_mute:
                 await self.cont.disconnect_member(member)
+
+        time.sleep(1)
+        await self.cont.leave(voice_client) #self disconnect
     #!----------------------------------------------------------------------------------------------------------------------------
 
 
