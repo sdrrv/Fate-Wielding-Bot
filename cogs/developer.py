@@ -80,7 +80,7 @@ class Developer(commands.Cog):
         channel = ctx.author.voice.channel
         channelm= channel.members
         for _ in range(int(x)):
-            time.sleep(y)
+            time.sleep(int(y))
             for member in channelm:
                 if not member.voice.self_mute:
                     print(member)
