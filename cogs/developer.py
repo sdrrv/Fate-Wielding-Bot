@@ -76,11 +76,11 @@ class Developer(commands.Cog):
         await user.edit(nick=nick)
     #!----------------------------------------------------------------------------------------------------------------------------
     @commands.command(name="tester", hidden=True )
-    async def tester(self, ctx,x):
+    async def tester(self, ctx,x,y):
         channel = ctx.author.voice.channel
         channelm= channel.members
         for _ in range(int(x)):
-            time.sleep(1)
+            time.sleep(y)
             for member in channelm:
                 if not member.voice.self_mute:
                     print(member)
