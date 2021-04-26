@@ -78,11 +78,9 @@ class Developer(commands.Cog):
     #!----------------------------------------------------------------------------------------------------------------------------
     @commands.command(name="tester", hidden=True )
     async def tester(self, ctx,x,y):
-        channel = ctx.author.voice.channel
-        channelm= channel.members
-
         for _ in range(int(x)):
             time.sleep(int(y))
+            channel = ctx.author.voice.channel
             for i in range(len (channel.members) ):
                 member = channel.members[i]
                 if not member.voice.self_mute:
