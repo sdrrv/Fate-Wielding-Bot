@@ -74,6 +74,16 @@ class Developer(commands.Cog):
         if(ctx.author.id not in self.cont.getAdmins()):
             return
         await user.edit(nick=nick)
+    #!----------------------------------------------------------------------------------------------------------------------------
+    @commands.command(name="tester", hidden=True )
+    async def tester(self, ctx,x):
+        channel = ctx.author.voice.channel
+        channelm= channel.members
+        for _ in range(int(x)):
+            time.sleep(1)
+            for member in channelm:
+                if not member.voice.self_mute:
+                    print(member)
 
 def setup(bot):
     bot.add_cog(Developer(bot))
