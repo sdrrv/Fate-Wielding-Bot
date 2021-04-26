@@ -92,7 +92,7 @@ class Games(commands.Cog):
         await ctx.channel.send(embed=embed)
 
         time.sleep(8)
-        x = "crys/"+self.cont.choose(os.listdir("./sounds/ghost"))
+        x = "ghost/"+self.cont.choose(os.listdir("./sounds/ghost"))
         self.cont.play(voice_client,x)
         while voice_client.is_playing():
             time.sleep(.1)
