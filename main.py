@@ -7,7 +7,8 @@ from controllers.controller import controller
 from keep_alive import keep_alive
 import json
 
-bot = commands.Bot(command_prefix="!fate ")
+intents = discord.Intents.default()
+bot = commands.Bot(command_prefix="!fate ", intents=intents)
 cont = controller(bot)
 
 admins = cont.getAdmins()
