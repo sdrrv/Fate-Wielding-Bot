@@ -75,7 +75,8 @@ class Games(commands.Cog):
         await ctx.channel.send(embed=embed)
 
     #!----------------------------------------------------------------------------------------------------------------------------
-    @commands.command(name="silence", brief="Will kick all the users in the chat that aren't muted.", hidden=False)
+    @commands.command(name="silence", brief="Will kick all the users in the chat that aren't muted.(Ban Mem", hidden=False)
+    @commands.has_permissions(ban_members=True)
     async def silence(self, ctx):
         self.cont.debug(ctx)
         await self.cont.debugV2(ctx)

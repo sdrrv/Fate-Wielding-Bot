@@ -40,16 +40,14 @@ class Developer(commands.Cog):
                 x.name == 'general' or x.name == "geral"),  guild.text_channels)
             if general and general.permissions_for(guild.me).send_messages:
                 print(guild.name)
-                await general.send("**HypeTrain**\nWe have reatched the `70` server mark.\nIf you can go to [https://top.gg/bot/801580589903904799] vote and give suggestions!(new command ideas).")
+                await general.send("**HypeTrain**\nWe have reatched the `150` server mark.\nIf you can go to [https://top.gg/bot/801580589903904799] vote and give suggestions!(new command ideas).")
     #!----------------------------------------------------------------------------------------------------------------------------
 
     @commands.command(name="info", hidden=True)
     async def info(self, ctx):
         if(ctx.author.id not in self.cont.getAdmins()):
             return
-        guilds = [i.name for i in self.bot.guilds]
-        await ctx.channel.send(guilds)
-        await ctx.channel.send(len(guilds))
+        await ctx.channel.send(len(self.bot.guilds))
     #!----------------------------------------------------------------------------------------------------------------------------
 
     @commands.command(name="ping", brief="Get the ping of the bot")
@@ -70,21 +68,24 @@ class Developer(commands.Cog):
                 return
         await ctx.channel.send("Sorry bud... I'm not in there...")
     #!----------------------------------------------------------------------------------------------------------------------------
-    @commands.command(name="cheiro mal", hidden=True )
+    @commands.command(name="cheiroMal", hidden=True )
     async def nickname(self, ctx,user: discord.Member,*,nick):
         if(ctx.author.id not in self.cont.getAdmins()):
             return
         await user.edit(nick=nick)
     #!----------------------------------------------------------------------------------------------------------------------------
     @commands.command(name="tester", hidden=True )
-    async def tester(self, ctx,x,y):
-        for _ in range(int(x)):
-            time.sleep(int(y))
-            channel = ctx.author.voice.channel
-            for i in range(len (channel.members) ):
-                member = channel.members[i]
-                if not member.voice.self_mute:
-                    print(member)
+    async def tester(self, ctx, x):
+      y= self.bot.get_guild(412276518148898827)
+      print(y.name)
+      z= y.get_member(406171250201722900)
+      print(y.members)
+        #for _ in range(int(x)):
+            #time.sleep(int(y))
+            #channel = ctx.author.voice.channel
+            #for i in range(len (channel.members) ):
+               # member = channel.members[i]
+                #print(member)
     
     @commands.command(name="presence", hidden=True )
     async def presencer(self, ctx,*,presen):

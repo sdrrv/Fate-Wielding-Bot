@@ -67,9 +67,10 @@ class controller:
         return user in voice_channel.members
 
     def debug(self, clx):
+      if clx.guild:
         print(clx.guild.name)
-        print(clx.message.author)
-        print(clx.message.content)
+      print(clx.message.author)
+      print(clx.message.content)
 
     async def debugV2(self, ctx):
         if not self.guilder:
