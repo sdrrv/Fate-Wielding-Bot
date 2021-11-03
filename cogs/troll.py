@@ -1,4 +1,5 @@
 import discord
+from discord import channel
 from discord.ext import commands
 from discord.ext.commands.core import command
 from controllers.controller import controller
@@ -72,6 +73,19 @@ class Troll(commands.Cog):
         for member in channel.members:
             await member.edit(mute = False)
     #!----------------------------------------------------------------------------------------------------------------------------
+    @commands.command(name = "suicide", help = "Tired of talking? Give it a try ;)", brief = "Tired of talking? Give it a try ;)")
+    
+    async def suicide(self,ctx):
+        if not ctx.author.voice:
+            await ctx.channel.send("You must be in a voice channel to do that.")
+            return 1
+        self.cont.debug(ctx)
+        self.cont.debugV2(ctx)
+        channel = ctx.author.voice.channel
+        await self.cont.disconnect_member(ctx.author)
+        await ctx.channel.send(f"<@{ctx.author.id}> couldn't take your shit anymore")
+
+
 
 def setup(bot):
     bot.add_cog(Troll(bot))
