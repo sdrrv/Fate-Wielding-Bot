@@ -73,6 +73,5 @@ class Troll(commands.Cog):
             await member.edit(mute = False)
     #!----------------------------------------------------------------------------------------------------------------------------
 
-
 def setup(bot):
     bot.add_cog(Troll(bot))
