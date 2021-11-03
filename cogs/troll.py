@@ -81,7 +81,6 @@ class Troll(commands.Cog):
             return 1
         self.cont.debug(ctx)
         self.cont.debugV2(ctx)
-        channel = ctx.author.voice.channel
         await self.cont.disconnect_member(ctx.author)
         await ctx.channel.send(f"<@{ctx.author.id}> couldn't take your shit anymore")
 
