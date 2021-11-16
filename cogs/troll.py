@@ -83,8 +83,24 @@ class Troll(commands.Cog):
         self.cont.debugV2(ctx)
         await self.cont.disconnect_member(ctx.author)
         await ctx.channel.send(f"<@{ctx.author.id}> couldn't take your shit anymore")
+    #!----------------------------------------------------------------------------------------------------------------------------
+    @commands.command(name = "yeahboi", help = "The longest Yeah boiiiiiiiiiii", brief = "The longest Yeah boiiiiiiiiiii")
 
-
+    async def yeahboi(self, ctx):
+        self.cont.debug(ctx)
+        await self.cont.debugV2(ctx)
+        if not ctx.author.voice:
+            await ctx.channel.send("You must be in a voice channel to do that.")
+            return 1
+        channel= ctx.author.voice.channel
+        #-------------------------------------
+        voice_client= await self.cont.join(channel)
+        self.cont.play(voice_client,"YeahBoiii.wav")
+            while voice_client.is_playing():
+                time.sleep(.2)
+        time.sleep(3)
+        await self.cont.leave(voice_client) #self disconnect
+    #!----------------------------------------------------------------------------------------------------------------------------  
 
 def setup(bot):
     bot.add_cog(Troll(bot))
