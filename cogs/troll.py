@@ -96,8 +96,8 @@ class Troll(commands.Cog):
         #-------------------------------------
         voice_client= await self.cont.join(channel)
         self.cont.play(voice_client,"YeahBoiii.wav")
-            while voice_client.is_playing():
-                time.sleep(.2)
+        while voice_client.is_playing():
+            time.sleep(.2)
         time.sleep(3)
         await self.cont.leave(voice_client) #self disconnect
     #!----------------------------------------------------------------------------------------------------------------------------  
