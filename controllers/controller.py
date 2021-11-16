@@ -23,7 +23,7 @@ class controller:
         return random.choice(list)
 
     def choose_v2(self, list, amount):
-        return " e ".join(random.sample(list, amount))
+        return " and ".join(random.sample(list, amount))
 
     def choose_num_between(self, int1, int2):
         return random.randint(int1, int2)
