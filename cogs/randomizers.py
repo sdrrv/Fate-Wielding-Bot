@@ -4,6 +4,7 @@ from discord.ext.commands.core import command
 from controllers.controller import controller
 import os
 import time
+import random
 
 class Randomizers(commands.Cog):
     def __init__(self,bot):
@@ -50,7 +51,7 @@ class Randomizers(commands.Cog):
             await ctx.channel.send(f"You seem to be alone <@{ctx.author.id}>... no one to nuke")
             return 1
         num_to_kick=self.cont.choose_num_between(1,len(members))
-        to_kick=self.cont.choose_v2(members,num_to_kick)
+        to_kick=random.sample(members, num_to_kick)
         #-------------------------------------
         voice_client= await self.cont.join(channel)
         self.cont.play(voice_client,"WTF BOOM Sound Byte.wav")
