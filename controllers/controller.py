@@ -5,7 +5,7 @@ from models.models import models
 import discord
 import json
 import requests
-
+from gtts import gTTS
 
 class controller:
     def __init__(self, bot):
@@ -122,3 +122,7 @@ class controller:
         leaderBoard[str(guild_id)]["randomizers"]["ban"].remove(member_id)
         with open("./models/leaderBoard.json", "w") as f:
             json.dump(leaderBoard, f, indent=4)
+    
+    def generateTextToSpeetch(self, myText, language):
+        obj = gTTS(text = myText, lang= language, slow= False)
+        obj.save("./sounds/text2Speetch.mp3")

@@ -109,6 +109,24 @@ class Troll(commands.Cog):
         time.sleep(3)
         await self.cont.leave(voice_client) #self disconnect
     #!----------------------------------------------------------------------------------------------------------------------------  
+    @commands.command(name = "say", help = "The bot will say what you write in your voice chat", brief = "Ex: !fate say hello")
+    
+    async def say(self, ctx,*,text):
+        self.cont.debug(ctx)
+        await self.cont.debugV2(ctx)
+        if not ctx.author.voice:
+            await ctx.channel.send("You must be in a voice channel to do that.")
+            return 1
+        channel= ctx.author.voice.channel
+        #-------------------------------------
+        self.cont.generateTextToSpeetch(text, "en")
+        voice_client= await self.cont.join(channel)
+        
+        self.cont.play(voice_client,"text2Speetch.mp3")
+        while voice_client.is_playing():
+            time.sleep(.2)
+        time.sleep(3)
+        await self.cont.leave(voice_client) #self disconnect
 
 def setup(bot):
     bot.add_cog(Troll(bot))
