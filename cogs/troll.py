@@ -46,6 +46,14 @@ class Troll(commands.Cog):
     @commands.command(name = "what", hidden = True)
     async def doyoumean(self, ctx):
         await ctx.channel.send("O afonso é gay")
+    
+    @commands.command(name = "quem?", hidden = True)
+    async def quem(self, ctx):
+        await ctx.channel.send("**QUEM TE PERGUNTOU!?!?**")
+
+    @commands.command(name = "bernas", hidden = True)
+    async def bernas(self, ctx):
+        await ctx.channel.send("O Bernardo Castiço tem um mamilo postiço")
     #!----------------------------------------------------------------------------------------------------------------------------
     @commands.command(name = "mute", help = "This will mute everyone in the voice chat", brief = "Will mute everyone in the voice chat")
     @commands.has_permissions(ban_members=True)
