@@ -109,7 +109,7 @@ class Troll(commands.Cog):
         time.sleep(3)
         await self.cont.leave(voice_client) #self disconnect
     #!----------------------------------------------------------------------------------------------------------------------------  
-    @commands.command(name = "say", help = "The bot will say what you write in your voice chat", brief = "Ex: !fate say hello")
+    @commands.command(name = "say", brief = "The bot will say what you write in your voice chat", help = "Ex: !fate say hello")
     
     async def say(self, ctx,*,text):
         self.cont.debug(ctx)
@@ -124,9 +124,10 @@ class Troll(commands.Cog):
         
         self.cont.play(voice_client,"text2Speetch.mp3")
         while voice_client.is_playing():
-            time.sleep(.2)
-        time.sleep(3)
+            time.sleep(.1)
+        time.sleep(1)
         await self.cont.leave(voice_client) #self disconnect
+        os.system("rm ./sounds/text2Speetch.mp3")
 
 def setup(bot):
     bot.add_cog(Troll(bot))
