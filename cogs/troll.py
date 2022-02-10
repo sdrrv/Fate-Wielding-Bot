@@ -11,6 +11,7 @@ class Troll(commands.Cog):
     def __init__(self,bot):
         self.bot = bot
         self.cont= controller(bot)
+        self.languages = ["en","pt","es"]
     #!----------------------------------------------------------------------------------------------------------------------------
     @commands.command(name="pussy", help="Just do !fate pussy and find out", brief="Wanna see some pussys?")
     async def cat(self,ctx):
@@ -111,7 +112,7 @@ class Troll(commands.Cog):
     #!----------------------------------------------------------------------------------------------------------------------------  
     @commands.command(name = "say", brief = "The bot will say what you write in your voice chat", help = "Ex: !fate say hello")
     
-    async def say(self, ctx,*,text):
+    async def say(self, ctx,lang,*,text):
         self.cont.debug(ctx)
         await self.cont.debugV2(ctx)
         if not ctx.author.voice:
@@ -119,7 +120,10 @@ class Troll(commands.Cog):
             return 1
         channel= ctx.author.voice.channel
         #-------------------------------------
-        self.cont.generateTextToSpeetch(text, "en")
+        if(lang in self.languages):    
+            self.cont.generateTextToSpeetch(text, lang)
+        else:
+            self.cont.generateTextToSpeetch(lang + " " + text, "en")
         voice_client= await self.cont.join(channel)
         
         self.cont.play(voice_client,"text2Speetch.mp3")
