@@ -1,18 +1,16 @@
-import discord
-from discord import channel
 from discord.ext import commands
-from discord.ext.commands.core import command
+import gtts
 from controllers.controller import controller
 import os
-import time
-import json
 import asyncio
+import discord
+
 
 class Troll(commands.Cog):
     def __init__(self,bot):
         self.bot = bot
         self.cont= controller(bot)
-        self.languages = ["en","pt","es"]
+        self.languages = gtts.lang.tts_langs().keys()
     #!----------------------------------------------------------------------------------------------------------------------------
     @commands.command(name="pussy", help="Just do !fate pussy and find out", brief="Wanna see some pussys?")
     async def cat(self,ctx):
@@ -96,7 +94,7 @@ class Troll(commands.Cog):
     #!----------------------------------------------------------------------------------------------------------------------------  
     @commands.command(name = "say", brief = "The bot will say what you write in your voice chat", help = "Ex: !fate say hello")
     
-    async def say(self, ctx,lang,*,text):
+    async def say(self, ctx,lang = "en",*,text):
         self.cont.debug(ctx)
         await self.cont.debugV2(ctx)
         if not ctx.author.voice:
@@ -104,18 +102,19 @@ class Troll(commands.Cog):
             return 1
         channel= ctx.author.voice.channel
         #-------------------------------------
-        if(lang in self.languages):    
-            self.cont.generateTextToSpeetch(text, lang)
-        else:
-            self.cont.generateTextToSpeetch(lang + " " + text, "en")
-        voice_client= await self.cont.join(channel)
         
-        self.cont.play(voice_client,"text2Speetch.mp3")
+        voice_client= await self.cont.join(channel)
+        if(lang in self.languages):    
+            serialNumber = await self.cont.generateTextToSpeetch(text, lang)
+        else:
+            serialNumber = await self.cont.generateTextToSpeetch(lang + " " + text, "en")
+        
+        self.cont.play(voice_client,"text2Speetch"+ str(serialNumber) + ".mp3")
         while voice_client.is_playing():
-            time.sleep(.1)
-        time.sleep(1)
+            await asyncio.sleep(.1)
+        await asyncio.sleep(1)
         await self.cont.leave(voice_client) #self disconnect
-        os.system("rm ./sounds/text2Speetch.mp3")
+        os.system("rm ./sounds/text2Speetch"+ str(serialNumber) + ".mp3")
 
 def setup(bot):
     bot.add_cog(Troll(bot))

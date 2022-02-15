@@ -1,11 +1,10 @@
 import random
-
-from discord import channel
 from models.models import models
 import discord
 import json
 import requests
 from gtts import gTTS
+
 
 class controller:
     def __init__(self, bot):
@@ -132,6 +131,8 @@ class controller:
         with open("./models/leaderBoard.json", "w") as f:
             json.dump(leaderBoard, f, indent=4)
     
-    def generateTextToSpeetch(self, myText, language):
-        obj = gTTS(text = myText, lang= language, slow= False)
-        obj.save("./sounds/text2Speetch.mp3")
+    async def generateTextToSpeetch(self, myText, language):
+        sound = gTTS(text = myText, lang= language, slow= False)
+        serialNumber = random.randint(0,100000)
+        sound.save("./sounds/text2Speetch"+str(serialNumber) + ".mp3")
+        return serialNumber

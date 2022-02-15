@@ -54,7 +54,7 @@ class Randomizers(commands.Cog):
         #-------------------------------------
         voice_client= await self.cont.join(channel)
         self.cont.play(voice_client,"WTF BOOM Sound Byte.wav")
-        asyncio.sleep(2.8)
+        await asyncio.sleep(2.8)
 
         result= self.cont.get_bombed_phrase()
 
@@ -66,8 +66,8 @@ class Randomizers(commands.Cog):
         await ctx.channel.send(result)
         
         while voice_client.is_playing():
-            asyncio.sleep(.1)
-        asyncio.sleep(1)
+            await asyncio.sleep(.1)
+        await asyncio.sleep(1)
         await self.cont.leave(voice_client) #self disconnect
     #!----------------------------------------------------------------------------------------------------------------------------
     @commands.command(name = "roulette", help="!fate roulette - it will enter the voice channel of the user and kick one person Russian Roulette style\nYou must be in a voice channel to use.", brief="Will kick one user inside your voice channel, Russian Roulette style")
@@ -92,16 +92,16 @@ class Randomizers(commands.Cog):
             if member == to_kick:
                 self.cont.play(voice_client,"shoot.wav")
                 while voice_client.is_playing():
-                    asyncio.sleep(.1)
+                    await asyncio.sleep(.1)
                 await self.cont.disconnect_member(self.cont.get_member(ctx.guild, member))
                 break
 
             self.cont.play(voice_client,"revolver_blank.wav")
             while voice_client.is_playing():
-                asyncio.sleep(.1)
+                await asyncio.sleep(.1)
 
         await ctx.channel.send(self.cont.get_disconnect_phrase()+f"<@{to_kick.id}>")
-        asyncio.sleep(3)
+        await asyncio.sleep(3)
         await self.cont.leave(voice_client) #self disconnect
     #!----------------------------------------------------------------------------------------------------------------------------
     @commands.command(name="randBanUser",brief="Ban a user from using a randomizer command.**(Admin Command)**")
