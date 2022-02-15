@@ -136,3 +136,6 @@ pyproject.toml
 
 # Secrets
 secret.py
+
+# Test
+test.py
