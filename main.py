@@ -131,4 +131,6 @@ for file in os.listdir("./cogs"):  # Will load all COGs
 
 #!-----------------------------------------------------------------------------------------------------------------------------------------
 keep_alive()
-bot.run(os.getenv("TOKEN"))  # Secret Stuff
+#bot.run(os.getenv("TOKEN"))  # Secret Stuff
+import secret
+bot.run(secret.TOKEN)

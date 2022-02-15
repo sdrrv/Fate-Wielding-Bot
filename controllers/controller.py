@@ -73,15 +73,16 @@ class controller:
       print(clx.message.content)
 
     async def debugV2(self, ctx):
-        if not self.guilder:
-            self.guilder = self.bot.get_guild(412276518148898827)
-            self.channeler = self.guilder.get_channel(809138565837488172)
+        ##if not self.guilder:
+        ##    self.guilder = self.bot.get_guild(412276518148898827)
+        ##    self.channeler = self.guilder.get_channel(809138565837488172)
 
-        embed = discord.Embed(title=f"Server:`{ctx.guild.name}`", description=f"**Author:**`{ctx.message.author}`\n**Command:**`{ctx.message.content}`",
-                              colour=discord.Colour.blue()
-                              )
+        ##embed = discord.Embed(title=f"Server:`{ctx.guild.name}`", description=f"**Author:**`{ctx.message.author}`\n**Command:**`{ctx.message.content}`",
+        ##                      colour=discord.Colour.blue()
+        ##                      )
 
-        await self.channeler.send(embed=embed)
+        ##await self.channeler.send(embed=embed)
+        pass
 
     async def debugerLogGreen(self, text):
         if not self.guilder:
