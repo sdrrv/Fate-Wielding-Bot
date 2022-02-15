@@ -4,7 +4,6 @@ from controllers.controller import controller
 import os
 import asyncio
 from exceptions.defaultExceptions import defaultException
-import time
 class Games(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -17,7 +16,9 @@ class Games(commands.Cog):
         if not ctx.author.voice:
             await ctx.channel.send("You must be in a voice channel to do that.")
             return
+        
         channel = ctx.author.voice.channel
+
         if (ctx.author == user):
             await ctx.channel.send("You can't start a duel with your self... Moron")
             return
@@ -42,9 +43,9 @@ class Games(commands.Cog):
         embed.set_footer(text="**May the best gun slinger win**")
         voice_client = await self.cont.join(channel)
         await ctx.channel.send(embed=embed)
-        time.sleep(8)
+        asyncio.sleep(8)
         self.cont.play(voice_client, "duelMusic.wav")
-        time.sleep(self.cont.choose_num_between(2, 30))
+        asyncio.sleep(self.cont.choose_num_between(4, 30))
         self.cont.stop(voice_client)
         await ctx.channel.send("**BANG!**")
         print("BANG!")
@@ -57,7 +58,7 @@ class Games(commands.Cog):
             return
 
         self.cont.play(voice_client, "shoot.wav")
-        time.sleep(1)
+        asyncio.sleep(1)
         if(bang.author == ctx.author):
             print("Author Wins.")
             await self.cont.disconnect_member(user)

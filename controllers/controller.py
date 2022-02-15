@@ -64,7 +64,7 @@ class controller:
         return data[0]["url"]
 
     def is_in_voice_channel(self, voice_channel, user):
-        return user in voice_channel.members
+        return user.id in self.get_members_in_voice_channel(voice_channel)
 
     def debug(self, clx):
       if clx.guild:
