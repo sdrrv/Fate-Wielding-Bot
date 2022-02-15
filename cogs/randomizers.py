@@ -83,25 +83,25 @@ class Randomizers(commands.Cog):
             return 1
         channel= ctx.author.voice.channel
         #-------------------------------------
-        members= channel.members
-        to_kick= self.cont.choose(members)
+        membersId= self.cont.get_members_in_voice_channel(channel)
+        to_kick= self.cont.choose(membersId)
         #-------------------------------------
         voice_client= await self.cont.join(channel)
 
-        for member in members:
+        for member in membersId:
             if member == to_kick:
                 self.cont.play(voice_client,"shoot.wav")
                 while voice_client.is_playing():
-                    time.sleep(.1)
-                await self.cont.disconnect_member(member)
+                    asyncio.sleep(.1)
+                await self.cont.disconnect_member(self.cont.get_member(ctx.guild, member))
                 break
 
             self.cont.play(voice_client,"revolver_blank.wav")
             while voice_client.is_playing():
-                time.sleep(.1)
+                asyncio.sleep(.1)
 
         await ctx.channel.send(self.cont.get_disconnect_phrase()+f"<@{to_kick.id}>")
-        time.sleep(3)
+        asyncio.sleep(3)
         await self.cont.leave(voice_client) #self disconnect
     #!----------------------------------------------------------------------------------------------------------------------------
     @commands.command(name="randBanUser",brief="Ban a user from using a randomizer command.**(Admin Command)**")
