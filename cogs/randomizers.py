@@ -1,10 +1,9 @@
 import discord
 from discord.ext import commands
-from discord.ext.commands.core import command
 from controllers.controller import controller
-import os
-import time
 import random
+import asyncio
+
 
 class Randomizers(commands.Cog):
     def __init__(self,bot):
@@ -46,28 +45,29 @@ class Randomizers(commands.Cog):
             return 1
         channel= ctx.author.voice.channel
         #-------------------------------------
-        members= [i for i in channel.members]
-        if len(members)<=1:
+        membersId= self.cont.get_members_in_voice_channel(channel) 
+        if len(membersId)<=1:
             await ctx.channel.send(f"You seem to be alone <@{ctx.author.id}>... no one to nuke")
             return 1
-        num_to_kick=self.cont.choose_num_between(1,len(members))
-        to_kick=random.sample(members, num_to_kick)
+        num_to_kick=self.cont.choose_num_between(1,len(membersId))
+        to_kick=random.sample(membersId, num_to_kick)
         #-------------------------------------
         voice_client= await self.cont.join(channel)
         self.cont.play(voice_client,"WTF BOOM Sound Byte.wav")
-        time.sleep(2.8)
+        asyncio.sleep(2.8)
 
         result= self.cont.get_bombed_phrase()
 
-        for member in to_kick:
-                await self.cont.disconnect_member(member)
-                result+= f", <@{member.id}>"
+        guild = ctx.guild
+        for memberId in to_kick:
+                await self.cont.disconnect_member(self.cont.get_member(guild, memberId))
+                result+= f", <@{memberId}>"
         
         await ctx.channel.send(result)
         
         while voice_client.is_playing():
-            time.sleep(.1)
-        time.sleep(1)
+            asyncio.sleep(.1)
+        asyncio.sleep(1)
         await self.cont.leave(voice_client) #self disconnect
     #!----------------------------------------------------------------------------------------------------------------------------
     @commands.command(name = "roulette", help="!fate roulette - it will enter the voice channel of the user and kick one person Russian Roulette style\nYou must be in a voice channel to use.", brief="Will kick one user inside your voice channel, Russian Roulette style")
