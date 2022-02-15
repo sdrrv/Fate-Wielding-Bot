@@ -131,7 +131,6 @@ dmypy.json
 poetry.lock
 pyproject.toml
 
-
 # Jsons
 ./models/leaderBoard.json
 
