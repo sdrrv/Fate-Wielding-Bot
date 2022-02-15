@@ -2,9 +2,9 @@ import discord
 from discord.ext import commands
 from controllers.controller import controller
 import os
+import asyncio
+from exceptions.defaultExceptions import defaultException
 import time
-
-
 class Games(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -66,17 +66,8 @@ class Games(commands.Cog):
         await ctx.channel.send(f"Nice Shoot <@{bang.author.id}>")
         await self.cont.leave(voice_client)  # self disconnect
     #!----------------------------------------------------------------------------------------------------------------------------
-
-    @commands.command(name="leaderboard", brief="***OnTheWorks***")
-    async def leaderboard(self, ctx):
-        self.cont.debug(ctx)
-        await self.cont.debugV2(ctx)
-        embed = discord.Embed(colour=discord.Colour.red(), title="LEADERBOARD")
-        await ctx.channel.send(embed=embed)
-
-    #!----------------------------------------------------------------------------------------------------------------------------
-    @commands.command(name="silence", brief="Will kick all the users in the chat that aren't muted.(Ban Mem", hidden=False)
-    @commands.has_permissions(ban_members=True)
+    
+    @commands.command(name="silence", brief="Will kick all the users in the chat that aren't muted.", hidden=False)
     async def silence(self, ctx):
         self.cont.debug(ctx)
         await self.cont.debugV2(ctx)
@@ -84,40 +75,44 @@ class Games(commands.Cog):
             await ctx.channel.send("You must be in a voice channel to do that.")
             return
 
-        embed = discord.Embed(title="READ RULES", description="How to play:\nIn `10` seconds the **ghost of all the kicked members will join the voice chat**. \n**He will say some ghost stuff**, idk... the guy likes to talk...\nWhen he **stops talking ** all the members in the chat who **are not muted will be kicked**\n `SILENCE YOUR SELF IF YOU DONT WANT TO DIE`",
+        embed = discord.Embed(title="READ RULES", description="How to play:\nIn `10` seconds the **ghost of all the kicked members will join the voice chat**. \n**He will say some ghost stuff**, idk... the guy likes to talk...\nWhen he **stops talking ** all the members in the chat who **are not muted will be kicked**\n `SILENCE YOURSELF IF YOU DO NOT WANT TO DIE`",
+
                               colour=discord.Colour.red()
                               )
         embed.set_footer(text="I'm coming in...SILENCE!!!")
         await ctx.channel.send(embed=embed)
 
-        time.sleep(8)
-
-        try:
+        try: # Will enter the voice channel
             channel = ctx.author.voice.channel
             voice_client = await self.cont.join(channel)
-        except Exception: 
-            return 
+        except Exception as e:
+            raise defaultException
+        
+        await asyncio.sleep(8)
 
         x = "ghost/"+self.cont.choose(os.listdir("./sounds/ghost"))
         self.cont.play(voice_client,x)
         while voice_client.is_playing():
-            time.sleep(.1)
+            await asyncio.sleep(.1)
         
         print(x)
         try:
-            channel = ctx.author.voice.channel
-            channelm= channel.members
-            for member in channelm:
-                if not member.voice.self_mute:
-                    await self.cont.disconnect_member(member)
+            guild = ctx.guild
+            voice_states = self.cont.get_voice_states_in_voice_channel(channel)
+            for memberId in voice_states:
+                if memberId == 801580589903904799:
+                    continue
+                if not voice_states[memberId].self_mute and not voice_states[memberId].mute:
+                    await self.cont.disconnect_member(self.cont.get_member(guild, memberId))
     
-        except Exception:
+        except Exception as e:
             await self.cont.leave(voice_client) #self disconnect
-            return 
+            raise defaultException 
 
 
-        time.sleep(1)
+        await asyncio.sleep(1)
         await self.cont.leave(voice_client) #self disconnect
+
     #!----------------------------------------------------------------------------------------------------------------------------
 
 

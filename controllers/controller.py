@@ -72,6 +72,14 @@ class controller:
       print(clx.message.author)
       print(clx.message.content)
 
+    def get_members_in_voice_channel(self, voice_channel):
+        return voice_channel.voice_states.keys()
+
+
+    def get_voice_states_in_voice_channel(self, voice_channel):
+        return voice_channel.voice_states    
+
+
     async def debugV2(self, ctx):
         ##if not self.guilder:
         ##    self.guilder = self.bot.get_guild(412276518148898827)
