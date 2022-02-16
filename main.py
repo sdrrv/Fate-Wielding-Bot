@@ -1,4 +1,3 @@
-import asyncio
 import discord
 from discord.ext import commands
 from discord.utils import find
@@ -8,6 +7,7 @@ from keep_alive import keep_alive
 import json
 
 intents = discord.Intents.default()
+#intents.members = True
 bot = commands.Bot(command_prefix="!fate ", intents=intents)
 cont = controller(bot)
 
