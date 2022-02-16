@@ -11,6 +11,7 @@ class Troll(commands.Cog):
         self.bot = bot
         self.cont= controller(bot)
         self.languages = gtts.lang.tts_langs().keys()
+        self.wordLimit = 100
     #!----------------------------------------------------------------------------------------------------------------------------
     @commands.command(name="pussy", help="Just do !fate pussy and find out", brief="Wanna see some pussys?")
     async def cat(self,ctx):
@@ -33,8 +34,8 @@ class Troll(commands.Cog):
         print(x)
         self.cont.play(voice_client,x)
         while voice_client.is_playing():
-            asyncio.sleep(0.1)
-        asyncio.sleep(1)
+            await asyncio.sleep(0.1)
+        await asyncio.sleep(1)
         await self.cont.leave(voice_client) #self disconnect
   
     #!----------------------------------------------------------------------------------------------------------------------------
@@ -46,10 +47,12 @@ class Troll(commands.Cog):
             await ctx.channel.send("You must be in a voice channel to do that.")
             return 1
         self.cont.debug(ctx)
-        await self.cont.debugV2(ctx)
+        await self.cont.debugV2(ctx) 
         channel = ctx.author.voice.channel
-        for member in channel.members:
-            await member.edit(mute = True) 
+        guild = ctx.guild
+        for memberID in self.cont.get_members_in_voice_channel(channel):
+            member = self.cont.get_member(guild, memberID)
+            await member.edit(mute = True)
     #!----------------------------------------------------------------------------------------------------------------------------
     @commands.command(name = "unmute", help = "This will unmute everyone in the voice chat", brief = "Will unmute everyone in the voice chat")
     @commands.has_permissions(ban_members=True)
@@ -61,7 +64,9 @@ class Troll(commands.Cog):
         self.cont.debug(ctx)
         await self.cont.debugV2(ctx)
         channel = ctx.author.voice.channel
-        for member in channel.members:
+        guild = ctx.guild
+        for memberID in self.cont.get_members_in_voice_channel(channel):
+            member = self.cont.get_member(guild, memberID)
             await member.edit(mute = False)
     #!----------------------------------------------------------------------------------------------------------------------------
     @commands.command(name = "suicide", help = "Tired of talking? Give it a try ;)", brief = "Tired of talking? Give it a try ;)")
@@ -73,7 +78,7 @@ class Troll(commands.Cog):
         self.cont.debug(ctx)
         self.cont.debugV2(ctx)
         await self.cont.disconnect_member(ctx.author)
-        await ctx.channel.send(f"<@{ctx.author.id}> couldn't take your shit anymore")
+        await ctx.channel.send(f"<@{ctx.author.id}> couldn't take your sh*t anymore")
     #!----------------------------------------------------------------------------------------------------------------------------
     @commands.command(name = "yeahboi", help = "The longest Yeah boiiiiiiiiiii", brief = "The longest Yeah boiiiiiiiiiii")
 
@@ -100,10 +105,15 @@ class Troll(commands.Cog):
         if not ctx.author.voice:
             await ctx.channel.send("You must be in a voice channel to do that.")
             return 1
+         
+        if(len(text) >= self.wordLimit):
+            await ctx.channel.send("Sorry, i cant say something that big.")
+            return
+        
         channel= ctx.author.voice.channel
         #-------------------------------------
-        
         voice_client= await self.cont.join(channel)
+        
         if(lang in self.languages):    
             serialNumber = await self.cont.generateTextToSpeetch(text, lang)
         else:
