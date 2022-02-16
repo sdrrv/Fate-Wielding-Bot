@@ -4,3 +4,4 @@ waitress
 gtts
 ffmpeg
 dblpy
+pynacl
