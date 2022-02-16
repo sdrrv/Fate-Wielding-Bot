@@ -2,5 +2,5 @@ discord.py
 flask
 waitress
 gtts
-asyncio
 ffmpeg
+dblpy
