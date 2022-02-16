@@ -1,0 +1,6 @@
+discord
+flask
+waitress
+gtts
+asyncio
+ffmpeg
