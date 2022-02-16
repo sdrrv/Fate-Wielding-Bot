@@ -45,8 +45,8 @@ class controller:
     def stop(self, voice_client):
         voice_client.stop()
 
-    def get_member(self, guild, id):
-        return guild.get_member(id)
+    async def get_member(self, guild, id):
+        return await guild.fetch_member(id)
 
     def disconnect_member(self, member):
         return member.move_to(None)
