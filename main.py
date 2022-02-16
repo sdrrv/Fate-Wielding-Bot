@@ -127,8 +127,8 @@ for file in os.listdir("./cogs"):  # Will load all COGs
         bot.load_extension(f"cogs.{ file[:-3] }")
 
 keep_alive()
-#bot.run(os.getenv("TOKEN"))  # Secret Stuff
-import secret
-bot.run(secret.TOKEN)
+bot.run(os.getenv("TOKEN"))  # Secret Stuff
+#import secret
+#bot.run(secret.TOKEN)
 
 #!-----------------------------------------------------------------------------------------------------------------------------------------
