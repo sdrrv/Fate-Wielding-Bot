@@ -1,11 +1,10 @@
 import random
-
-from discord import channel
 from models.models import models
 import discord
 import json
 import requests
 from gtts import gTTS
+
 
 class controller:
     def __init__(self, bot):
@@ -64,13 +63,21 @@ class controller:
         return data[0]["url"]
 
     def is_in_voice_channel(self, voice_channel, user):
-        return user in voice_channel.members
+        return user.id in self.get_members_in_voice_channel(voice_channel)
 
     def debug(self, clx):
       if clx.guild:
         print(clx.guild.name)
       print(clx.message.author)
       print(clx.message.content)
+
+    def get_members_in_voice_channel(self, voice_channel):
+        return voice_channel.voice_states.keys()
+
+
+    def get_voice_states_in_voice_channel(self, voice_channel):
+        return voice_channel.voice_states    
+
 
     async def debugV2(self, ctx):
         if not self.guilder:
@@ -123,6 +130,8 @@ class controller:
         with open("./models/leaderBoard.json", "w") as f:
             json.dump(leaderBoard, f, indent=4)
     
-    def generateTextToSpeetch(self, myText, language):
-        obj = gTTS(text = myText, lang= language, slow= False)
-        obj.save("./sounds/text2Speetch.mp3")
+    async def generateTextToSpeetch(self, myText, language):
+        sound = gTTS(text = myText, lang= language, slow= False)
+        serialNumber = random.randint(0,100000)
+        sound.save("./sounds/text2Speetch"+str(serialNumber) + ".mp3")
+        return serialNumber

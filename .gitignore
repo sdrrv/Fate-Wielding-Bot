@@ -128,5 +128,14 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+poetry.lock
+pyproject.toml
+
 # Jsons
 ./models/leaderBoard.json
+
+# Secrets
+secret.py
+
+# Test
+test.py

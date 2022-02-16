@@ -1,4 +1,3 @@
-import asyncio
 import discord
 from discord.ext import commands
 from discord.utils import find
@@ -8,7 +7,7 @@ from keep_alive import keep_alive
 import json
 
 intents = discord.Intents.default()
-bot = commands.Bot(command_prefix="!fate ", intents=intents)
+bot = commands.Bot(command_prefix="!test ", intents=intents)
 cont = controller(bot)
 
 admins = cont.getAdmins()
@@ -36,8 +35,8 @@ async def on_command_error(ctx, error):
         return
     elif isinstance(error, commands.MissingRequiredArgument):
         await ctx.channel.send("You're missing an argument there bud...\nTry `!fate help <command>`")
-        return
-    #await ctx.channel.send("**Something went wrong**... We are sorry. If you think this is a `bug` pls **report it**.")    
+        return 
+    await ctx.channel.send("**Something went wrong**... We are sorry. If you think this is a `bug` pls **report it**.")    
     raise error
 
 
@@ -79,7 +78,6 @@ async def on_guild_remove(guild):
 
 #!--------------------------------------------------------------------------------------------------------------------------------------
 
-
 @bot.command(name="about",
              brief="A little about the bot"
              )
@@ -89,7 +87,6 @@ async def about(ctx):
 
 #!-----------------------------------------------------------------------------------------------------------------------------------------
 
-
 @bot.command(name="pull", hidden=True)
 async def pull(ctx):
     if(ctx.author.id not in admins):
@@ -97,7 +94,6 @@ async def pull(ctx):
     os.system("git pull https://github.com/sdrrv/Fate-Wielding-Bot.git")
 
 #!-----------------------------------------------------------------------------------------------------------------------------------------
-
 
 @bot.command(hidden=True)
 async def load(ctx, name):
@@ -123,12 +119,16 @@ async def reload(ctx, name):
     bot.load_extension(f"cogs.{name}")
     print(f"{name} ReLoaded!")
 
+#!-----------------------------------------------------------------------------------------------------------------------------------------
 
 for file in os.listdir("./cogs"):  # Will load all COGs
     if file.endswith(".py"):
         print("Load "+file)
         bot.load_extension(f"cogs.{ file[:-3] }")
 
-#!-----------------------------------------------------------------------------------------------------------------------------------------
 keep_alive()
 bot.run(os.getenv("TOKEN"))  # Secret Stuff
+#import secret
+#bot.run(secret.TOKEN)
+
+#!-----------------------------------------------------------------------------------------------------------------------------------------
