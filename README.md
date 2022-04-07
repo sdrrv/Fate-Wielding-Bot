@@ -23,7 +23,7 @@ If you have any ideia on how to improve the bot, or any command you'd like to se
 - `!fate silence` You better be muted for this one
 - `!fate mute` Mutes everyone on the voice channel
 - `!fate unmute` UnMutes everyone on the voice channel
-- `!fate say` Will enter your channel and say anything you want him to say.
+- `!fate say` Will enter your channel and say anything you want him to say.Check out the available languages [here](https://gtts.readthedocs.io/en/latest/module.html#localized-accents).
 ---
 ## To Finish
 > This is still an alpha version
