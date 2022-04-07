@@ -18,6 +18,12 @@ If you have any ideia on how to improve the bot, or any command you'd like to se
 - `!fate pussy` Just try it out ;). 
 - `!fate roulette` Our favorite, and the first command we added. This command will kick a random user from your voice channel Russian Rollete style.
 - `!fate duel @user` You will duel with the user you identify. Old West Style. -Beta
+- `!fate cry` Just tilt your friends when they throw a tantrum
+- `!fate yeahboi` YEAHBOIIIIIIIII
+- `!fate silence` You better be muted for this one
+- `!fate mute` Mutes everyone on the voice channel
+- `!fate unmute` UnMutes everyone on the voice channel
+- `!fate say` Will enter your channel and say anything you want him to say.
 ---
 ## To Finish
 > This is still an alpha version
