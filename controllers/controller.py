@@ -45,8 +45,8 @@ class controller:
     def stop(self, voice_client):
         voice_client.stop()
 
-    async def get_member(self, guild, id):
-        return await guild.fetch_member(id)
+    def get_member(self, guild, id):
+        return guild.get_member(id)
 
     def disconnect_member(self, member):
         return member.move_to(None)
@@ -72,7 +72,7 @@ class controller:
       print(clx.message.content)
 
     def get_members_in_voice_channel(self, voice_channel):
-        return voice_channel.voice_states.keys()
+        return list(voice_channel.voice_states.keys())
 
 
     def get_voice_states_in_voice_channel(self, voice_channel):

@@ -83,26 +83,36 @@ class Randomizers(commands.Cog):
             return 1
         channel= ctx.author.voice.channel
         #-------------------------------------
-        membersId= self.cont.get_members_in_voice_channel(channel)
-        to_kick= self.cont.choose(membersId)
+        voice_states = list(self.cont.get_voice_states_in_voice_channel(channel))
+        to_kick= self.cont.choose(voice_states)
         #-------------------------------------
         voice_client= await self.cont.join(channel)
-
-        for member in membersId:
-            if member == to_kick:
-                self.cont.play(voice_client,"shoot.wav")
-                while voice_client.is_playing():
-                    await asyncio.sleep(.1)
-                await self.cont.disconnect_member(self.cont.get_member(ctx.guild, member))
-                break
-
+        
+        try:
+            guild = ctx.guild
+            for memberId in voice_states:
+                if memberId == 801580589903904799:
+                    continue
+                
+                if memberId == to_kick:
+                    self.cont.play(voice_client,"shoot.wav")
+                    while voice_client.is_playing():
+                        await asyncio.sleep(.1)
+                    await self.cont.disconnect_member(self.cont.get_member(guild, memberId))
+                    break
+                
             self.cont.play(voice_client,"revolver_blank.wav")
             while voice_client.is_playing():
                 await asyncio.sleep(.1)
 
-        await ctx.channel.send(self.cont.get_disconnect_phrase()+f"<@{to_kick.id}>")
+        except Exception as e:
+            await self.cont.leave(voice_client) #self disconnect
+            raise defaultException 
+        
+        await ctx.channel.send(self.cont.get_disconnect_phrase()+f"<@{to_kick}>")
         await asyncio.sleep(3)
         await self.cont.leave(voice_client) #self disconnect
+
     #!----------------------------------------------------------------------------------------------------------------------------
     @commands.command(name="randBanUser",brief="Ban a user from using a randomizer command.**(Admin Command)**")
     @commands.has_permissions(administrator=True)
